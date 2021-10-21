@@ -1,2 +1,2 @@
 # lab-sp
-Lab di Sicurezza e Privatezza
+Lab di Sicurezza e Privatezza @ Unimi informatica

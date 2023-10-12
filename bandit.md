@@ -234,8 +234,57 @@ wait for a minute
     /Wwyqhp/wTl8VXjxWo+W+DmewGdPHGQQ5fFdqgpuQpGUq24YZS8m66v5ANBwd76t
     IZdtF5HXs2S5CADTwniUS5mX1HO9l5gUkk+h0cH5JnPtsMCnAUM+BRY=
     -----END RSA PRIVATE KEY-----
+
 copy the ssh key on your machine and login with key. first reduce the shell window size to make it very small which will make `more` enter in interactive mode, from which pressing `v` we can enter in vim. then set shell to bash, `:set shell=/bin/bash` and from here command `:shell` let us enter in bash shell. 
 
     cat /etc/bandit_pass/bandit26
 
+c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
 
+# lvl 26 -> 27
+
+    pwd = YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
+
+    ./bandit27-do cat /etc/bandit_pass/bandit27
+
+# lvl 27 -> 28
+
+    pwd = AVanL161y9rsbcJIsFHuw35rjaOM19nR
+
+    git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
+
+# lvl 28 -> 29
+
+    pwd = tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
+
+    git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo
+
+    git log // to view commits
+    git checkout commit_hash
+    cat README
+
+
+# lvl 29 -> 30
+
+    pwd = xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+
+    git clone ssh://bandit29-git@localhost:2220/home/bandit29-git/repo 
+    git log
+    git branch -r // list remote branches
+    git checkout origin/dev
+
+
+
+# lvl 30 -> 31
+
+    pwd = OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt
+
+    git clone ssh://bandit30-git@localhost:2220/home/bandit30-git/repo
+
+    git tag -l
+
+    git show <tag> // shows tags msg
+
+# lvl 31 -> 32
+
+    

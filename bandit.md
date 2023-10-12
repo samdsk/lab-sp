@@ -296,4 +296,12 @@ c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
     git push
 
 # lvl 32 -> 33
-    
+
+    pwd = odHo63fHiFqcWWJG9rLiLDtPm45KzUKy
+
+    $0 -> to exit uppercase shell
+    $0 is the variable for reserved for the shell
+    whoami shows that shell is running as bandit33
+    so we can simply read the content of bandit33 password with cat /etc/bandit_pass/bandit33
+
+

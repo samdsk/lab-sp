@@ -287,4 +287,13 @@ c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
 
 # lvl 31 -> 32
 
+    pwd = rmCBvG56y58BXzv98yZGdO7ATVL5dW8y
+
+    git clone ssh://bandit31-git@localhost:2220/home/bandit31-git/repo
+    create file called key.txt with "May I come in?"
+    git add -f key.txt
+    git commit -m "something"
+    git push
+
+# lvl 32 -> 33
     

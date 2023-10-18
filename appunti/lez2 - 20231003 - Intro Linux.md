@@ -3,6 +3,7 @@ id: '2'
 lezione: "20231003"
 title: "Intro Linux"
 author: "Sam. Kaluwaduge"
+keywords: 
 ---
 <style>
     strong{
@@ -52,7 +53,7 @@ gli OS si distinguono per `syscall`, dalle utilità di sistema, interfaccia uten
 | hardware |
 
 
-# Linux
+# Linux - Introduction
 È un derivato di unix. unix nasce alla fine di 1960. deriva da un progetto **Multics** (multiplexed information and computing sys).
 ken thomposon unix uniplexed information and computing sys. riscrive in c, quello che favorisce la diffusione è che era open source. quindi la gente si interessarono di piu per fare testi ecc.
 

@@ -130,4 +130,5 @@ dmypy.json
 
 #C
 *.out
+desktop.ini
 

@@ -128,7 +128,14 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#C
+# C
 *.out
-desktop.ini
 
+# misc
+desktop.ini
+.DS_Store
+
+# vim
+*~
+*.swp
+*.swo

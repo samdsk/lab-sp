@@ -35,8 +35,12 @@ def read_files(file):
     f.writelines(newOutput)
     f.close()
     
+def asd(file):
+    f = open(file,'r',encoding='utf-8')
+    text = f.read()
+    pattern_headers = re.compile("(?:^#+\s)(.*)",flags=re.M)
+    res = re.findall(pattern_headers,text)
+    print(res)
 
-for f in mdFileNames:
-    read_files(f)
 
-
+asd

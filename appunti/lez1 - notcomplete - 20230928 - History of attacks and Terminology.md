@@ -18,6 +18,8 @@ keywords:
 5 per filtro 
 23 per orale
 
+Capitolo 1 del libro di testo
+
 ## history of attacks
 * 1986 -> lawrence berkeley labs attacked by germans crackers (kgb)
     book: cuckoo's egg 

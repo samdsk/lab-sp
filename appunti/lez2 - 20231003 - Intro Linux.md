@@ -13,9 +13,15 @@ keywords:
         border-radius:5px;
     }
 </style>
-https://overthewire.org/wargames/bandit
+## Materiale di approfondimento 
+* [Lectures on Unix](https://www.doc.ic.ac.uk/~wjk/UnixIntro/)
 
-matteo.zoia@unimi.it | andrea.monzani@unimi.it
+* [understanding processes on linux](https://devconnected.com/understanding-processes-on-linux/)
+
+## Esercizi
+* [overthewire Bandit](https://overthewire.org/wargames/bandit)
+
+Lab = matteo.zoia@unimi.it | andrea.monzani@unimi.it
 
 # Intro Linux
 Un sistema di calcolo può essere suddiviso per strati e i componenti possono essere classificati per funzione logica:

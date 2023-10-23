@@ -13,6 +13,11 @@ keywords:
         border-radius:5px;
     }
 </style>
+
+## Materiale di approfondimento
+* [Unix file system](https://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf)
+
+
 # File system
 Il file system è un struttura dati che ci permette di gestire dei file, trovare, condividere.
 

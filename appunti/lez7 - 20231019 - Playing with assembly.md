@@ -203,13 +203,30 @@ cmp source1,source2 # s2-s1
 ~~~
 
 ### Moltiplicazione
-`mul` dati senza segno oppure `imul` per dati con segno. Può avere due operandi o uno, se non è specificato è dentro `rax`, il risultato della moltiplicazione viene messo in `rdx`:`eax` (si può perdere il contenuto originario del `rdx` e `eax`).
+`mul` dati senza segno usa il registro `rax` per il primo operando della moltiplicazione e `imul` per dati con segno che prende due operandi. `mul` può avere solo un operando il secondo lo prende implicitamente da `rax`, il risultato della moltiplicazione viene messo in `rax`:`rdx` (si può perdere il contenuto originario del `rdx` e `rax`).
 
-uguale per divisione> `div` unsigned or `idiv` signed.
+### Divisione
+Divisione `div` unsigned prende solo un operando il divisore, or `idiv` signed prende due operandi.
+il dividendo bisogna caricarlo in `rax`, il quozioente viene caricato in `rax` e in `rdx` viene caricato il resto.
 
-and
-or ...
-shift ...
+## Shifting bits
+
+    shl reg,number # to shift left
+    shr reg,number # to shift right 
+
+## Stack ops
+
+    pop reg # reg to load
+    push reg # reg to store
+
+**`RSP`** # register where stack pointer is stored.
+
+Lo stack pointer inizialmente è settato all'indirizzo di memoria più alto dello stack ogni volta che si fa un'operazione di **PUSH viene decrementato** (in x64 8 byte) e **incrementato con operazioni POP**.
+
+### AND | OR | XOR
+
+    and | or | xor reg1, reg2 # reg / immediate
+
 
 ## Control Flow
 Il flusso di controllo (if/for/while) di un programma assembly viene controllato usando le istruzioni compare e jump:
@@ -221,6 +238,99 @@ Il flusso di controllo (if/for/while) di un programma assembly viene controllato
 `cmp` compare two values, and stores the result of the comparison in the status register `RFLAGS`.
 
 je (jump equal), jg (jump greater), jge (jump greater or equal), jl (jump less), jle (jump less or), ...
+
+### Instruction Pointer Resgiter **`RIP`**
+è il registro che contiene l'indirizzo del prossimo istruzione.
+
+### Jumps
+Ci sono due tipi di salti:
+* **Unconditional** jumps: questo salti vengono sempre effettuate
+* **Conditional** jumps: a differenza di salti non-condizionati, salti condizioni fanno il salto soltanto se si verifica una certa situazione.
+
+Per ogni salto esistono tre tipi di salti:
+* Relative jumps: `jmp LABEL`
+* Absolute jumps: `jmp reg` l'indirizzo deve essere memorizzato in un registro oppure in memoria
+* Indirect jumps: `jmp [reg + number]`
+
+### Compare `cmp`
+L'operazione di compare setta la flag Zero Flag ZF a 1 se cmp è uguale a ZERO, altrimenti a 1.
+
+#### Esempio if-else_if-else
+~~~s
+  1 .intel_syntax noprefix
+  2 .global _start
+  3 .section .text
+  4 _start: 
+  5         
+  6 mov ebx,[rdi]
+  7         
+  8 cmp ebx,0x7f454c46
+  9 jne else_if
+ 10         
+ 11 mov ecx,[rdi+4]
+ 12 add eax,ecx
+ 13         
+ 14 mov ecx,[rdi+8]
+ 15 add eax,ecx
+ 16         
+ 17 mov ecx,[rdi+12]
+ 18 add eax,ecx
+ 19         
+ 20 jmp done
+ 21         
+ 22 else_if:
+ 23 cmp ebx,0x00005A4D
+ 24 jne else
+ 25         
+ 26 mov eax,[rdi+4]
+ 27 mov ecx,[rdi+8]
+ 28         
+ 29 sub eax,ecx
+ 30         
+ 31 mov ecx,[rdi+12]
+ 32 sub eax,ecx
+ 33         
+ 34 jmp done
+ 35         
+ 36 else:   
+ 37         
+ 38 mov  eax,[rdi+4]
+ 39 mov  ecx,[rdi+8]
+ 40 imul eax,ecx
+ 41     
+ 42 mov  ecx,[rdi+12]
+ 43 imul eax,ecx
+ 44     
+ 45 done:
+~~~
+### Switch
+
+    # using jump list
+
+    if rdi is 0:
+        jmp 0x403010
+    else if rdi is 1:
+        jmp 0x403105
+    else if rdi is 2:
+        jmp 0x40319e
+    else if rdi is 3:
+        jmp 0x40329f
+    else:
+        jmp 0x403371
+
+~~~s
+  1 .intel_syntax noprefix
+  2 .global _start     
+  3 .section .text     
+  4 _start:            
+  5                    
+  6 cmp rdi,4          
+  7     jl JUMPS           
+  8     mov rdi,4          
+  9 JUMPS:             
+ 10     jmp [rsi + rdi * 8] 
+ ~~~
+
 
 ## System call
 Assembly usa syscall per fare operazioni complicate. Si tratta di memorizzare il numero del syscall, all'interno del registro `RAX` dopo di che si predispongono gli argomenti eventtuali negi registri `RDI, RSI, RDX, R10, R8, R9`.

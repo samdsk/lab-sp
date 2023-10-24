@@ -388,3 +388,175 @@ Task: compute the average of n consecutive quad words, where:
 * rdi = memory address of the 1st quad word
 * rsi = n (amount to loop for)
 * rax = average computed
+
+## lvl 21
+
+~~~s
+  1 .intel_syntax noprefix
+  2 .global _start
+  3 .section .text
+  4 _start: 
+  5     
+  6 xor rax,rax
+  7 cmp rdi,0
+  8 je END
+  9     
+ 10 xor rcx,rcx
+ 11     
+ 12 WHILE:
+ 13     mov dl,[rdi + rcx]
+ 14     cmp dl,0
+ 15     je END
+ 16     inc rax
+ 17     inc rcx
+ 18     jmp WHILE
+ 19            
+ 20 END:  
+~~~
+
+Task: (While loop) Count the consecutive non-zero bytes in a contiguous region of memory, where:
+* rdi = memory address of the 1st byte
+* rax = number of consecutive non-zero bytes
+* Additionally, if rdi = 0, then set rax = 0.
+
+## lvl 22
+
+~~~s
+  1 .intel_syntax noprefix 
+  2 .global _start      
+  3 .section .text      
+  4 _start:             
+  5                     
+  6 xor rax,rax         
+  7 xor rdx,rdx         
+  8                     
+  9 IF_1:               
+ 10     cmp rdi,0       
+ 11     je END          
+ 12                     
+ 13 xor rcx,rcx         
+ 14                     
+ 15 WHILE:              
+ 16     mov bl, byte ptr [rdi + rcx]
+ 17     cmp bl,0        
+ 18     je END          
+ 19                     
+ 20     IF_2:       
+ 21       cmp bl,0x5a
+ 22       jg IF_2_END  
+ 23                     
+ 24       mov rax,0x403000 # store the addr of foo function
+ 25       push rdi # save the addr of while loop
+ 26       mov rdi,rbx # load in rdi current content of rbx as arg1 of foo function
+ 27       call rax # call foo function, returned value will be in RAX
+ 28       pop rdi 
+ 29       mov byte ptr [rdi + rcx], al # assigning returned value to original memory location
+ 30       inc rdx 
+ 31                     
+ 32     IF_2_END:  
+ 33       inc rcx    
+ 34       jmp WHILE  
+ 35                     
+ 36 END:                
+ 37   mov rax,rdx         
+ 38   ret   
+~~~
+
+Task:
+~~~
+  str_lower(src_addr):
+      rax = 0
+      if src_addr != 0:
+          while [src_addr] != 0x00:
+              if [src_addr] <= 0x5a:
+                  [src_addr] = foo([src_addr])
+                  rax += 1
+              src_addr += 1
+~~~
+`foo` is provided at 0x403000. `foo` takes a single argument as a value
+
+An important note is that `src_addr` is an address in memory (where the string is located) and `[src_addr]` refers to the byte that exists at `src_addr`.
+
+Therefore, the function `foo` excepts a byte as its first argument, and returns a byte.
+
+We will now run multiple tests on your code, here is an example run:
+- (data) [0x404000] = {10 random bytes},
+- rdi = 0x404000
+
+## lvl 23
+
+~~~s
+  1 .intel_syntax noprefix 
+  2 .global _start      
+  3 .section .text      
+  4 _start:             
+  5                     
+  6 mov rbp,rsp
+  7 sub rsp,0x500 
+  8  
+  9 xor rbx,rbx # b = 0
+ 10 xor rcx,rcx # i = 0 counter
+ 11  
+ 12 FOR_1:
+ 13     cmp rcx,rsi # rsi is the second arg of function since func(s_adrr,size)
+ 14     jge FOR_1_END
+ 15     movb  dl, byte ptr [rdi + rcx]
+ 16     mov eax, dword ptr -0x400[rbp + rdx * 4]
+ 17     inc eax
+ 18     mov dword ptr -0x400[rbp + rdx * 4], eax
+ 19     inc rcx
+ 20     jmp FOR_1
+ 21  
+ 22 FOR_1_END:
+ 23  
+ 24 xor rcx,rcx # b = 0
+ 25 xor rbx,rbx
+ 26 xor rdx,rdx # max_frew = 0
+ 27 xor rax,rax # max_freq_byte = 0
+ 28  
+ 29 FOR_2:
+ 30     cmp rcx, 0xff
+ 31     jg FOR_2_END
+ 32     IF:
+ 33       mov ebx, dword ptr -0x400[rbp + rcx * 4]
+ 34       cmp edx,ebx
+ 35       jge IF_END
+ 36       mov edx,ebx
+ 37       mov rax,rcx
+ 38     IF_END:
+ 39       inc rcx
+ 40       jmp FOR_2
+ 41  
+ 42 FOR_2_END:
+ 43     mov rsp,rbp
+ 44     ret  
+~~~
+
+Task:
+~~~
+ost_common_byte(src_addr, size):
+    b = 0
+    i = 0
+    for i <= size-1:
+        curr_byte = [src_addr + i]
+        [stack_base - curr_byte] += 1
+    b = 0
+
+    max_freq = 0
+    max_freq_byte = 0
+    for b <= 0xff:
+        if [stack_base - b] > max_freq:
+            max_freq = [stack_base - b]
+            max_freq_byte = b
+
+    return max_freq_byte
+~~~
+Assumptions:
+- There will never be more than 0xffff of any byte
+- The size will never be longer than 0xffff
+- The list will have at least one element
+Constraints:
+- You must put the "counting list" on the stack
+- You must restore the stack like in a normal function
+- You cannot modify the data at src_addr
+

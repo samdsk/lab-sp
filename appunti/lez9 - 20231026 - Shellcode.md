@@ -164,6 +164,8 @@ questo programma:
 ## Esercizio
 Creare un file `/flag` nella root, scrivere del codice che accede al suo contenuto e lo stampa.
 
+Scrivere un programma in C estrarre da file compilato assembly il shellcode.
+
 system call da usare: (open, sendfile, exit).
 
 La shell appare all'utente, non all'attaccante, bisogna poi redireigere la shell. (remote shell). Il codice è un pochino piu complicato.

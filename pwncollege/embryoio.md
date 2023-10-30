@@ -124,7 +124,7 @@ same as 21
 ~~~c
 #include <stdio.h>
 
-void  
+void pwncollege(){ 
     int pid = fork();
     if(pid<0)
         printf("Error! \n");
@@ -137,7 +137,7 @@ void
 }
 
 int main(){
-     
+    pwncollege();
     return 0;
 }
 ~~~
@@ -149,7 +149,7 @@ same as 29
 ~~~c
 #include <stdio.h>           
                              
-void  
+void pwncollege(){ 
     int pid = fork();        
                             
     if(pid<0)                
@@ -165,7 +165,7 @@ void
 }                            
                             
 int main(){                  
-     
+    pwncollege();
     return 0;                
 }
 ~~~ 
@@ -177,13 +177,11 @@ int main(){
 ~~~c
 #include <stdio.h>
         
-void  
+void pwncollege(char** argv, char** envp){
     int pid = fork();
         
     if(pid<0)
         printf("Error! \n");
-        
-        
          
     if(pid==0){
         char *prog = "/challenge/embryoio_level32";
@@ -196,7 +194,7 @@ void
 }       
         
 int main(int argc, char** argv, char** envp){
-     
+    pwncollege(argv, envp); 
     return 0;
 }       
 ~~~ 
@@ -210,7 +208,7 @@ int main(int argc, char** argv, char** envp){
 ~~~c
 #include <stdio.h>      
       
-void  
+void pwncollege(char** argv, char** envp){
     int pid = fork();
         
     if(pid<0)
@@ -226,7 +224,7 @@ void
 }     
     
 int main(int argc, char** argv, char** envp){
-     
+    pwncollege(argv, envp); 
     return 0;
 }     
 ~~~ 
@@ -330,7 +328,7 @@ p2.stdout.close();
 #include <stdio.h>  
 #include <unistd.h>     
       
-void  
+void pwncollege(char** argv, char** envp){
     pid_t pid = fork();
         
     if(pid<0)
@@ -346,7 +344,7 @@ void
 }     
     
 int main(int argc, char** argv, char** envp){
-     
+    pwncollege(argv, envp);
     return 0;
 }
 ~~~
@@ -360,7 +358,7 @@ int main(int argc, char** argv, char** envp){
 #include <stdio.h>  
 #include <unistd.h>     
       
-void  
+void pwncollege(char** argv, char** envp){
     pid_t pid = fork();
         
     if(pid<0)
@@ -376,7 +374,7 @@ void
 }     
     
 int main(int argc, char** argv, char** envp){
-     
+    pwncollege(argv, envp);
     return 0;
 }
 
@@ -422,4 +420,262 @@ str="${str}"lxckkspssc
 # env[KEY] holds value VALUE (listed to the right as KEY:VALUE) : 101:spoudwaumn
 env -i 101=spoudwaumn /challenge/embryoio_level70  
 ~~~
- 
+
+## 71
+```sh
+  1 #!/bin/bash
+  2 STR=$( python -c "print('1 '*218+'sfjtqttgfa')")                                                    
+  3 env -i 172=imndahteji /challenge/embryoio_level71 $STR 
+```
+## 72
+
+    # create dir 
+    mkdir /tmp/nqfdgp
+    # enter
+    cd /tmp/nqfdgp
+    # create the file
+    touch asvyeq
+
+```s
+  1 #!/bin/bash                         
+  2 /challenge/embryoio_level72 < asvyeq 
+```
+Task: 
+- the challenge checks for a specific parent process : shellscript
+- the challenge will check that input is redirected from a specific file path : asvyeq
+- the challenge will check that it is running in a specific current working directory : /tmp/nqfdgp
+
+## 73
+```sh
+  1 #!/bin/bash                  
+  2 cd /tmp/kcdoym               
+  3 /challenge/embryoio_level73 &
+  4 cd ~   
+  5 sleep 1   
+```
+Task: 
+- the challenge checks for a specific parent process : shellscript
+- the challenge will check that it is running in a specific current working directory : /tmp/kcdoym
+- the challenge will check to make sure that the parent's parent CWD to be different than the challenge's CWD
+
+## 74
+```py
+  1 import subprocess
+  2 c = ["1"]*280                                                                                       
+  3 c[279]="sbujygveya"
+  4 c[0]="/challenge/embryoio_level74"
+  5         
+  6 subprocess.run(c)
+```
+Task:
+- the challenge checks for a specific parent process : python
+- the challenge will check that argv[NUM] holds value VALUE (listed to the right as NUM:VALUE) : 279:sbujygveya
+
+## 78
+```py
+  1 import subprocess
+  2 file = open("mwypan","r")
+  3 subprocess.run(["/challenge/embryoio_level78"],stdin=file) 
+```
+Task: 
+- the challenge checks for a specific parent process : python
+- the challenge will check that input is redirected from a specific file path : mwypan
+- the challenge will check that it is running in a specific current working directory : /tmp/pqkoft
+
+## 79
+```py
+1 import subprocess
+2 p1 = subprocess.Popen(["/challenge/embryoio_level79"],cwd="/tmp/jxnvtl")
+3 p1.wait()    
+```
+Task:
+- the challenge checks for a specific parent process : python
+- the challenge will check that it is running in a specific current working directory : /tmp/jxnvtl
+- the challenge will check to make sure that the parent's parent CWD to be different than the challenge's CWD
+
+## 80
+
+```c
+  1 #include <fcntl.h>
+  2 #include <stdio.h>  
+  3 #include <unistd.h>     
+  4                 
+  5 void pwncollege(char** argv, char** envp){            
+  6     pid_t pid = fork(); 
+  7                 
+  8     if(pid<0)   
+  9         printf("Error while forking! \n");            
+ 10                 
+ 11     if(pid==0){ 
+ 12         char *args[151];
+ 13         for(int i=0;i<151;i++) args[i] = "mmndmplsfi";
+ 14         args[151] = NULL;                                                                           
+ 15         execv("/challenge/embryoio_level80", args);
+ 16                 
+ 17     }else waitpid(pid); 
+ 18 }               
+ 19                 
+ 20 void main(int argc, char** argv, char** envp){        
+ 21     pwncollege(argv, envp);                           
+ 22 }  
+```
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will check that argv[NUM] holds value VALUE (listed to the right as NUM:VALUE) : 150:mmndmplsfi
+
+## 82
+```c
+  1 #include <fcntl.h>          
+  2 #include <stdio.h>          
+  3 #include <unistd.h>         
+  4                             
+  5 void pwncollege(char** argv, char** envp){
+  6     pid_t pid = fork();     
+  7                             
+  8     if(pid<0)               
+  9         printf("Error while forking! \n");           
+ 10                             
+ 11     if(pid==0){             
+ 12         char *env[] = {"312=eqybcrweat",NULL};                                                      
+ 13         execve("/challenge/embryoio_level82",argv, env );
+ 14                             
+ 15     }else waitpid(pid);     
+ 16 }                           
+ 17                             
+ 18 void main(int argc, char** argv, char** envp){       
+ 19     pwncollege(argv, envp);   
+ 20 }                           
+```
+    env -i ./s
+
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will check that the environment is empty (except LC_CTYPE, which is impossible to get rid of in some cases)
+- the challenge will check that env[KEY] holds value VALUE (listed to the right as KEY:VALUE) : 312:eqybcrweat
+
+## 83
+
+```c
+  1 #include <fcntl.h>
+  2 #include <stdio.h>  
+  3 #include <unistd.h>     
+  4                
+  5 void pwncollege(char** argv, char** envp){
+  6     pid_t pid = fork();
+  7                
+  8     if(pid<0)  
+  9         printf("Error while forking! \n");      
+ 10                
+ 11     if(pid==0){
+ 12         char *args[177];
+ 13         for(int i=0;i<177;i++) args[i] = "gffrnmbjqi";
+ 14         args[177] = NULL;                                                              
+ 15         char *env[] = {"122=bpcjagpuyx",NULL};
+ 16         execve("/challenge/embryoio_level83",args, env );
+ 17           
+ 18     }else waitpid(pid);
+ 19 }              
+ 20          
+ 21 void main(int argc, char** argv, char** envp){
+ 22     pwncollege(argv, envp);
+ 23 } 
+```
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will check that the environment is empty (except LC_CTYPE, which is impossible to get rid of in some cases)
+- the challenge will check that argv[NUM] holds value VALUE (listed to the right as NUM:VALUE) : 176:gffrnmbjqi
+- the challenge will check that env[KEY] holds value VALUE (listed to the right as KEY:VALUE) : 122:bpcjagpuyx
+
+## 84
+
+```c
+  1 #include <fcntl.h>                                            
+  2 #include <stdio.h>                                            
+  3 #include <unistd.h>                                           
+  4                                                               
+  5 void pwncollege(char** argv, char** envp){                    
+  6     pid_t pid = fork();                                       
+  7                                                               
+  8     if(pid<0)                                                 
+  9         printf("Error while forking! \n");                    
+ 10                                                               
+ 11     if(pid==0){                                               
+ 12         chdir("/tmp/racuzo");                                 
+ 13         int f = open("ftssxb",O_RDWR);                        
+ 14         dup2(f,STDIN_FILENO);                                 
+ 15         execlp("/challenge/embryoio_level84","embryoio_level84",NULL);                              
+ 16                                                               
+ 17     }else waitpid(pid);                                       
+ 18 }                                                             
+ 19                                                               
+ 20 void main(int argc, char** argv, char** envp){                
+ 21     pwncollege(argv, envp);                                   
+ 22 } 
+```
+    mkdir /tmp/racuzo
+    touch /tmp/racuzo/ftssxb
+    cd ~
+    gcc -o s s.c
+    ./s
+
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will check that input is redirected from a specific file path : ftssxb
+- the challenge will check that it is running in a specific current working directory : /tmp/racuzo
+
+## 85
+
+```c
+  1 #include <fcntl.h>  
+  2 #include <stdio.h>  
+  3 #include <unistd.h>                                                   
+  4                     
+  5 void pwncollege(char** argv, char** envp){                            
+  6     pid_t pid = fork();                                               
+  7                     
+  8     if(pid<0)       
+  9         printf("Error while forking! \n");                            
+ 10                     
+ 11     if(pid==0){     
+ 12         chdir("/tmp/kuxzlq");                                         
+ 13         execlp("/challenge/embryoio_level85","embryoio_level85",NULL);
+ 14         chdir("~"); 
+ 15         sleep(1000);                                                                                
+ 16                     
+ 17     }else waitpid(pid);
+ 18 }                   
+ 19                     
+ 20 void main(int argc, char** argv, char** envp){                        
+ 21     pwncollege(argv, envp);
+ 22 } 
+```
+    mkdir /tmp/kuxzlq
+    cd ~
+    gcc -o s s.c
+    ./s
+
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will check that it is running in a specific current working directory : /tmp/kuxzlq
+- the challenge will check to make sure that the parent's parent CWD to be different than the challenge's CWD
+
+## 86 - 87
+bash script to run the challenge and use python for calculations
+
+## 88
+```sh
+  1 #!/bin/bash
+  2 /tmp/psxuhn        
+```
+ln -s /challenge/em... /tmp/ps...
+
+## 89
+```sh
+  1 #!/bin/bash
+  2 kutyuy   
+```
+ls -s /ch.../em...89 kut...
+export PATH=$PATH:.
+Task:
+- the challenge checks for a specific parent process : shellscript
+- the challenge will check that argv[NUM] holds value VALUE (listed to the right as NUM:VALUE) : 0:kutyuy

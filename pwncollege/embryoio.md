@@ -679,3 +679,155 @@ export PATH=$PATH:.
 Task:
 - the challenge checks for a specific parent process : shellscript
 - the challenge will check that argv[NUM] holds value VALUE (listed to the right as NUM:VALUE) : 0:kutyuy
+
+## 91
+
+    mkfifo my_pipe
+
+```sh
+  1 #!/bin/bash
+  2 /challenge/embryoio_level91 > my_pipe 
+```
+    # open with cat from another terminal
+    cat my_pipe
+
+Task:
+- the challenge checks for a specific parent process : shellscript
+- the challenge will make sure that stdout is a redirected from fifo
+
+## 92 
+
+```sh
+#!/bin/bash
+/challenge/embryoio_level92 < in_pipe > out_pipe
+```
+    mkfifo in_pipe
+    mkfifo out_pipe
+    [terminal 1] echo "psw" > in_pipe
+    [terminal 2] ./script.sh 
+    [terminal 3] cat out_pipe
+
+Task:
+- the challenge checks for a specific parent process : shellscript
+- the challenge will make sure that stdin is redirected from a fifo
+- the challenge will make sure that stdout is a redirected from fifo
+- the challenge will check for a hardcoded password over stdin : jheroibv
+
+## 94
+```sh
+1 #!/bin/bash
+2            
+3 exec 303<> f303 # creating a file descriptor 303 from file f303 which has the password inside                 
+4            
+5 /challenge/embryoio_level94 <&303 # redirecting stdin from fd 303
+6            
+7 exec 303>&-   # closing fd 303
+```
+Task: 
+- the challenge checks for a specific parent process : shellscript
+- the challenge will take input on a specific file descriptor : 303
+- the challenge will check for a hardcoded password over stdin : fjnvdylk
+
+## 99
+```py
+1 import subprocess  
+2 subprocess.run(["/challenge/embryoio_level99"])  
+```
+Task:
+- the challenge checks for a specific parent process : python
+- the challenge will force the parent process to solve a number of arithmetic problems : 1
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*
+- the complexity (in terms of nested expressions) of the arithmetic problems : 1
+
+## 100
+da rifare con script
+
+## 101
+
+    ln -s /challenge/embryoio_level101 /tmp/htjwkx
+```py
+import subprocess 
+subprocess.run(["/tmp/htjwkx"]) 
+```      
+- the challenge checks for a specific parent process : python
+- the challenge will check that argv[NUM] holds value VALUE (listed to the right as NUM:VALUE) : 0:/tmp/htjwkx
+
+## 102
+
+    ln -s /challenge/embryoio_level102 ywdkvt
+    export PATH=$PATH:.
+```py
+  1 import subprocess
+  2 subprocess.run("ywdkvt"])   
+```      
+- the challenge checks for a specific parent process : python
+- the challenge will check that argv[NUM] holds value VALUE (listed to the right as NUM:VALUE) : 0:ywdkvt
+
+## 103
+```py
+  1 import subprocess                   
+  2 import pwn                          
+  3 import os                           
+  4 pin = os.open("in_pipe",os.O_RDWR)  
+  5  
+  6 p1 = pwn.process(["cat","-"],stdout=pin)
+  7 p1.sendline(b'pztwdmts')
+  8  
+  9 p2 = pwn.process(["/challenge/embryoio_level103"],stdin=pin)
+ 10 p2.interactive()
+ 11  
+ 12 pin.close()     
+```
+Task:
+- the challenge checks for a specific parent process : python
+- the challenge will make sure that stdin is redirected from a fifo
+- the challenge will check for a hardcoded password over stdin : pztwdmts
+
+## 104
+```py
+  1 import subprocess                       
+  2 import pwn
+  3 import os 
+  4 pout = os.open("in_pipe",os.O_RDWR)     
+  5     
+  6 pin = os.open("in_pipe",os.O_WRONLY)    
+  7     
+  8 p2 = pwn.process(["/challenge/embryoio_level104"],stdout=pin)
+  9 p1 = pwn.process(["cat","-"],stdin=pout)
+ 10 p1.interactive()                                                                                    
+ 11  
+ 12 pin.close()
+ 13 pout.close()    
+```
+Task:
+- the challenge checks for a specific parent process : python
+- the challenge will make sure that stdout is a redirected from fifo
+
+## 105
+```py
+  1 import subprocess                 
+  2 import pwn                        
+  3 import os                         
+  4 p1out = os.open("in_pipe",os.O_RDWR)
+  5 p1in = os.open("in_pipe",os.O_WRONLY)
+  6  
+  7 p2out = os.open("out_pipe",os.O_RDWR)
+  8 p2in = os.open("out_pipe",os.O_WRONLY)
+  9  
+ 10 p1 = pwn.process(["cat","-"],stdout=p1in)
+ 11 p1.sendline(b'kqtxhpnf')
+ 12  
+ 13 p2 = pwn.process(["/challenge/embryoio_level105"],stdin=p1out ,stdout=p2in)
+ 14 p3 = pwn.process(["cat","-"],stdin=p2out)
+ 15 p3.interactive()
+ 16  
+ 17 p1in.close()
+ 18 p2in.close()
+ 19 p2out.close()
+ 20 p1out.close()     
+```
+Task:
+- the challenge checks for a specific parent process : python
+- the challenge will make sure that stdin is redirected from a fifo
+- the challenge will make sure that stdout is a redirected from fifo
+- the challenge will check for a hardcoded password over stdin : kqtxhpnf

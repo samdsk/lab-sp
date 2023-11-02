@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 int main(){
-    char buf[80];
     int cookie;
+    char buf[80];
 
     printf("buf: %08x cookie: %08x\n", &buf, &cookie);
     gets(buf);

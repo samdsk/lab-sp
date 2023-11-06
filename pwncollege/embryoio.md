@@ -461,7 +461,7 @@ Task:
 ## 74
 ```py
   1 import subprocess
-  2 c = ["1"]*280                                                                                       
+  2 c = ["1"]*280          
   3 c[279]="sbujygveya"
   4 c[0]="/challenge/embryoio_level74"
   5         
@@ -831,3 +831,290 @@ Task:
 - the challenge will make sure that stdin is redirected from a fifo
 - the challenge will make sure that stdout is a redirected from fifo
 - the challenge will check for a hardcoded password over stdin : kqtxhpnf
+
+## 109
+```py
+1 import subprocess                                                                                   
+2  
+3 p = subprocess.Popen(["/challenge/embryoio_level109"])
+4 p.wait()
+```
+
+## 110
+same as 109 send signal from another terminal
+
+    kill -SIGUSR2 <pid>
+
+## 111
+same as 110
+
+## 112-113
+did with python terminal
+
+## 114
+```c
+  1 #include <fcntl.h>                                                                                  
+  2 #include <stdio.h>
+  3 #include <unistd.h>
+  4  
+  5 void pwncollege(char** argv, char** envp){
+  6     pid_t pid = fork();
+  7  
+  8     if(pid<0)
+  9         printf("Error while forking! \n");
+ 10  
+ 11     if(pid==0){
+ 12         execlp("/tmp/wpoefa","/tmp/wpoefa",NULL);
+ 13  
+ 14     }else waitpid(pid);
+ 15 }
+ 16  
+ 17 void main(int argc, char** argv, char** envp){
+ 18     pwncollege(argv, envp);
+ 19 }
+```
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will check that argv[NUM] holds value VALUE (listed to the right as NUM:VALUE) : 0:/tmp/wpoefa
+
+## 115
+same as 114 with
+
+    export PATH=$PATH:.
+
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will check that argv[NUM] holds value VALUE (listed to the right as NUM:VALUE) : 0:xoxlle
+
+## 118
+used 3 terminals
+
+terminal 1
+
+    mkfifo in_pipe 
+    mkfifo out_pipe
+    echo "password" > in_pipe
+
+terminal 2
+
+    ./s.out < in_pipe > out_pipe
+
+terminal 3
+
+    cat out_pipe
+
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will make sure that stdin is redirected from a fifo
+- the challenge will make sure that stdout is a redirected from fifo
+- the challenge will check for a hardcoded password over stdin : qcrutuch
+  
+## 119
+Create 2 FIFOs (named pipe) `mkfifo in_pipe` e `mkfifo out_pipe`
+
+```c
+#include <fcntl.h>                                             
+#include <stdio.h>
+#include <unistd.h>
+ 
+void pwncollege(char** argv, char** envp){
+    pid_t f_pid = fork();
+ 
+    if(f_pid<0)
+         printf("Error while forking! \n");
+  
+    if(f_pid==0){
+        // file descriptors for in_pie and out_pipe
+        int f_in = open("in_pipe",O_RDWR);
+        int f_out = open("out_pipe",O_RDWR); 
+  
+        pid_t s_pid = fork();
+  
+        if(s_pid != 0){ // creating 2 processes challenge as parent and cat out_pipe as child
+            dup2(f_in,0);
+            dup2(f_out,1);
+            execlp("/challenge/embryoio_level119","/challenge/e    mbryoio_level119",NULL);
+             // exec challenge with stdin = in_pipe and stdout = out_pipe
+        }else if(s_pid == 0){
+            dup2(f_out,0);
+            execl("cat","cat","-",NULL);
+            // exec cat to read from out_pipe
+        }else waitpid(s_pid);  // waiting for s_pid
+  
+    }else waitpid(f_pid); // waiting for f_pid 
+}
+  
+void main(int argc, char** argv, char** envp){
+    pwncollege(argv, envp);
+}
+```
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will make sure that stdin is redirected from a fifo
+- the challenge will make sure that stdout is a redirected from fifo
+- the challenge will force the parent process to solve a number of arithmetic problems : 1
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*
+- the complexity (in terms of nested expressions) of the arithmetic problems : 1
+
+## 120
+
+```c
+  1 #include <fcntl.h>
+  2 #include <stdio.h>  
+  3 #include <unistd.h>     
+  4   
+  5 void pwncollege(char** argv, char** envp){
+  6     pid_t f_pid = fork();
+  7         
+  8     if(f_pid<0)
+  9         printf("Error while forking!\n");
+ 10  
+ 11     if(f_pid==0){
+ 12         int f_in = open("in_pipe",O_RDWR);
+ 13  
+ 14         dup2(f_in,16);
+ 15         execlp("/challenge/embryoio_level120","/challenge/embryoio_level120",NULL);
+ 16  
+ 17     }else waitpid(f_pid);
+ 18 }     
+ 19  
+ 20 void main(int argc, char** argv, char** envp){
+ 21     pwncollege(argv, envp);   
+ 22 } 
+```
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will take input on a specific file descriptor : 16
+- the challenge will check for a hardcoded password over stdin : uefymrwe
+
+## 121
+```c
+  1 #include <fcntl.h>
+  2 #include <stdio.h>  
+  3 #include <unistd.h>     
+  4   
+  5 void pwncollege(char** argv, char** envp){
+  6     pid_t f_pid = fork();
+  7         
+  8     if(f_pid<0)
+  9         printf("Error while forking!\n");
+ 10  
+ 11     if(f_pid==0){
+ 12         int f_in = open("in_pipe",O_RDWR);
+ 13         dup2(f_in,2);        
+ 14         execlp("/challenge/embryoio_level121","/challenge/embryoio_level121",NULL);
+ 15  
+ 16     }else waitpid(f_pid);
+ 17 }     
+ 18  
+ 19 void main(int argc, char** argv, char** envp){
+ 20     pwncollege(argv, envp);   
+ 21 } 
+```
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge will take input on a specific file descriptor : 2
+- the challenge will check for a hardcoded password over stdin : bctxddpj
+
+## 123
+send
+
+## 127
+run script from sh file
+
+```sh
+1 #!/bin/bash                                                      
+2 /challenge/embryoio_level127
+```
+Copy sigals array
+```py
+import subprocess
+import signal  
+       
+sigs = ['SIGINT', 'SIGINT', 'SIGUSR1', 'SIGINT', 'SIGHUP', 'SIGUS    R2', 'SIGUSR2', 'SIGABRT', 'SIGABRT', 'SIGHUP', 'SIGHUP', 'SIGUSR    1', 'SIGABRT', 'SIGABRT', 'SIGUSR2', 'SIGUSR2', 'SIGUSR2', 'SIGUS    R1', 'SIGUSR1', 'SIGHUP', 'SIGINT', 'SIGUSR1', 'SIGINT', 'SIGUSR2    ', 'SIGHUP', 'SIGINT', 'SIGINT', 'SIGHUP', 'SIGHUP', 'SIGHUP', 'S    IGUSR2', 'SIGUSR1', 'SIGABRT', 'SIGABRT', 'SIGUSR1', 'SIGINT', 'S    IGUSR1', 'SIGHUP', 'SIGUSR2', 'SIGUSR1', 'SIGHUP', 'SIGUSR2', 'SI    GABRT', 'SIGUSR1', 'SIGABRT', 'SIGHUP', 'SIGUSR1', 'SIGUSR1', 'SI    GUSR1', 'SIGUSR2']
+       
+pid = "15435"                                                    
+       
+for sig in sigs:
+    subprocess.run(["kill","-"+sig,pid])
+```
+Task:
+- the challenge checks for a specific parent process : shellscript
+- the challenge will require the parent to send number of signals : 50
+
+## 128 
+same as 127
+
+## 129
+
+    cat | /challenge/em...| cat
+
+```py
+  1 from pwn import *              
+  2                                
+  3 p = process(["b.sh"])          
+  4 ch_str = "Please send the solution for: "
+  5 line = p.recvuntil(b"[TEST] CHALLENGE!" )
+  6 while True:                    
+  7     line = p.recv().decode()   
+  8     print("my script: ",line)  
+  9     if ch_str in line:         
+ 10         line = line.split(':')[1].strip()
+ 11         print(line)            
+ 12         res = eval(line)       
+ 13         tosend = f"{str(res)}\n"
+ 14         p.send(tosend.encode())
+ 15     if "flag" in line:         
+ 16         print(line)            
+ 17         break                  
+ 18                                
+ 19 p.interactive() 
+```
+Task:
+- the challenge checks for a specific parent process : shellscript
+- the challenge checks for a specific process at the other end of stdin : cat
+- the challenge checks for a specific process at the other end of stdout : cat
+- the challenge will force the parent process to solve a number of arithmetic problems : 50
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*&^%|
+- the complexity (in terms of nested expressions) of the arithmetic problems : 5
+
+## 130
+
+```py
+from pwn import *                 
+                                  
+p = process(["/challenge/embryoio_level130"])       
+ch_str = "Please send the solution for: "
+line = p.recvuntil(b"[TEST] CHALLENGE!" )
+while True:                       
+   line = p.recv().decode()      
+   print("my script: ",line)     
+   if ch_str in line:            
+        line = line.split(':')[1].strip()
+        print(line)               
+        res = eval(line)          
+        tosend = f"{str(res)}\n"  
+        p.send(tosend.encode())   
+    if "flag" in line:            
+        print(line)               
+        break                     
+                                  
+p.interactive()                   
+```
+Task:
+- the challenge checks for a specific parent process : python
+- the challenge will force the parent process to solve a number of arithmetic problems : 50
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*&^%|
+- the complexity (in terms of nested expressions) of the arithmetic problems : 5
+  
+## 131 
+same as 130
+
+## 132 - 133
+same as 127
+
+## 135 - 136
+same as 130
+
+## 137 - 138
+same as 127

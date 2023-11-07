@@ -2,7 +2,7 @@
 id: '1'
 lezione: "20230928"
 title: "History of attacks and Terminology"
-author: "Sam. Kaluwaduge"
+author: "Sam. K."
 keywords: 
 ---
 <style>
@@ -240,7 +240,7 @@ l'asset.
 
 Possono essere categorizzate come segue: Corrotta (**Corrupted**):
 perdita di integrità, **Leaky**: perdita di confidenzialità,
-**Unavailable** or Very Slow: perdità di disponibilità.
+**Unavailable** or Very Slow: perdita di disponibilità.
 
 ## Minacce Threats
 
@@ -280,7 +280,7 @@ perdita di integrità, **Leaky**: perdita di confidenzialità,
 
     -   **Ripudiando**: nega la responsabilità di un attacco.
 
--   **Interruzione** *Disrution*:
+-   **Interruzione** *Disruption*:
 
     -   **Incapacità**: prevenire o interrompere un
         operazione/componente del sistema.
@@ -305,7 +305,7 @@ Categoria di Asset| Disponibilità| Confidenzialità| Integrità
 Hardware | Rubato, disabilitato Denying of Service|rubati es. USB Stick | Modifiche al firmware |
 Software |Programmi cancellati, modificati. Denying of Service|Copia del software|Modifiche al programma per eseguire task indesiderati (Buffer Overflow)|
 Data|Cancellare i file, bloccare accesso ai file |Lettura, analisi dei dati per recuperare il contenuto.|Modifiche ai file o costruire file nuovi.|
-Network (Linee di comunicazione)|	Cancellare, distruggere i dati che viaggiano nella linea.|	Lettura dei messaggi, analisi del traffico|	Modificare, ritardare, riordinare oppure dupplicare i messaggi. Creare messaggi falsi.
+Network (Linee di comunicazione)|	Cancellare, distruggere i dati che viaggiano nella linea.|	Lettura dei messaggi, analisi del traffico|	Modificare, ritardare, riordinare oppure duplicare i messaggi. Creare messaggi falsi.
 
 
 ## Contromisure
@@ -357,7 +357,7 @@ installazione di patch di sicurezza con altri falli di sicurezza).
     contingency planning).
 
 -   **Maintenance**: manutenzione periodica utilizzando vari tools,
-    tecniche. Tipicamente patch managament.
+    tecniche. Tipicamente patch management.
 
 -   **Media protection**: le tecnologie che vengono utilizzate per
     proteggere i sistemi che contengono le informazioni che servono ad
@@ -450,7 +450,7 @@ Per predisporre un disegno di sicurezza:
     regola come **vengono protetti le risorse** sensibili e critici.
 
 -   **Implemento le misure di sicurezza (Security Implementation)**
-    dividuando prevention, detection, responce e recovery partendo dal
+    individuando prevention, detection, response e recovery partendo dal
     documento di prima.
 
 -   **Assurance:** certificare/**assicurare** da un ente esterno che le

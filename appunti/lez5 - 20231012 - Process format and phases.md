@@ -2,7 +2,7 @@
 id: '5'
 lezione: "20231012"
 title: "Process format and phases"
-author: "Sam. Kaluwaduge"
+author: "Sam. K."
 keywords: 
 ---
 <style>
@@ -107,7 +107,7 @@ Il file compilato contiene una serie di informazioni che servono all'OS per far 
 
 Il codice sorgente `.c` viene dato in pasto al compilatore, il compilatore solitamente generava un codice oggetto `.o` che viene dato al linker. Adesso gcc compilatore fa entrambe compile + linking. L'unico formata eseguibile è quello binario.
 
-Il compilatore fa due passate nella prima passata trasforma il programm in assembler (assemblatore è contenuto dentro il compilatore), assembler trasforma in un programma oggetto, l'ggetto entra dentro il linker, il linker resupera le librerie per poi generare il formato eseguibile.
+Il compilatore fa due passate nella prima passata trasforma il programma in assembler (assemblatore è contenuto dentro il compilatore), assembler trasforma in un programma oggetto, l'oggetto entra dentro il linker, il linker recupera le librerie per poi generare il formato eseguibile.
 
 Una volta che il programma è in formato eseguibile esiste un programma dell'OS che si chiama **Loader** che carica il programma. 
 
@@ -140,7 +140,7 @@ I componenti di un file ELF sono tre: Header, Section, Segments.
 
     // ELF Header
     magic_number: un numero che rappresenta il tipo di file
-    e_entry: entry point dell'appplicazione l'indirizo di memoria della prima istruzione eseguibile del programma;
+    e_entry: entry point dell'applicazione l'indirizzo di memoria della prima istruzione eseguibile del programma;
     e_phoff: file offset of the program header table;
     e_shoff: offset of the section header table;
     e_flag: processor-specific flags associated with the file;
@@ -149,7 +149,7 @@ I componenti di un file ELF sono tre: Header, Section, Segments.
     e_phnum: number of program header;
     e_shentsize: section header entry size in section header table;
     e_shnum: number of section headers;
-    e_shstrndx: index in section header tabler denoting section dedicated to hold section names.
+    e_shstrndx: index in section header table denoting section dedicated to hold section names.
 
 Le sezioni sono tutte le informazioni che servono per costruire l'eseguibile, viene usato per la fase successiva del linking. Il numero di sezioni dipende dalla grandezza del programma, dalle librerie che il programma usa, ecc. Quindi, non sono presenti tutte le sezioni del programma nel file ELF.
 
@@ -177,7 +177,7 @@ Sezioni servono per costruire l'eseguibile, **i segmenti per compongono l'esegui
 
     // Program Header
     p_type : kind of segment 
-    p_offset : offset from the begining of the file to the first byte of the segment
+    p_offset : offset from the beginning of the file to the first byte of the segment
     p_vaddr : virtual address of first byte of the segment in memory
     p_paddr : physical address
     p_filesz : the number of bytes in the file image of the segment
@@ -226,7 +226,7 @@ Se il file inizia con `#!` sh-bang allora shell chiama l'interprete riferimento 
 
 ## Differenza tra un file dinamicamente linkato / staticamente linkato
 
-File **dinamicamente linkato** : linka a runtime le cose che sono condivise. Risparmio spazio, es. perchè se uso la stessa libraria in diversi processi mi basta tenere in memoria solo copia della libreria. Ma è lento perché devo andare a cercare la parte che mi serve nella memoria centrale. inoltre, serve un programmino che intercetta le richieste.
+File **dinamicamente linkato** : linka a runtime le cose che sono condivise. Risparmio spazio, es. perché se uso la stessa libraria in diversi processi mi basta tenere in memoria solo copia della libreria. Ma è lento perché devo andare a cercare la parte che mi serve nella memoria centrale. inoltre, serve un programmino che intercetta le richieste.
 
 File **staticamente linkato** : è autonomo, contiene tutto quello che serve per essere eseguito auto consistente.
 

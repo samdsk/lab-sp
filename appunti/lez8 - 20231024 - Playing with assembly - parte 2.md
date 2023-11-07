@@ -2,7 +2,7 @@
 id: '8'
 lezione: "20231024"
 title: "Playing with assembly - parte 2"
-author: "Sam. Kaluwaduge"
+author: "Sam. K."
 keywords: 
 ---
 <style>
@@ -22,7 +22,7 @@ keywords:
 # Playing with assembly - parte 2
 
 ## Funzioni in assembly
-Per creare una funzione si utilizza un label che definisce l'indirizzo di inizio della funzione. In assebmly per le funzioni si utilizza la seguente convenzione di utilizzo dei registri: 6 registri per passare argomenti alla funzione in ordine dal primo argomenti al sesto argomento `rdi, rsi, rdx, rcx, r8, r9`. Si utilizzano i registri `rax` e `rdx` rispettivamente per il primo valore e secondo valore di ritorno.
+Per creare una funzione si utilizza un label che definisce l'indirizzo di inizio della funzione. In assembly per le funzioni si utilizza la seguente convenzione di utilizzo dei registri: 6 registri per passare argomenti alla funzione in ordine dal primo argomenti al sesto argomento `rdi, rsi, rdx, rcx, r8, r9`. Si utilizzano i registri `rax` e `rdx` rispettivamente per il primo valore e secondo valore di ritorno.
 
 ### CALL
 Per chiamare una funzione in assembly si utilizza il istruzione `call`. Call salva l'indirizzo della prossima istruzione (quella immediatamente dopo `call`) nello stack: `push rip`, quindi, fa un'operazione di `JUMP` al label della funzione.
@@ -32,7 +32,7 @@ Per ritornare da una funzione si utilizza istruzione `ret`. Ret fa un'operazione
 
 ### Utilizzo di RBP - Base Pointer
 #### Prologue
-Quando si vuole utilizzare lo stack dentro una funziona, si può usare la tecnica dove si salva `push rbp` dentro lo stack, si assegna al `rbp` il puntatore dello stack `rsp` `mov rbp, rsp` e si crea un'area nello stack per la funzione facendo un `sub rsp, X` dove `X` è il numero di byte da riservare. Qeusta procedura è chiamato il **Prologue** che consiste del preparare lo stack e registri per la funzione.
+Quando si vuole utilizzare lo stack dentro una funziona, si può usare la tecnica dove si salva `push rbp` dentro lo stack, si assegna al `rbp` il puntatore dello stack `rsp` `mov rbp, rsp` e si crea un'area nello stack per la funzione facendo un `sub rsp, X` dove `X` è il numero di byte da riservare. Questa procedura è chiamato il **Prologue** che consiste del preparare lo stack e registri per la funzione.
 
 ```s
 # Prologue
@@ -114,9 +114,9 @@ buffer: .space 64
 
 `info functions` # stampa le funzioni del programma
 
-`disass _print` # disassebmla la funzione _print
+`disass _print` # disassembla la funzione _print
 
-`layout asm` # avviare in modalitò assembly live
+`layout asm` # avviare in modalità assembly live
 
 `layout reg` # mostra i registri in tempo reale
 
@@ -156,7 +156,7 @@ buffer: .space 64
  26 buffer: .space 100
 ```
 ## Esercizio 2
-Scrivere un programma assembly ch date due variabile numeriche embedded nel programma ne sstampa la somma.
+Scrivere un programma assembly ch date due variabile numeriche embedded nel programma ne stampa la somma.
 
 ```s
 .intel_syntax noprefix

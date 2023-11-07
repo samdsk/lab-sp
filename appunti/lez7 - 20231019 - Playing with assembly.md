@@ -2,7 +2,7 @@
 id: '7'
 lezione: "20231019"
 title: "Playing with assembly"
-author: "Sam. Kaluwaduge"
+author: "Sam. K."
 keywords: 
 ---
 <style>
@@ -49,11 +49,11 @@ Il procesore può manipolare **esclusivamente i dati all'interno i registri**. Q
 Ci sono 16 registri da 64bit, i primi 8 sono: RAX, ..., RDX, RBP, RSI, RDI, e RSP; i rimanenti 8 hanno una nomenclatura R8 - R15.
 
 ### Subregisters
-Nell'ambito della architettura Intel per il **back compatibility**, i registri sono fatti in modo tale che **è possibile accedere a sottoporzioni del registro** proprio per garantire il codice scritto negli anni precedenti.
+Nell'ambito della architettura Intel per il **back compatibility**, i registri sono fatti in modo tale che **è possibile accedere a sottoproduzioni del registro** proprio per garantire il codice scritto negli anni precedenti.
 
 RAX registro da 64bit, EAX lo stesso registro ma i 32 bit meno significativi, AX i 16 bit meno significativi di RAX, AL per 8 bit meno significati di RAX (RIGHT), AH per 8 bit più significativi di ultimi 16 bit di RAX (LEFT).
 
-Nei nuovi registri (R8-R15) si può la stessa cosa, R8 qword, R8D lower dword (ultimi 32bit), R8W lowest word (ultimi 16bit), R8B lowest byte (ultimi 8bit) (equivale a R8L e non ce R8H). 
+Nei nuovi registri (R8-R15) si può la stessa cosa, R8 `qword`, R8D lower `dword` (ultimi 32bit), R8W lowest `word` (ultimi 16bit), R8B lowest `byte` (ultimi 8bit) (equivale a R8L e non ce R8H). 
 
 ![x64 Registers](assets/images/x64_registers.png)
 ![Register names](assets/images/register-names_2.png)
@@ -63,7 +63,7 @@ Inoltre, in assembly esistono solo dati di tpo **numeri** e **caratteri**.
 * **Numeri** sn rappresentati usando la rappresentazione binaria.
 * Per rappresentazione dei dati in formato **carattere** si fa riferimento all'**unicode** in particolare **UTF-8**. (ogni carattere occupa un byte).
 
-![UTF-8 tabel](assets/images/ASCII_code_chart.png)
+![UTF-8 table](assets/images/ASCII_code_chart.png)
 
     100 in decimale = 0110 0100 in binario = 0x64 in HEX
     100 in formato carattere = 0x31 0x30 0x30 in HEX
@@ -114,7 +114,7 @@ Lavora con i dati presenti nel registro.
 
 ### Indirizzamento immediato
 ~~~s
-mov dword ptr rax,12 # dat interpretato come decimale, se 0x12 interprata come HEX
+mov dword ptr rax,12 # dat interpretato come decimale, se 0x12 interpreta come HEX
 mov dword ptr rax,0x80 # sposta per 32bit il valore 0x80 dentro il registro rax (cioè utilizza ultimi 32 bit del registro RAX non modificando quello che ce nei primi bit)
 ~~~
 
@@ -123,7 +123,7 @@ Inoltre, è richiesto al programmatore di specificare quando è ambiguo usando `
 
 PTR può essere opzionale in alcuni assembler.
 
-`mov dword ptr rax,12`: scrive 12 utilizzando double word (32bit) quindi metterà dei leading zeros per creare 32bit e non cabmierà i bit restanti del registro.
+`mov dword ptr rax,12`: scrive 12 utilizzando double word (32bit) quindi metterà dei leading zeros per creare 32bit e non cambierà i bit restanti del registro.
 
 ### Indirizzamento indiretto - Puntatori 
 Tramite puntatori che stanno tipicamente nei registri.
@@ -169,7 +169,7 @@ sumloop:
     rbx # contiene la somma sum
     rcx # indirizzo dell'array a
 
-Load effective address `lea rcx, buffer` carica l'indirrizzo di un variabile `buffer` nel registro.
+Load effective address `lea rcx, buffer` carica l'indirizzo di un variabile `buffer` nel registro.
 
 
 ### Differenza tra indirizzamento diretto ed indiretto
@@ -189,7 +189,7 @@ mov [rcx], rax # store the data as LITTLE ENDIAN "0x 75 ca 01 c0" at address 0x1
 mov bh, [rcx] # moves 0x75 to bh (sono i bit più sigificativi del registro bx) prende i primi 8bit che trova a quell'indirizzo.
 ~~~
 
-> Per l'azienda Data Point nel 1972 Intel ha progettato il processore 8008 che usava **Little Endian**, perchè veniva più facile i riporti delle operazioni aritmentiche, quindi, la progettazione dell'ALU è stato fatto con Little Endian.
+> Per l'azienda Data Point nel 1972 Intel ha progettato il processore 8008 che usava **Little Endian**, perché veniva più facile i riporti delle operazioni aritmetiche, quindi, la progettazione dell'ALU è stato fatto con Little Endian.
 
 ## Istruzioni Aritmetiche
 
@@ -207,7 +207,7 @@ cmp source1,source2 # s2-s1
 
 ### Divisione
 Divisione `div` unsigned prende solo un operando il divisore, or `idiv` signed prende due operandi.
-il dividendo bisogna caricarlo in `rax`, il quozioente viene caricato in `rax` e in `rdx` viene caricato il resto.
+il dividendo bisogna caricarlo in `rax`, il quoziente viene caricato in `rax` e in `rdx` viene caricato il resto.
 
 ## Shifting bits
 
@@ -333,7 +333,7 @@ L'operazione di compare setta la flag Zero Flag ZF a 1 se cmp è uguale a ZERO, 
 
 
 ## System call
-Assembly usa syscall per fare operazioni complicate. Si tratta di memorizzare il numero del syscall, all'interno del registro `RAX` dopo di che si predispongono gli argomenti eventtuali negi registri `RDI, RSI, RDX, R10, R8, R9`.
+Assembly usa syscall per fare operazioni complicate. Si tratta di memorizzare il numero del syscall, all'interno del registro `RAX` dopo di che si predispongono gli argomenti eventuali nei registri `RDI, RSI, RDX, R10, R8, R9`.
 
 ### Esempio Input da tastiera
 Per leggere da tastiera syscall numero 0 in RAX e in RSI l'indirizzo di un buffer dove mettere i dati letti e in RDX il numero di caratteri che si vuole leggere.

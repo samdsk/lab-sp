@@ -1118,3 +1118,26 @@ same as 130
 
 ## 137 - 138
 same as 127
+
+## 140
+```sh
+  1 #!/bin/bash          
+  2 exec 4<>/dev/tcp/localhost/1560      
+  3                      
+  4 while read -u 4 line 
+  5 do                   
+  6     echo "$line"     
+  7     if [[ $line == *"CHALLENGE! Please send the solution for:"* ]    ]
+  8     then             
+  9         cmd=${line:48}               
+ 10         sol=$(python -c "print(${cmd})")
+ 11         echo $sol >&4                                            
+ 12     fi               
+ 13 done  
+```
+Task:
+- the challenge checks for a specific (network) client process : shellscript
+- the challenge will listen for input on a TCP port : 1560
+- the challenge will force the parent process to solve a number of arithmetic problems : 5
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*%
+- the complexity (in terms of nested expressions) of the arithmetic problems : 3

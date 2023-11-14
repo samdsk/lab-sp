@@ -853,7 +853,7 @@ did with python terminal
 
 ## 114
 ```c
-  1 #include <fcntl.h>                                                                                  
+  1 #include <fcntl.h>                
   2 #include <stdio.h>
   3 #include <unistd.h>
   4  
@@ -1113,8 +1113,177 @@ same as 130
 ## 132 - 133
 same as 127
 
+
+## 134
+```py
+import subprocess, os, fcntl
+
+r1,w1 = os.pipe()
+r2,w2 = os.pipe()
+
+c1 = subprocess.Popen(["cat"],stdin=subprocess.PIPE,stdout=w1)
+p = subprocess.Popen(["/challenge/embryoio_level134"],stdin=r1,stdout=w2)
+c2 = subprocess.Popen(["cat"],stdin=r2,stdout=subprocess.PIPE)
+
+for i in range(50):
+   line = ''
+   while True:
+      line = c2.stdout.readline().decode()
+      if "CHALLENGE" in line or line == "":
+         break
+
+   print(line)
+   
+   cmd = line.split(':')[1].strip()
+   print(cmd)
+   
+   res = eval(cmd)
+   print(res)
+
+   c1.stdin.write(b"%d\n"%res)
+   c1.stdin.flush()
+
+while True:
+   line = c2.stdout.readline().decode()
+   if "pwn.college{" in line or line == "":
+      print(line)
+      break
+```
+Task:
+- the challenge checks for a specific parent process : python
+- the challenge checks for a specific process at the other end of stdin : cat
+- the challenge checks for a specific process at the other end of stdout : cat
+- the challenge will force the parent process to solve a number of arithmetic problems : 50
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*&^%|
+- the complexity (in terms of nested expressions) of the arithmetic problems : 5
+
 ## 135 - 136
 same as 130
 
 ## 137 - 138
 same as 127
+
+## 139
+```c
+#include <fcntl.h>
+#include <stdio.h>  
+#include <unistd.h>    
+#include <signal.h>
+#include <stdlib.h>
+
+void pwncollege(char** argv, char** envp){
+    pid_t pid = fork();    
+    if(pid<0)
+        printf("Fork error\n");
+
+    if(!pid){
+        char *proc = "/challenge/embryoio_level139";
+        execve(proc,NULL,NULL);
+    }else{
+        wait(pid);         
+    }
+    
+}     
+    
+void main(int argc, char** argv, char** envp){
+    pwncollege(argv, envp);   
+}
+```
+```sh
+#!/bin/bash
+cat - | ./s.out | cat -
+```
+```py
+from pwn import *                 
+p = process(["./b.sh"])       
+ch_str = "Please send the solution for: "
+line = p.recvuntil(b"[TEST] CHALLENGE!" )
+
+while True:                       
+     line = p.recv().decode()      
+     print("my script: ",line)     
+     if ch_str in line:            
+        line = line.split(':')[1].strip()
+        print(line)               
+        res = eval(line)          
+        tosend = f"{str(res)}\n"  
+        p.send(tosend.encode())   
+     if "flag" in line:
+        print(line)               
+        break                     
+                                  
+p.interactive() 
+```
+Task:
+- the challenge checks for a specific parent process : binary
+- the challenge checks for a specific process at the other end of stdin : cat
+- the challenge checks for a specific process at the other end of stdout : cat
+- the challenge will force the parent process to solve a number of arithmetic problems : 50
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*&^%|
+- the complexity (in terms of nested expressions) of the arithmetic problems : 5
+  
+## 140
+```sh
+1 #!/bin/bash   
+2 exec 4<>/dev/tcp/localhost/1560
+3  
+4 while read -u 4 line
+5 do
+6     echo "$line"
+7     if [[ $line == *"CHALLENGE! Please send the solution for:"* ]]
+8     then
+9         cmd=${line:48}
+10         sol=$(python -c "print(${cmd})")
+11         echo $sol >&4
+12     fi
+13 done
+ ```
+Task:
+- the challenge checks for a specific (network) client process : shellscript
+- the challenge will listen for input on a TCP port : 1560
+- the challenge will force the parent process to solve a number of arithmetic problems : 5
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*%
+- the complexity (in terms of nested expressions) of the arithmetic problems : 3
+
+## 141
+```py
+  1 import socket                     
+  2 import subprocess                 
+  3                                   
+  4                                   
+  5 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:     
+  6     s.connect(("localhost",1360)) 
+  7     data = s.recv(2048).decode('utf-8')
+  8                                   
+  9     while len(data)>0:            
+ 10                                   
+ 11         lines = data.split('\n')  
+ 12                                   
+ 13         count = 0                 
+ 14         for line in lines:        
+ 15             count += 1            
+ 16             if "CHALLENGE" in line:
+ 17                 cmd = line.split(':')[1].strip()
+ 18                 print("Command:",cmd) 
+ 19                 cal = subprocess.Popen(["python","-c","print("+cmd+")"],stdout=subprocess.PIPE) 
+ 20                 cal.wait()        
+ 21                 result = cal.stdout.read().decode('utf-8')
+ 22                                   
+ 23                 tosend = f"{str(result)}"
+ 24                 print("Result:",tosend)
+ 25                 s.sendall(tosend.encode())
+ 26             if "pwn.college" in line:
+ 27                 print("FLAG:",line)                              
+ 28                                   
+ 29                                   
+ 30         data = s.recv(2048).decode('utf-8')
+ 31         if count < len(lines)-1:  
+ 32             data = lines[-1] + data
+```
+Task:
+- the challenge checks for a specific (network) client process : python
+- the challenge will listen for input on a TCP port : 1360
+- the challenge will force the parent process to solve a number of arithmetic problems : 5
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*%
+- the complexity (in terms of nested expressions) of the arithmetic problems : 3
+

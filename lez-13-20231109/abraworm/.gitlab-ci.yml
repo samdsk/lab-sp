@@ -1,0 +1,28 @@
+image:
+  name: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+
+stages:
+  - test_images
+
+test_images:
+  stage: test_images
+  image: docker:latest
+  script:
+    - pwd
+    - ls -la
+    - docker-compose up -d
+    - docker ps
+    - apk update
+    - apk add python3
+    - python3 -m py_compile worm/AbraWorm.py
+  artifacts:
+    paths:
+      - worm/AbraWorm.py
+      - docker-compose.yaml

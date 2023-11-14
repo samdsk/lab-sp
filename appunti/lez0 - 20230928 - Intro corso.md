@@ -2,7 +2,7 @@
 id: '0'
 lezione: "20230928"
 title: "Introduzione corso sicurezza e privatezza"
-author: "Sam. Kaluwaduge"
+author: "Sam. K."
 keywords: 
 ---
 <style>

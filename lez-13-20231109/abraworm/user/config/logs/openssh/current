@@ -1,0 +1,428 @@
+2023-11-06 22:42:09.909313882  Server listening on 0.0.0.0 port 2222.
+2023-11-06 22:42:09.909556590  Server listening on :: port 2222.
+2023-11-06 22:42:10.943821799  kex_exchange_identification: Connection closed by remote host
+2023-11-06 22:42:10.943824758  Connection closed by 127.0.0.1 port 45944
+2023-11-06 22:45:00.956156086  Accepted password for user from 172.18.0.1 port 55052 ssh2
+2023-11-06 22:45:00.980113919  Attempt to write login records by non-root user (aborting)
+2023-11-06 22:45:07.549622381  Attempt to write login records by non-root user (aborting)
+2023-11-06 22:45:07.551244798  Received disconnect from 172.18.0.1 port 55052:11: disconnected by user
+2023-11-06 22:45:07.551246923  Disconnected from user user 172.18.0.1 port 55052
+2023-11-06 22:47:28.575557168  Invalid user admin from 172.18.0.1 port 55098
+2023-11-06 22:47:29.632256669  Could not get shadow information for NOUSER
+2023-11-06 22:47:29.644074210  Failed password for invalid user admin from 172.18.0.1 port 55098 ssh2
+2023-11-06 22:47:29.700889169  Invalid user account from 172.18.0.1 port 56802
+2023-11-06 22:47:30.731651586  Could not get shadow information for NOUSER
+2023-11-06 22:47:30.742260336  Failed password for invalid user account from 172.18.0.1 port 56802 ssh2
+2023-11-06 22:47:30.791357503  Invalid user vagrant from 172.18.0.1 port 56804
+2023-11-06 22:47:31.819007795  Could not get shadow information for NOUSER
+2023-11-06 22:47:31.839216003  Failed password for invalid user vagrant from 172.18.0.1 port 56804 ssh2
+2023-11-06 22:47:31.890497045  Invalid user kali from 172.18.0.1 port 56806
+2023-11-06 22:47:32.925557170  Could not get shadow information for NOUSER
+2023-11-06 22:47:32.936197837  Failed password for invalid user kali from 172.18.0.1 port 56806 ssh2
+2023-11-06 22:47:34.032862379  Failed password for user from 172.18.0.1 port 56808 ssh2
+2023-11-06 22:47:34.086105088  Invalid user adaliah from 172.18.0.1 port 56810
+2023-11-06 22:47:35.111440838  Could not get shadow information for NOUSER
+2023-11-06 22:47:35.123406630  Failed password for invalid user adaliah from 172.18.0.1 port 56810 ssh2
+2023-11-06 22:47:35.176435463  Invalid user adversary from 172.18.0.1 port 56812
+2023-11-06 22:47:36.214857172  Could not get shadow information for NOUSER
+2023-11-06 22:47:36.222375714  Failed password for invalid user adversary from 172.18.0.1 port 56812 ssh2
+2023-11-06 22:47:36.280291214  Invalid user admin from 172.18.0.1 port 56814
+2023-11-06 22:47:37.316241756  Could not get shadow information for NOUSER
+2023-11-06 22:47:37.327537131  Failed password for invalid user admin from 172.18.0.1 port 56814 ssh2
+2023-11-06 22:47:37.381053006  Invalid user account from 172.18.0.1 port 56816
+2023-11-06 22:47:38.411561215  Could not get shadow information for NOUSER
+2023-11-06 22:47:38.423963423  Failed password for invalid user account from 172.18.0.1 port 56816 ssh2
+2023-11-06 22:47:38.473218465  Invalid user vagrant from 172.18.0.1 port 56818
+2023-11-06 22:47:39.511063257  Could not get shadow information for NOUSER
+2023-11-06 22:47:39.517019382  Failed password for invalid user vagrant from 172.18.0.1 port 56818 ssh2
+2023-11-06 22:47:39.559308174  Invalid user kali from 172.18.0.1 port 57166
+2023-11-06 22:47:40.589073841  Could not get shadow information for NOUSER
+2023-11-06 22:47:40.601132341  Failed password for invalid user kali from 172.18.0.1 port 57166 ssh2
+2023-11-06 22:47:41.694112425  Failed password for user from 172.18.0.1 port 57168 ssh2
+2023-11-06 22:47:41.748055216  Invalid user adaliah from 172.18.0.1 port 57170
+2023-11-06 22:47:42.773135050  Could not get shadow information for NOUSER
+2023-11-06 22:47:42.785041258  Failed password for invalid user adaliah from 172.18.0.1 port 57170 ssh2
+2023-11-06 22:47:42.831820675  Invalid user adversary from 172.18.0.1 port 57172
+2023-11-06 22:47:43.863963884  Could not get shadow information for NOUSER
+2023-11-06 22:47:43.878099967  Failed password for invalid user adversary from 172.18.0.1 port 57172 ssh2
+2023-11-06 22:47:43.938541301  Invalid user admin from 172.18.0.1 port 57174
+2023-11-06 22:47:44.975590718  Could not get shadow information for NOUSER
+2023-11-06 22:47:44.987088468  Failed password for invalid user admin from 172.18.0.1 port 57174 ssh2
+2023-11-06 22:47:45.037872718  Invalid user account from 172.18.0.1 port 57176
+2023-11-06 22:47:46.068171510  Could not get shadow information for NOUSER
+2023-11-06 22:47:46.080754760  Failed password for invalid user account from 172.18.0.1 port 57176 ssh2
+2023-11-06 22:47:46.126451093  Invalid user vagrant from 172.18.0.1 port 57178
+2023-11-06 22:47:47.154401385  Could not get shadow information for NOUSER
+2023-11-06 22:47:47.166600135  Failed password for invalid user vagrant from 172.18.0.1 port 57178 ssh2
+2023-11-06 22:47:47.173069677  beginning MaxStartups throttling
+2023-11-06 22:47:47.173077635  drop connection #17 from [172.18.0.1]:57180 on [172.18.0.2]:2222 past MaxStartups
+2023-11-06 22:47:47.213565969  Invalid user adaliah from 172.18.0.1 port 57184
+2023-11-06 22:47:48.240972178  Could not get shadow information for NOUSER
+2023-11-06 22:47:48.246550969  Failed password for invalid user adaliah from 172.18.0.1 port 57184 ssh2
+2023-11-06 22:47:48.291376469  Invalid user admin from 172.18.0.1 port 57188
+2023-11-06 22:47:49.325021845  Could not get shadow information for NOUSER
+2023-11-06 22:47:49.336594011  Failed password for invalid user admin from 172.18.0.1 port 57188 ssh2
+2023-11-06 22:47:49.383918887  Invalid user account from 172.18.0.1 port 63562
+2023-11-06 22:47:50.413350929  Could not get shadow information for NOUSER
+2023-11-06 22:47:50.426958387  Failed password for invalid user account from 172.18.0.1 port 63562 ssh2
+2023-11-06 22:47:50.485255595  Invalid user adaliah from 172.18.0.1 port 63570
+2023-11-06 22:47:51.509262388  Could not get shadow information for NOUSER
+2023-11-06 22:47:51.521046596  Failed password for invalid user adaliah from 172.18.0.1 port 63570 ssh2
+2023-11-06 22:47:51.574903304  Invalid user adversary from 172.18.0.1 port 63572
+2023-11-06 22:47:52.599938013  Could not get shadow information for NOUSER
+2023-11-06 22:47:52.611767555  Failed password for invalid user adversary from 172.18.0.1 port 63572 ssh2
+2023-11-06 22:47:52.658722930  Invalid user admin from 172.18.0.1 port 63574
+2023-11-06 22:47:53.697234680  Could not get shadow information for NOUSER
+2023-11-06 22:47:53.708034847  Failed password for invalid user admin from 172.18.0.1 port 63574 ssh2
+2023-11-06 22:47:53.758063097  Invalid user vagrant from 172.18.0.1 port 63578
+2023-11-06 22:47:54.788087833  Could not get shadow information for NOUSER
+2023-11-06 22:47:54.799692208  Failed password for invalid user vagrant from 172.18.0.1 port 63578 ssh2
+2023-11-06 22:47:54.845006666  Invalid user kali from 172.18.0.1 port 63580
+2023-11-06 22:47:55.875487917  Could not get shadow information for NOUSER
+2023-11-06 22:47:55.885755792  Failed password for invalid user kali from 172.18.0.1 port 63580 ssh2
+2023-11-06 22:47:56.974804876  Failed password for user from 172.18.0.1 port 63582 ssh2
+2023-11-06 22:47:57.026923584  Invalid user adaliah from 172.18.0.1 port 63584
+2023-11-06 22:47:58.048577710  Could not get shadow information for NOUSER
+2023-11-06 22:47:58.051859918  Failed password for invalid user adaliah from 172.18.0.1 port 63584 ssh2
+2023-11-06 22:47:58.095383168  Invalid user account from 172.18.0.1 port 63590
+2023-11-06 22:47:59.123645169  Could not get shadow information for NOUSER
+2023-11-06 22:47:59.134416919  Failed password for invalid user account from 172.18.0.1 port 63590 ssh2
+2023-11-06 22:48:00.228117502  Failed password for user from 172.18.0.1 port 57736 ssh2
+2023-11-06 22:48:00.277429961  Invalid user admin from 172.18.0.1 port 57742
+2023-11-06 22:48:01.320869045  Could not get shadow information for NOUSER
+2023-11-06 22:48:01.327795211  Failed password for invalid user admin from 172.18.0.1 port 57742 ssh2
+2023-11-06 22:48:01.374639711  Invalid user account from 172.18.0.1 port 57744
+2023-11-06 22:48:02.409012295  Could not get shadow information for NOUSER
+2023-11-06 22:48:02.423940962  Failed password for invalid user account from 172.18.0.1 port 57744 ssh2
+2023-11-06 22:48:02.476245212  Invalid user vagrant from 172.18.0.1 port 57746
+2023-11-06 22:48:03.507601212  Could not get shadow information for NOUSER
+2023-11-06 22:48:03.518392796  Failed password for invalid user vagrant from 172.18.0.1 port 57746 ssh2
+2023-11-06 22:48:03.563891254  Invalid user kali from 172.18.0.1 port 57748
+2023-11-06 22:48:04.591916046  Could not get shadow information for NOUSER
+2023-11-06 22:48:04.603218004  Failed password for invalid user kali from 172.18.0.1 port 57748 ssh2
+2023-11-06 22:48:05.692826797  Failed password for user from 172.18.0.1 port 57750 ssh2
+2023-11-06 22:48:05.741521630  Invalid user adaliah from 172.18.0.1 port 57752
+2023-11-06 22:48:06.774187797  Could not get shadow information for NOUSER
+2023-11-06 22:48:06.779352797  Failed password for invalid user adaliah from 172.18.0.1 port 57752 ssh2
+2023-11-06 22:48:06.831262672  Invalid user vagrant from 172.18.0.1 port 57760
+2023-11-06 22:48:07.862115131  Could not get shadow information for NOUSER
+2023-11-06 22:48:07.873855798  Failed password for invalid user vagrant from 172.18.0.1 port 57760 ssh2
+2023-11-06 22:48:07.922881589  Invalid user adaliah from 172.18.0.1 port 57766
+2023-11-06 22:48:08.953212382  Could not get shadow information for NOUSER
+2023-11-06 22:48:08.969336173  Failed password for invalid user adaliah from 172.18.0.1 port 57766 ssh2
+2023-11-06 22:48:09.018880965  Invalid user account from 172.18.0.1 port 60686
+2023-11-06 22:48:10.050105174  Could not get shadow information for NOUSER
+2023-11-06 22:48:10.061038799  Failed password for invalid user account from 172.18.0.1 port 60686 ssh2
+2023-11-06 22:48:10.105418299  Invalid user vagrant from 172.18.0.1 port 60688
+2023-11-06 22:48:11.133851258  Could not get shadow information for NOUSER
+2023-11-06 22:48:11.145637924  Failed password for invalid user vagrant from 172.18.0.1 port 60688 ssh2
+2023-11-06 22:48:11.192699424  Invalid user kali from 172.18.0.1 port 60690
+2023-11-06 22:48:12.221855925  Could not get shadow information for NOUSER
+2023-11-06 22:48:12.235747258  Failed password for invalid user kali from 172.18.0.1 port 60690 ssh2
+2023-11-06 22:48:13.336727259  Failed password for user from 172.18.0.1 port 60692 ssh2
+2023-11-06 22:48:13.390166759  Invalid user account from 172.18.0.1 port 60700
+2023-11-06 22:48:14.420674176  Could not get shadow information for NOUSER
+2023-11-06 22:48:14.433940009  Failed password for invalid user account from 172.18.0.1 port 60700 ssh2
+2023-11-06 22:48:14.474556051  Invalid user vagrant from 172.18.0.1 port 60702
+2023-11-06 22:48:15.505633051  Could not get shadow information for NOUSER
+2023-11-06 22:48:15.517580676  Failed password for invalid user vagrant from 172.18.0.1 port 60702 ssh2
+2023-11-06 22:48:15.561937051  Invalid user admin from 172.18.0.1 port 60712
+2023-11-06 22:48:16.596020885  Could not get shadow information for NOUSER
+2023-11-06 22:48:16.607210885  Failed password for invalid user admin from 172.18.0.1 port 60712 ssh2
+2023-11-06 22:48:16.658153094  Invalid user account from 172.18.0.1 port 60714
+2023-11-06 22:48:17.691616594  Could not get shadow information for NOUSER
+2023-11-06 22:48:17.710160386  Failed password for invalid user account from 172.18.0.1 port 60714 ssh2
+2023-11-06 22:48:17.762175469  Invalid user vagrant from 172.18.0.1 port 60716
+2023-11-06 22:48:18.794953178  Could not get shadow information for NOUSER
+2023-11-06 22:48:18.810801428  Failed password for invalid user vagrant from 172.18.0.1 port 60716 ssh2
+2023-11-06 22:48:18.870966636  Invalid user admin from 172.18.0.1 port 59598
+2023-11-06 22:48:19.910493428  Could not get shadow information for NOUSER
+2023-11-06 22:48:19.923454345  Failed password for invalid user admin from 172.18.0.1 port 59598 ssh2
+2023-11-06 22:48:19.968721137  Invalid user account from 172.18.0.1 port 59600
+2023-11-06 22:48:20.997565512  Could not get shadow information for NOUSER
+2023-11-06 22:48:21.010048846  Failed password for invalid user account from 172.18.0.1 port 59600 ssh2
+2023-11-06 22:48:21.061407012  Invalid user account from 172.18.0.1 port 59614
+2023-11-06 22:48:22.094652388  Could not get shadow information for NOUSER
+2023-11-06 22:48:22.105072054  Failed password for invalid user account from 172.18.0.1 port 59614 ssh2
+2023-11-06 22:48:22.150856263  Invalid user kali from 172.18.0.1 port 59618
+2023-11-06 22:48:23.178066763  Could not get shadow information for NOUSER
+2023-11-06 22:48:23.181511347  Failed password for invalid user kali from 172.18.0.1 port 59618 ssh2
+2023-11-06 22:48:23.226933180  Invalid user admin from 172.18.0.1 port 59626
+2023-11-06 22:48:24.258626875  Could not get shadow information for NOUSER
+2023-11-06 22:48:24.269883208  Failed password for invalid user admin from 172.18.0.1 port 59626 ssh2
+2023-11-06 22:48:24.318894125  Invalid user account from 172.18.0.1 port 59628
+2023-11-06 22:48:25.350550792  Could not get shadow information for NOUSER
+2023-11-06 22:48:25.362434542  Failed password for invalid user account from 172.18.0.1 port 59628 ssh2
+2023-11-06 22:48:25.408176125  Invalid user vagrant from 172.18.0.1 port 59630
+2023-11-06 22:48:26.444898876  Could not get shadow information for NOUSER
+2023-11-06 22:48:26.449472334  Failed password for invalid user vagrant from 172.18.0.1 port 59630 ssh2
+2023-11-06 22:48:26.498575167  Invalid user adaliah from 172.18.0.1 port 59636
+2023-11-06 22:48:27.535871876  Could not get shadow information for NOUSER
+2023-11-06 22:48:27.543689876  Failed password for invalid user adaliah from 172.18.0.1 port 59636 ssh2
+2023-11-06 22:48:27.584960251  Invalid user adversary from 172.18.0.1 port 59638
+2023-11-06 22:48:28.622973460  Could not get shadow information for NOUSER
+2023-11-06 22:48:28.636902085  Failed password for invalid user adversary from 172.18.0.1 port 59638 ssh2
+2023-11-06 22:48:28.684833043  Invalid user account from 172.18.0.1 port 59642
+2023-11-06 22:48:29.725476919  Could not get shadow information for NOUSER
+2023-11-06 22:48:29.729137252  Failed password for invalid user account from 172.18.0.1 port 59642 ssh2
+2023-11-06 22:48:30.824672003  Failed password for user from 172.18.0.1 port 62338 ssh2
+2023-11-06 22:48:30.876511669  Invalid user admin from 172.18.0.1 port 62344
+2023-11-06 22:48:31.912548545  Could not get shadow information for NOUSER
+2023-11-06 22:48:31.924813503  Failed password for invalid user admin from 172.18.0.1 port 62344 ssh2
+2023-11-06 22:48:31.969595462  Invalid user kali from 172.18.0.1 port 62350
+2023-11-06 22:48:33.003719045  Could not get shadow information for NOUSER
+2023-11-06 22:48:33.013054795  Failed password for invalid user kali from 172.18.0.1 port 62350 ssh2
+2023-11-06 22:48:34.105514088  Failed password for user from 172.18.0.1 port 62352 ssh2
+2023-11-06 22:48:34.159537421  Invalid user account from 172.18.0.1 port 62360
+2023-11-06 22:48:35.191449088  Could not get shadow information for NOUSER
+2023-11-06 22:48:35.203445463  Failed password for invalid user account from 172.18.0.1 port 62360 ssh2
+2023-11-06 22:48:35.252894921  Invalid user admin from 172.18.0.1 port 62372
+2023-11-06 22:48:36.291224672  Could not get shadow information for NOUSER
+2023-11-06 22:48:36.301858630  Failed password for invalid user admin from 172.18.0.1 port 62372 ssh2
+2023-11-06 22:48:36.348375547  Invalid user account from 172.18.0.1 port 62374
+2023-11-06 22:48:37.389955881  Could not get shadow information for NOUSER
+2023-11-06 22:48:37.396509922  Failed password for invalid user account from 172.18.0.1 port 62374 ssh2
+2023-11-06 22:48:37.437288172  Invalid user vagrant from 172.18.0.1 port 62376
+2023-11-06 22:48:38.469349340  Could not get shadow information for NOUSER
+2023-11-06 22:48:38.480299756  Failed password for invalid user vagrant from 172.18.0.1 port 62376 ssh2
+2023-11-06 22:48:38.528076340  Invalid user adaliah from 172.18.0.1 port 62382
+2023-11-06 22:48:39.556368590  Could not get shadow information for NOUSER
+2023-11-06 22:48:39.569445965  Failed password for invalid user adaliah from 172.18.0.1 port 62382 ssh2
+2023-11-06 22:48:39.623015424  Invalid user account from 172.18.0.1 port 59512
+2023-11-06 22:48:40.654591091  Could not get shadow information for NOUSER
+2023-11-06 22:48:40.667488841  Failed password for invalid user account from 172.18.0.1 port 59512 ssh2
+2023-11-06 22:48:40.717989299  Invalid user kali from 172.18.0.1 port 59516
+2023-11-06 22:48:41.746033675  Could not get shadow information for NOUSER
+2023-11-06 22:48:41.758365425  Failed password for invalid user kali from 172.18.0.1 port 59516 ssh2
+2023-11-06 22:48:41.807447966  Invalid user adversary from 172.18.0.1 port 59522
+2023-11-06 22:48:42.842157175  Could not get shadow information for NOUSER
+2023-11-06 22:48:42.853745675  Failed password for invalid user adversary from 172.18.0.1 port 59522 ssh2
+2023-11-06 22:48:42.895714092  Invalid user admin from 172.18.0.1 port 59524
+2023-11-06 22:48:43.936746551  Could not get shadow information for NOUSER
+2023-11-06 22:48:43.948636592  Failed password for invalid user admin from 172.18.0.1 port 59524 ssh2
+2023-11-06 22:48:43.998632384  Invalid user kali from 172.18.0.1 port 59530
+2023-11-06 22:48:45.033451551  Could not get shadow information for NOUSER
+2023-11-06 22:48:45.043029093  Failed password for invalid user kali from 172.18.0.1 port 59530 ssh2
+2023-11-06 22:48:45.092704926  Invalid user account from 172.18.0.1 port 59540
+2023-11-06 22:48:46.131901635  Could not get shadow information for NOUSER
+2023-11-06 22:48:46.146019510  Failed password for invalid user account from 172.18.0.1 port 59540 ssh2
+2023-11-06 22:48:46.203998968  Invalid user adaliah from 172.18.0.1 port 59548
+2023-11-06 22:48:47.233037969  Could not get shadow information for NOUSER
+2023-11-06 22:48:47.242970094  Failed password for invalid user adaliah from 172.18.0.1 port 59548 ssh2
+2023-11-06 22:48:47.297127094  Invalid user account from 172.18.0.1 port 59554
+2023-11-06 22:48:48.343580636  Could not get shadow information for NOUSER
+2023-11-06 22:48:48.348377719  Failed password for invalid user account from 172.18.0.1 port 59554 ssh2
+2023-11-06 22:48:48.388330469  Invalid user kali from 172.18.0.1 port 59558
+2023-11-06 22:48:49.418140595  Could not get shadow information for NOUSER
+2023-11-06 22:48:49.427916428  Failed password for invalid user kali from 172.18.0.1 port 59558 ssh2
+2023-11-06 22:48:49.486853803  Invalid user adaliah from 172.18.0.1 port 64914
+2023-11-06 22:48:50.514166137  Could not get shadow information for NOUSER
+2023-11-06 22:48:50.526111929  Failed password for invalid user adaliah from 172.18.0.1 port 64914 ssh2
+2023-11-06 22:48:50.576187762  Invalid user adversary from 172.18.0.1 port 64916
+2023-11-06 22:48:51.618145096  Could not get shadow information for NOUSER
+2023-11-06 22:48:51.621678679  Failed password for invalid user adversary from 172.18.0.1 port 64916 ssh2
+2023-11-06 22:48:52.714494680  Failed password for user from 172.18.0.1 port 64926 ssh2
+2023-11-06 22:48:52.782944263  Invalid user admin from 172.18.0.1 port 64960
+2023-11-06 22:48:53.820247889  Could not get shadow information for NOUSER
+2023-11-06 22:48:53.832695930  Failed password for invalid user admin from 172.18.0.1 port 64960 ssh2
+2023-11-06 22:48:53.892832264  Invalid user vagrant from 172.18.0.1 port 64978
+2023-11-06 22:48:54.923819583  Could not get shadow information for NOUSER
+2023-11-06 22:48:54.937060333  Failed password for invalid user vagrant from 172.18.0.1 port 64978 ssh2
+2023-11-06 22:48:54.999444833  Invalid user account from 172.18.0.1 port 64990
+2023-11-06 22:48:56.032824750  Could not get shadow information for NOUSER
+2023-11-06 22:48:56.045057667  Failed password for invalid user account from 172.18.0.1 port 64990 ssh2
+2023-11-06 22:48:56.089747167  Invalid user kali from 172.18.0.1 port 64994
+2023-11-06 22:48:57.122720418  Could not get shadow information for NOUSER
+2023-11-06 22:48:57.137538918  Failed password for invalid user kali from 172.18.0.1 port 64994 ssh2
+2023-11-06 22:48:57.196935293  Invalid user admin from 172.18.0.1 port 65002
+2023-11-06 22:48:58.234133293  Could not get shadow information for NOUSER
+2023-11-06 22:48:58.243898293  Failed password for invalid user admin from 172.18.0.1 port 65002 ssh2
+2023-11-06 22:48:58.290686960  Invalid user kali from 172.18.0.1 port 65008
+2023-11-06 22:48:59.320755585  Could not get shadow information for NOUSER
+2023-11-06 22:48:59.333699377  Failed password for invalid user kali from 172.18.0.1 port 65008 ssh2
+2023-11-06 22:48:59.392202002  Invalid user adversary from 172.18.0.1 port 63804
+2023-11-06 22:49:00.425985961  Could not get shadow information for NOUSER
+2023-11-06 22:49:00.438513877  Failed password for invalid user adversary from 172.18.0.1 port 63804 ssh2
+2023-11-06 22:49:00.486707836  Invalid user adversary from 172.18.0.1 port 63818
+2023-11-06 22:49:01.519720711  Could not get shadow information for NOUSER
+2023-11-06 22:49:01.531781795  Failed password for invalid user adversary from 172.18.0.1 port 63818 ssh2
+2023-11-06 22:49:02.629645629  Failed password for user from 172.18.0.1 port 63828 ssh2
+2023-11-06 22:49:03.748132671  Failed password for user from 172.18.0.1 port 63856 ssh2
+2023-11-06 22:49:04.840398296  Failed password for user from 172.18.0.1 port 63870 ssh2
+2023-11-06 22:49:04.937191921  Invalid user kali from 172.18.0.1 port 63924
+2023-11-06 22:49:05.963623422  Could not get shadow information for NOUSER
+2023-11-06 22:49:05.978100797  Failed password for invalid user kali from 172.18.0.1 port 63924 ssh2
+2023-11-06 22:49:06.037463672  Invalid user kali from 172.18.0.1 port 63938
+2023-11-06 22:49:07.077753047  Could not get shadow information for NOUSER
+2023-11-06 22:49:07.081509589  Failed password for invalid user kali from 172.18.0.1 port 63938 ssh2
+2023-11-06 22:49:07.157645381  Invalid user adversary from 172.18.0.1 port 63972
+2023-11-06 22:49:08.197835256  Connection closed by invalid user kali 172.18.0.1 port 65008 [preauth]
+2023-11-06 22:49:08.197841548  Connection closed by invalid user account 172.18.0.1 port 63562 [preauth]
+2023-11-06 22:49:08.205066923  Connection closed by invalid user account 172.18.0.1 port 60686 [preauth]
+2023-11-06 22:49:08.205069798  Connection closed by invalid user vagrant 172.18.0.1 port 57760 [preauth]
+2023-11-06 22:49:08.205070673  Connection closed by invalid user account 172.18.0.1 port 62374 [preauth]
+2023-11-06 22:49:08.205073131  Connection closed by invalid user account 172.18.0.1 port 60700 [preauth]
+2023-11-06 22:49:08.205073756  Connection closed by invalid user adversary 172.18.0.1 port 63972 [preauth]
+2023-11-06 22:49:08.205074840  Connection closed by invalid user admin 172.18.0.1 port 59598 [preauth]
+2023-11-06 22:49:08.205075465  Connection closed by invalid user kali 172.18.0.1 port 57748 [preauth]
+2023-11-06 22:49:08.205076006  Connection closed by invalid user kali 172.18.0.1 port 64994 [preauth]
+2023-11-06 22:49:08.205076548  Connection closed by invalid user admin 172.18.0.1 port 62344 [preauth]
+2023-11-06 22:49:08.205077090  Connection closed by invalid user kali 172.18.0.1 port 63924 [preauth]
+2023-11-06 22:49:08.205085798  Connection closed by invalid user account 172.18.0.1 port 59554 [preauth]
+2023-11-06 22:49:08.207773798  Connection closed by invalid user account 172.18.0.1 port 59642 [preauth]
+2023-11-06 22:49:08.207784131  Connection closed by invalid user adaliah 172.18.0.1 port 59548 [preauth]
+2023-11-06 22:49:08.207785006  Connection closed by authenticating user user 172.18.0.1 port 60692 [preauth]
+2023-11-06 22:49:08.207785715  Connection closed by invalid user account 172.18.0.1 port 57176 [preauth]
+2023-11-06 22:49:08.207786298  Connection closed by invalid user adaliah 172.18.0.1 port 63584 [preauth]
+2023-11-06 22:49:08.207786881  Connection closed by authenticating user user 172.18.0.1 port 62352 [preauth]
+2023-11-06 22:49:08.207787423  Connection closed by invalid user adaliah 172.18.0.1 port 57752 [preauth]
+2023-11-06 22:49:08.207787965  Connection closed by invalid user admin 172.18.0.1 port 59626 [preauth]
+2023-11-06 22:49:08.207793965  Connection closed by invalid user admin 172.18.0.1 port 59524 [preauth]
+2023-11-06 22:49:08.207794590  Connection closed by authenticating user user 172.18.0.1 port 57736 [preauth]
+2023-11-06 22:49:08.207795173  Connection closed by invalid user account 172.18.0.1 port 59540 [preauth]
+2023-11-06 22:49:08.207795756  Connection closed by invalid user adversary 172.18.0.1 port 63572 [preauth]
+2023-11-06 22:49:08.207796340  Connection closed by authenticating user user 172.18.0.1 port 63828 [preauth]
+2023-11-06 22:49:08.207796881  Connection closed by invalid user vagrant 172.18.0.1 port 60688 [preauth]
+2023-11-06 22:49:08.207803590  Connection closed by invalid user kali 172.18.0.1 port 56806 [preauth]
+2023-11-06 22:49:08.207804256  Connection closed by authenticating user user 172.18.0.1 port 57750 [preauth]
+2023-11-06 22:49:08.207804840  Connection closed by invalid user admin 172.18.0.1 port 60712 [preauth]
+2023-11-06 22:49:08.207805381  Connection closed by invalid user account 172.18.0.1 port 59628 [preauth]
+2023-11-06 22:49:08.207805965  Connection closed by invalid user adversary 172.18.0.1 port 57172 [preauth]
+2023-11-06 22:49:08.207806506  Connection closed by invalid user adaliah 172.18.0.1 port 57766 [preauth]
+2023-11-06 22:49:08.207807048  Connection closed by invalid user vagrant 172.18.0.1 port 59630 [preauth]
+2023-11-06 22:49:08.207807590  Connection closed by invalid user account 172.18.0.1 port 60714 [preauth]
+2023-11-06 22:49:08.207808173  Connection closed by invalid user account 172.18.0.1 port 59600 [preauth]
+2023-11-06 22:49:08.207808715  Connection closed by invalid user kali 172.18.0.1 port 60690 [preauth]
+2023-11-06 22:49:08.207809256  Connection closed by invalid user adversary 172.18.0.1 port 63818 [preauth]
+2023-11-06 22:49:08.207809798  Connection closed by invalid user admin 172.18.0.1 port 63574 [preauth]
+2023-11-06 22:49:08.207810340  Connection closed by invalid user vagrant 172.18.0.1 port 60702 [preauth]
+2023-11-06 22:49:08.207815423  Connection closed by invalid user admin 172.18.0.1 port 57174 [preauth]
+2023-11-06 22:49:08.207816006  Connection closed by invalid user kali 172.18.0.1 port 62350 [preauth]
+2023-11-06 22:49:08.207816590  Connection closed by invalid user vagrant 172.18.0.1 port 56804 [preauth]
+2023-11-06 22:49:08.207817131  Connection closed by invalid user kali 172.18.0.1 port 59618 [preauth]
+2023-11-06 22:49:08.207817673  Connection closed by invalid user adaliah 172.18.0.1 port 57170 [preauth]
+2023-11-06 22:49:08.207818256  Connection closed by invalid user vagrant 172.18.0.1 port 62376 [preauth]
+2023-11-06 22:49:08.207818798  Connection closed by invalid user adversary 172.18.0.1 port 63804 [preauth]
+2023-11-06 22:49:08.207819340  Connection closed by invalid user adaliah 172.18.0.1 port 56810 [preauth]
+2023-11-06 22:49:08.207819881  Connection closed by invalid user adaliah 172.18.0.1 port 62382 [preauth]
+2023-11-06 22:49:08.207820423  Connection closed by invalid user vagrant 172.18.0.1 port 60716 [preauth]
+2023-11-06 22:49:08.207821006  Connection closed by invalid user adversary 172.18.0.1 port 64916 [preauth]
+2023-11-06 22:49:08.207826840  Connection closed by invalid user kali 172.18.0.1 port 59558 [preauth]
+2023-11-06 22:49:08.207827465  Connection closed by authenticating user user 172.18.0.1 port 57168 [preauth]
+2023-11-06 22:49:08.207828006  Connection closed by invalid user adaliah 172.18.0.1 port 57184 [preauth]
+2023-11-06 22:49:08.207828590  Connection closed by invalid user vagrant 172.18.0.1 port 57746 [preauth]
+2023-11-06 22:49:08.207829131  Connection closed by invalid user adaliah 172.18.0.1 port 63570 [preauth]
+2023-11-06 22:49:08.207829715  Connection closed by authenticating user user 172.18.0.1 port 64926 [preauth]
+2023-11-06 22:49:08.212886298  Connection closed by invalid user admin 172.18.0.1 port 62372 [preauth]
+2023-11-06 22:49:08.212888631  Connection closed by invalid user account 172.18.0.1 port 56802 [preauth]
+2023-11-06 22:49:08.212889215  Connection closed by invalid user account 172.18.0.1 port 59614 [preauth]
+2023-11-06 22:49:08.212889798  Connection closed by invalid user vagrant 172.18.0.1 port 56818 [preauth]
+2023-11-06 22:49:08.212890340  Connection closed by invalid user adaliah 172.18.0.1 port 64914 [preauth]
+2023-11-06 22:49:08.212890923  Connection closed by authenticating user user 172.18.0.1 port 63856 [preauth]
+2023-11-06 22:49:08.212891465  Connection closed by invalid user account 172.18.0.1 port 63590 [preauth]
+2023-11-06 22:49:08.212892006  Connection closed by invalid user vagrant 172.18.0.1 port 63578 [preauth]
+2023-11-06 22:49:08.212892548  Connection closed by invalid user adversary 172.18.0.1 port 59638 [preauth]
+2023-11-06 22:49:08.212893131  Connection closed by authenticating user user 172.18.0.1 port 63582 [preauth]
+2023-11-06 22:49:08.212893673  Connection closed by invalid user adaliah 172.18.0.1 port 59636 [preauth]
+2023-11-06 22:49:08.212894256  Connection closed by authenticating user user 172.18.0.1 port 56808 [preauth]
+2023-11-06 22:49:08.212894798  Connection closed by authenticating user user 172.18.0.1 port 62338 [preauth]
+2023-11-06 22:49:08.212895340  Connection closed by invalid user admin 172.18.0.1 port 64960 [preauth]
+2023-11-06 22:49:08.212895881  Connection closed by invalid user account 172.18.0.1 port 57744 [preauth]
+2023-11-06 22:49:08.212896423  Connection closed by invalid user adversary 172.18.0.1 port 56812 [preauth]
+2023-11-06 22:49:08.212897006  Connection closed by invalid user vagrant 172.18.0.1 port 64978 [preauth]
+2023-11-06 22:49:08.212897590  Connection closed by invalid user account 172.18.0.1 port 59512 [preauth]
+2023-11-06 22:49:08.212898131  Connection closed by invalid user account 172.18.0.1 port 56816 [preauth]
+2023-11-06 22:49:08.212898673  Connection closed by authenticating user user 172.18.0.1 port 63870 [preauth]
+2023-11-06 22:49:08.212899215  Connection closed by invalid user kali 172.18.0.1 port 57166 [preauth]
+2023-11-06 22:49:08.212899798  Connection closed by invalid user admin 172.18.0.1 port 57742 [preauth]
+2023-11-06 22:49:08.212900340  Connection closed by invalid user account 172.18.0.1 port 64990 [preauth]
+2023-11-06 22:49:08.212900881  Connection closed by invalid user kali 172.18.0.1 port 63580 [preauth]
+2023-11-06 22:49:08.212901423  Connection closed by invalid user admin 172.18.0.1 port 55098 [preauth]
+2023-11-06 22:49:08.212901965  Connection closed by invalid user adversary 172.18.0.1 port 59522 [preauth]
+2023-11-06 22:49:08.212902506  Connection closed by invalid user vagrant 172.18.0.1 port 57178 [preauth]
+2023-11-06 22:49:08.212903048  Connection closed by invalid user admin 172.18.0.1 port 57188 [preauth]
+2023-11-06 22:49:08.212903590  Connection closed by invalid user admin 172.18.0.1 port 56814 [preauth]
+2023-11-06 22:49:08.212904131  Connection closed by invalid user kali 172.18.0.1 port 59530 [preauth]
+2023-11-06 22:49:08.212904673  Connection closed by invalid user kali 172.18.0.1 port 59516 [preauth]
+2023-11-06 22:49:08.212905215  Connection closed by invalid user admin 172.18.0.1 port 65002 [preauth]
+2023-11-06 22:49:08.212905756  Connection closed by invalid user account 172.18.0.1 port 62360 [preauth]
+2023-11-06 22:49:08.218237256  Connection closed by invalid user kali 172.18.0.1 port 63938 [preauth]
+2023-11-06 22:50:30.547574878  exited MaxStartups throttling after 00:02:43, 203 connections dropped
+2023-11-06 22:50:30.611369628  Invalid user admin from 172.18.0.1 port 63728
+2023-11-06 22:50:31.648032961  Could not get shadow information for NOUSER
+2023-11-06 22:50:31.661398003  Failed password for invalid user admin from 172.18.0.1 port 63728 ssh2
+2023-11-06 22:50:31.716389086  Invalid user account from 172.18.0.1 port 63730
+2023-11-06 22:50:32.749380045  Could not get shadow information for NOUSER
+2023-11-06 22:50:32.759296295  Failed password for invalid user account from 172.18.0.1 port 63730 ssh2
+2023-11-06 22:50:32.829077545  Invalid user vagrant from 172.18.0.1 port 63732
+2023-11-06 22:50:33.866049421  Could not get shadow information for NOUSER
+2023-11-06 22:50:33.880336129  Failed password for invalid user vagrant from 172.18.0.1 port 63732 ssh2
+2023-11-06 22:50:33.934368962  Invalid user kali from 172.18.0.1 port 63734
+2023-11-06 22:50:34.963119630  Could not get shadow information for NOUSER
+2023-11-06 22:50:34.976840796  Failed password for invalid user kali from 172.18.0.1 port 63734 ssh2
+2023-11-06 22:50:36.076450505  Accepted password for user from 172.18.0.1 port 63736 ssh2
+2023-11-06 22:50:37.263250297  Connection closed by invalid user account 172.18.0.1 port 63730 [preauth]
+2023-11-06 22:50:37.263254047  Connection closed by invalid user vagrant 172.18.0.1 port 63732 [preauth]
+2023-11-06 22:50:37.263254881  Connection closed by invalid user admin 172.18.0.1 port 63728 [preauth]
+2023-11-06 22:50:37.263255547  Connection closed by invalid user kali 172.18.0.1 port 63734 [preauth]
+2023-11-06 22:51:37.251529464  Received signal 15; terminating.
+2023-11-07 09:12:43.594864883  Server listening on 0.0.0.0 port 2222.
+2023-11-07 09:12:43.596005716  Server listening on :: port 2222.
+2023-11-07 09:12:44.613713550  kex_exchange_identification: Connection closed by remote host
+2023-11-07 09:12:44.613716633  Connection closed by 127.0.0.1 port 45732
+2023-11-07 09:15:21.527283762  Invalid user admin from 172.18.0.1 port 63422
+2023-11-07 09:15:22.562802095  Could not get shadow information for NOUSER
+2023-11-07 09:15:22.574269512  Failed password for invalid user admin from 172.18.0.1 port 63422 ssh2
+2023-11-07 09:15:22.627625220  Invalid user account from 172.18.0.1 port 63424
+2023-11-07 09:15:23.666964263  Could not get shadow information for NOUSER
+2023-11-07 09:15:23.674297221  Failed password for invalid user account from 172.18.0.1 port 63424 ssh2
+2023-11-07 09:15:23.720934096  Invalid user vagrant from 172.18.0.1 port 63426
+2023-11-07 09:15:24.751163971  Could not get shadow information for NOUSER
+2023-11-07 09:15:24.764497263  Failed password for invalid user vagrant from 172.18.0.1 port 63426 ssh2
+2023-11-07 09:15:24.825037346  Invalid user kali from 172.18.0.1 port 63428
+2023-11-07 09:15:25.854998555  Could not get shadow information for NOUSER
+2023-11-07 09:15:25.866632055  Failed password for invalid user kali from 172.18.0.1 port 63428 ssh2
+2023-11-07 09:15:26.961224166  Accepted password for user from 172.18.0.1 port 63430 ssh2
+2023-11-07 09:15:28.164384834  Connection closed by invalid user account 172.18.0.1 port 63424 [preauth]
+2023-11-07 09:15:28.164387959  Connection closed by invalid user vagrant 172.18.0.1 port 63426 [preauth]
+2023-11-07 09:15:28.164390792  Connection closed by invalid user admin 172.18.0.1 port 63422 [preauth]
+2023-11-07 09:15:28.164391584  Connection closed by invalid user kali 172.18.0.1 port 63428 [preauth]
+2023-11-07 09:17:58.152928250  Invalid user admin from 172.18.0.1 port 62914
+2023-11-07 09:17:59.191686251  Could not get shadow information for NOUSER
+2023-11-07 09:17:59.202703501  Failed password for invalid user admin from 172.18.0.1 port 62914 ssh2
+2023-11-07 09:17:59.258322584  Invalid user account from 172.18.0.1 port 62916
+2023-11-07 09:18:00.289062501  Could not get shadow information for NOUSER
+2023-11-07 09:18:00.301176168  Failed password for invalid user account from 172.18.0.1 port 62916 ssh2
+2023-11-07 09:18:00.344234751  Invalid user vagrant from 172.18.0.1 port 56078
+2023-11-07 09:18:01.372880294  Could not get shadow information for NOUSER
+2023-11-07 09:18:01.390616794  Failed password for invalid user vagrant from 172.18.0.1 port 56078 ssh2
+2023-11-07 09:18:01.451014544  Invalid user kali from 172.18.0.1 port 56080
+2023-11-07 09:18:02.483192211  Could not get shadow information for NOUSER
+2023-11-07 09:18:02.502678752  Failed password for invalid user kali from 172.18.0.1 port 56080 ssh2
+2023-11-07 09:18:03.597728920  Accepted password for user from 172.18.0.1 port 56082 ssh2
+2023-11-07 09:18:09.848681673  Connection closed by invalid user account 172.18.0.1 port 62916 [preauth]
+2023-11-07 09:18:09.851578339  Connection closed by invalid user kali 172.18.0.1 port 56080 [preauth]
+2023-11-07 09:18:09.851604756  Connection closed by invalid user vagrant 172.18.0.1 port 56078 [preauth]
+2023-11-07 09:18:09.851605589  Connection closed by invalid user admin 172.18.0.1 port 62914 [preauth]
+2023-11-07 09:19:40.981733090  Received signal 15; terminating.
+2023-11-07 10:26:50.175887674  Server listening on 0.0.0.0 port 2222.
+2023-11-07 10:26:50.175937633  Server listening on :: port 2222.
+2023-11-07 10:26:51.206263550  kex_exchange_identification: Connection closed by remote host
+2023-11-07 10:26:51.206266383  Connection closed by 127.0.0.1 port 51652
+2023-11-07 10:27:03.983907708  Invalid user admin from 172.18.0.1 port 58512
+2023-11-07 10:27:05.026391001  Could not get shadow information for NOUSER
+2023-11-07 10:27:05.038054084  Failed password for invalid user admin from 172.18.0.1 port 58512 ssh2
+2023-11-07 10:27:05.093712876  Invalid user account from 172.18.0.1 port 63062
+2023-11-07 10:27:06.126270751  Could not get shadow information for NOUSER
+2023-11-07 10:27:06.140345543  Failed password for invalid user account from 172.18.0.1 port 63062 ssh2
+2023-11-07 10:27:06.197442126  Invalid user vagrant from 172.18.0.1 port 63064
+2023-11-07 10:27:07.234654252  Could not get shadow information for NOUSER
+2023-11-07 10:27:07.246939085  Failed password for invalid user vagrant from 172.18.0.1 port 63064 ssh2
+2023-11-07 10:27:07.297183335  Invalid user kali from 172.18.0.1 port 63066
+2023-11-07 10:27:08.334107835  Could not get shadow information for NOUSER
+2023-11-07 10:27:08.351569002  Failed password for invalid user kali from 172.18.0.1 port 63066 ssh2
+2023-11-07 10:27:09.449011586  Accepted password for user from 172.18.0.1 port 63068 ssh2
+2023-11-07 10:27:15.700639381  Connection closed by invalid user account 172.18.0.1 port 63062 [preauth]
+2023-11-07 10:27:15.700642714  Connection closed by invalid user admin 172.18.0.1 port 58512 [preauth]
+2023-11-07 10:27:15.700646339  Connection closed by invalid user kali 172.18.0.1 port 63066 [preauth]
+2023-11-07 10:27:15.702313006  Connection closed by invalid user vagrant 172.18.0.1 port 63064 [preauth]

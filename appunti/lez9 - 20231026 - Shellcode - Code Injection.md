@@ -2,7 +2,7 @@
 id: '9'
 lezione: "20231026"
 title: "Shellcode"
-author: "Sam. Kaluwaduge"
+author: "Sam. K."
 keywords: 
 ---
 <style>
@@ -15,7 +15,7 @@ keywords:
 </style>
 
 # Shellcode
-Shellcode è un pezzo di codice che ha caratteristiche particolari, tra cui il dover essere scritto in linguaggio macchina che viene usato per sfruttare le vulnerabilità all'interno di un codice attraverso attaccho di tipo **injection**. Lo shell code, tipicamente viene iniettato all'interno di un processo in esecuzione e magicamente questo lo esegue.
+Shellcode è un pezzo di codice che ha caratteristiche particolari, tra cui il dover essere scritto in linguaggio macchina che viene usato per sfruttare le vulnerabilità all'interno di un codice attraverso attacco di tipo **injection**. Lo shell code, tipicamente viene iniettato all'interno di un processo in esecuzione e magicamente questo lo esegue.
 
 Lo shell code contiene codificato in linguaggio macchina le azioni che l'attaccante vuole eseguire sulla macchina.
 
@@ -29,7 +29,7 @@ Attacco di base è di tipo **Code Injection** (iniettare codice), prima mandarlo
 ![Harvard](assets/images/Architettura_harvard.svg.png)
 
 ### Codice Vulnerabile
-Per eseguire questo attacco boisogna prima individuare un pezzo di codice vulnerabile ovvero un **security bug**, è una vulnerabilità che ci permette di **bypassare/scavalcare meccanismo di protezione** di un sistema, quindi, guardagnare un accesso non autirzzato al sistema.
+Per eseguire questo attacco boisogna prima individuare un pezzo di codice vulnerabile ovvero un **security bug**, è una vulnerabilità che ci permette di **bypassare/scavalcare meccanismo di protezione** di un sistema, quindi, guadagnare un accesso non autorizzato al sistema.
 
 ```c
 void bye1(){ puts("Goodbye!\n"); }
@@ -65,7 +65,7 @@ gcc -z execstack -g -o myFirstInjection myFirstIngection.c
   
   * il codice .data,  etc...
 
-Eseguiamo il programma in gdb finchè non crasha con signal Segmentation Fault `SIGSEGV` oppure IllegalInstruction.
+Eseguiamo il programma in gdb finché non crasha con signal Segmentation Fault `SIGSEGV` oppure IllegalInstruction.
 
 ![GDB seg fault](assets/images/gdb_seg.png)
 ~~~sh
@@ -83,7 +83,7 @@ Usando GDB andiamo a vedere cosa contiene quell'indirizzo di memoria: alcuni han
 
 `x/s $rip` gdb dice qualè il contenuto di quell'indirizzo di memoria. 
 
-Il program counter ad un certo punto è stato posizionato sulla stringa data, quando si chiama hello con bye2 con argomenti invertiti, il programma cerca di eseguire input dell'utente come fosse una funzione (perchè si aspetta una funzione/un puntatore a funzione).
+Il program counter ad un certo punto è stato posizionato sulla stringa data, quando si chiama hello con bye2 con argomenti invertiti, il programma cerca di eseguire input dell'utente come fosse una funzione (perché si aspetta una funzione/un puntatore a funzione).
 
 La vulnerabilità è che il programmatore ha scambiato l'ordine dei parametri della funzione.
 
@@ -159,7 +159,7 @@ questo programma:
 
 * rawfile è il file ottenuto con `objcopy --dump-section .text=rawfile shcode`.
 
-    `cat rawfile | ./carrier` # non funziona perché la pipe chiude lo stdin e quado la shell (sh) inizia trova stdin chiuso quindi termina, bisogna usare `cat rawfile - | ./carrier`.
+    `cat rawfile | ./carrier` # non funziona perché la pipe chiude lo stdin e quando la shell (sh) inizia trova stdin chiuso quindi termina, bisogna usare `cat rawfile - | ./carrier`.
 
 ## Esercizio
 Creare un file `/flag` nella root, scrivere del codice che accede al suo contenuto e lo stampa.
@@ -168,4 +168,4 @@ Scrivere un programma in C estrarre da file compilato assembly il shellcode.
 
 system call da usare: (open, sendfile, exit).
 
-La shell appare all'utente, non all'attaccante, bisogna poi redireigere la shell. (remote shell). Il codice è un pochino piu complicato.
+La shell appare all'utente, non all'attaccante, bisogna poi redirigere la shell. (remote shell). Il codice è un pochino piu complicato.

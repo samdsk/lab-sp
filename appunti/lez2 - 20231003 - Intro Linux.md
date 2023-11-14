@@ -2,7 +2,7 @@
 id: '2'
 lezione: "20231003"
 title: "Intro Linux"
-author: "Sam. Kaluwaduge"
+author: "Sam. K."
 keywords: 
 ---
 <style>
@@ -28,7 +28,7 @@ Un sistema di calcolo può essere suddiviso per strati e i componenti possono es
 
 - abbiamo da una parte abbiamo applicazioni, le applicazioni usano per funzionare il sistema operativo.
 - sistema operativo a sua volta si appoggia sul system software, che è un componente che fa parte del kernel. 
-- system software è un programma che ha il comptito di gestire l'hardware/risorse e fornisce servizi di base ai software di livello superiore.
+- system software è un programma che ha il compito di gestire l'hardware/risorse e fornisce servizi di base ai software di livello superiore.
   
 sys user | app software | OS | sys software (kernel) | hardware
 
@@ -43,7 +43,7 @@ le app non possono dialogare direttamente con hardware, devono fare un `syscall`
 
 Gestore: entità che decide quanto memoria, quanto togliere per dare un'altra delle info, memoria, sicurezza del sistema. inoltre, deve garantire confidenzialità, integrità, disponibilità.
 
-input/output management, command interpreter, resource manag, file, memo, security.
+input/output management, command interpreter, resource management, file, memo, security.
 
 un utente può interagire con l'os programmando oppure con il shell.
 
@@ -55,23 +55,23 @@ gli OS si distinguono per `syscall`, dalle utilità di sistema, interfaccia uten
 |--------|
 | utenti |
 | app ( user app | sys app ) |
-| OS (syscall proces manager, mem, file sys, IO services) |
+| OS (syscall process manager, mem, file sys, IO services) |
 | hardware |
 
 
 # Linux - Introduction
 È un derivato di unix. unix nasce alla fine di 1960. deriva da un progetto **Multics** (multiplexed information and computing sys).
-ken thomposon unix uniplexed information and computing sys. riscrive in c, quello che favorisce la diffusione è che era open source. quindi la gente si interessarono di piu per fare testi ecc.
+Ken Thomposon Unix **uniplexed information and computing system**. Riscrive in c, quello che favorisce la diffusione è che era **open source**. Quindi la gente si interessarono di piu per fare testi ecc.
 
 nel 78 unix si divide, at&t compra kernel di unix e diventa un sys proprietario "sys 5"
 la parte open source BSD berkley sys distribution. 
 
-nel 1991 tutto converge in linux sviluppato da linus travolds
+Nel 1991 tutto converge in linux sviluppato da Linus Travolds.
 
 [web-vm linux](jslinux.com)
 
-shell = interprete del commandi
-read cmd -> interpreta -> execute -> dispaly -> read
+shell = interprete del comandi
+read cmd -> interpreta -> execute -> display -> read
 
 un commando è formato 
     
@@ -90,7 +90,7 @@ un commando è formato
     who can tell me why i got divorced
     lost
     cal 2000
-    cal 9 1752 // è quando stato adotatto il calendario gregoriano
+    cal 9 1752 // è quando stato adottato il calendario gregoriano
     bc -l
     echo 5+4 | bc -l
 
@@ -134,7 +134,7 @@ multi programmati: sono presenti più processi in memoria
 ### Content switch
 È la tecnica che viene utilizzato per liberare il processore e far spazio ad un nuovo processo consiste nel congelare lo stato di un processo e metterlo da parte (salvati in memoria/disco fisso) per poi ricaricarlo nel processore per continuare. Il **contesto di un processo** (PCB) ha un pid, cpu state, processor, memo, program counter, ecc.
 
-Il context switch può essere eseguito, quando scade il quanto di tempo, quando viene generato un interrupt di I/O, quando si verifica un segmentation fault oppure quando si verificano delle eccezzioni durante il funzionamento di un programma.
+Il context switch può essere eseguito, quando scade il quanto di tempo, quando viene generato un interrupt di I/O, quando si verifica un segmentation fault oppure quando si verificano delle eccezioni durante il funzionamento di un programma.
 
 context switch è un _interrupt driven operation_.
 
@@ -144,14 +144,14 @@ ogni processo di unix ha un genitore, un proprietario.
 ## Interrupt 
 `clock interrupt`
 
-L'interrupt è un segnale hardware che interrompe il ciclo fetch-decode-execute del processore. Sul processore ce un pin dedicato per ricevere segnale interrupt (elettrico-hardware), dopo l'execute ce un `if` che controlla se ce un interrupt, che va interrompere l'execuzione della programma in corso e va ad eseguire un altro programma che è in una posizione ben definita della 
+L'interrupt è un segnale hardware che interrompe il ciclo fetch-decode-execute del processore. Sul processore ce un pin dedicato per ricevere segnale interrupt (elettrico-hardware), dopo l'execute ce un `if` che controlla se ce un interrupt, che va interrompere l'esecuzione della programma in corso e va ad eseguire un altro programma che è in una posizione ben definita della 
 memoria. 
 
 `if interrupt go to` 
 
-in assembly il commando `INT` ha un particolare indirizzo dell'os che contiene un routine di gestione dell'interrupt, che provvede di salvare lo stato del processo in corso. e manda in esecusione il resto dell'OS.
+in assembly il commando `INT` ha un particolare indirizzo dell'os che contiene un routine di gestione dell'interrupt, che provvede di salvare lo stato del processo in corso. e manda in esecuzione il resto dell'OS.
 
-Quindi, l'interrupt è un meccanismo hardware, è la modalità con cui le periferiche interragiscono con il OS. Esiste anche una modalita software, es. quando si genera un segmentation fault (il processo viene interrotto, chiama l'os che capisce cosa sta succedendo, ammazza il processo, libera la memoria, l'eventuale errore lo mette in un dump della memoria e fa ripartire il sistema),  interrupt software = **exception** (errori dell'interno di un programma).
+Quindi, l'interrupt è un meccanismo hardware, è la modalità con cui le periferiche interagiscono con il OS. Esiste anche una modalita software, es. quando si genera un segmentation fault (il processo viene interrotto, chiama l'os che capisce cosa sta succedendo, ammazza il processo, libera la memoria, l'eventuale errore lo mette in un dump della memoria e fa ripartire il sistema),  interrupt software = **exception** (errori dell'interno di un programma).
 
 Interrupt è un bit (piedino del cpu), le cause dell'interrupt (es. mouse, disco fisso, ecc.) quindi ognuno ha un codice che identifica il suo interrupt, questo codice è chiamato **vettore dell'interrupt** viene passato al sistema in una fase successiva alla segnalazione dell'interrupt. il codice viene usato per accedere all'array dell'OS che contiene gli indirizzi corrispondenti alla gestione di ogni tipo di interrupt.
 
@@ -161,7 +161,7 @@ cpu is exec instruction 100 (programma in esecuzione) ->
 p1 (periferica) (un indirizzo memory mapped) ha un vettore di interrupt 16 ->
 p1 manda un segnale di interrupt (quando cpu sta exec istruzione 100) ->
 cpu salva il contesto ->
-esegue il codice handling interrupt e chiede a p1 di mandare il vettore di interrupt -> p1 manda il vettore (16) -> cpu salta all'indirizzo al interrupt handler di 16 -> esegue l'interrupt handler -> alla fine del codice di gestione dell'interrupt ce un commando assembly `RETI` return from interrupt, che permette di ripristinare execuzione del programma pricipale.
+esegue il codice handling interrupt e chiede a p1 di mandare il vettore di interrupt -> p1 manda il vettore (16) -> cpu salta all'indirizzo al interrupt handler di 16 -> esegue l'interrupt handler -> alla fine del codice di gestione dell'interrupt ce un commando assembly `RETI` return from interrupt, che permette di ripristinare esecuzione del programma principale.
 
 Questo ci permettere avere un pseudo-multitasking.  
 
@@ -169,7 +169,7 @@ Cosa succede durante il context-switching? viene salvato una serie di informazio
 
 `syscall` sono dei meccanismi che si appoggiano su interrupt. Sono in una libreria all'interno del kernel. hanno degli indirizzi di memoria. Quando viene generato un syscall blocca il processo in esecuzione e salta ad eseguire la syscall. 
 
-Syscall `fork()` permette di creare un processo, crea una copia fisica del processo genitore. unica cosa che cambia è il `PID` **process identifier**. Quindi, dupplica il processo che viene chiamata.
+Syscall `fork()` permette di creare un processo, crea una copia fisica del processo genitore. unica cosa che cambia è il `PID` **process identifier**. Quindi, duplica il processo che viene chiamata.
 
 `fork()` restituisce `-1` in caso di errore, `0` processo figlio, `PID` al genitore.
 
@@ -193,7 +193,7 @@ Alla chiusura del processo child PCB del processo resta e sarà rimosso dal geni
 
 In Unix ogni processo ha un parent processo. Al parent processo viene mandato un **segnal alla chiusura** del child tramite il metodo `wait()`.
 
-Cosa sucedde a un processo quando un processo si dimentaca di fare la terminazione di child  (senza fare wait)? si creano **processi zombie** (processi fantasma) che sono dei processi che non hanno genitori. questi processi vengono rimossi dall'OS periodicamente.
+Cosa sucedde a un processo quando un processo si dimentica di fare la terminazione di child  (senza fare wait)? si creano **processi zombie** (processi fantasma) che sono dei processi che non hanno genitori. questi processi vengono rimossi dall'OS periodicamente.
 
 ## Linux process commands
 
@@ -213,7 +213,7 @@ processi possono essere sospesi con `ctrl+z`
 
 `kill -9` pid killa forzatamente
 
-`|` **pipe concatena** più commandi, output di un cmd viene mandato in input del prossimo command nella lista
+`|` **pipe concatena** più comandi, output di un cmd viene mandato in input del prossimo command nella lista
 
 `cmd1 | cmd2 | cmd3`
 

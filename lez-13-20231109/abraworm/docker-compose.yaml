@@ -1,0 +1,40 @@
+version: "2.1"
+services:
+  openssh-server-attacker:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: openssh-server-attacker
+    hostname: openssh-server-attacker
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+      - SUDO_ACCESS=false
+      - PASSWORD_ACCESS=true
+      - USER_PASSWORD=dees
+      - USER_NAME=seed
+      - PORT=22
+    volumes:
+      - ./attacker/config:/config
+    ports:
+      - "12345:2222"
+    restart: unless-stopped
+
+  openssh-server-user:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: openssh-server-user
+    hostname: openssh-server-user
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+      - SUDO_ACCESS=true
+      - PASSWORD_ACCESS=true
+      - USER_PASSWORD=password
+      - USER_NAME=user
+      - PORT=22
+    volumes:
+      - ./user/config:/config
+      - ./user/init-scripts:/custom-cont-init.d:ro
+    ports:
+      - "22:2222"
+    restart: unless-stopped

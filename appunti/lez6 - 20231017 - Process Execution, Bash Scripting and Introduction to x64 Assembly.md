@@ -2,7 +2,7 @@
 id: '6'
 lezione: "20231017"
 title: "Process Execution, Bash Scripting and Introduction to x64 Assembly"
-author: "Sam. Kaluwaduge"
+author: "Sam. K."
 keywords: 
 ---
 <style>
@@ -22,7 +22,7 @@ Questo può essere visto analizzando EFL file del programma (ce una serie di fun
 
 Un processo va in esecuzione con una serie di argomenti. Un **main di C ha 3 argomenti**:
 * `argc` il numero di argomenti, 
-* `char * argv[]` puntatore a una sequenza di charatteri che contiene **argomenti per il programma**, 
+* `char * argv[]` puntatore a una sequenza di caratteri che contiene **argomenti per il programma**, 
 * `char *envp[]` contiene un puntatore alle **variabili d'ambiente**, sono una serie di variabili del sistema a cui il nostro programma può accedere che vengono solitamente inizializzate in fase di definizione della shell.
 
 ~~~c
@@ -51,7 +51,7 @@ Sono delle _syscall speciali_ che **mettono in pausa l'esecuzione del processo e
 ![Signal table](assets/images/signal_table.png)
 
 ### Esempi
-`sigkill 9` (sig number) if a process gets this signal it must quit immediatly and will not perform any clean-up ops
+`sigkill 9` (sig number) if a process gets this signal it must quit immediately and will not perform any clean-up ops
 
 `sigquit 3` interrupt signal `ctrl+d`
 
@@ -75,7 +75,7 @@ La soluzione per **terminare processi zombie**: Per evitare che un processo figl
 
 
 ## Privilege Escalation via Complete Mediation
-Il meccanismo **Complete Mediation** si usa tutte le volte che si rende neccessario **assegnare ad un oggetto dei diritti di accessi superiori** di quelli che sono stati assegnati inizialmente. 
+Il meccanismo **Complete Mediation** si usa tutte le volte che si rende necessario **assegnare ad un oggetto dei diritti di accessi superiori** di quelli che sono stati assegnati inizialmente. 
 
 Viene utilizzato, per assegnare ad **un processo temporaneamente i diritti superiori**.
 e per **garantire che il processo non ne abusi** di diritti superiori, quindi, si usarli in modo corretto.
@@ -91,7 +91,7 @@ Il meccanismo che viene usato per fare **complete mediation nell'ambito del file
 
 Nel file `etc/shadow` l'utente normale può fare nulla, come fa un utente scrivere la password se non ha permessi? Quindi, bisogna dare permessi quando l'utente desidera di cambiare la password.
 
-Per risolvere questo problema si prende il programma `/usr/bin/passwd` che permette di cambiare la password e gli assegna setuid.
+Per risolvere questo problema si prende il programma `/usr/bin/passwd` che permette di cambiare la password e gli assegna `setuid`.
 
 Se osserviamo i permessi di owner (è root) del file `/usr/bin/passwd` notiamo che ce una `s` al posto della `x`, `s` indica che il file ha il bit `setuid` attivato:
 
@@ -103,7 +103,7 @@ Quindi, nella fase in cui utente esegue `passwd` viene eseguito (l'utente divent
 
 Ogni processo ha due uid: `RUID`, `EUID` (che stanno nel PCB)
 * `RUID` è userID **UID di chi ha generato il processo** (UID che viene assegnato dal sistema quando creaiamo un utente, si trova in `/etc/passwd`);
-* `EUID` **identifica i privilegi di un processo**, i priveligi di un processo non sono determinato da `RUID`, ma dal `EUID`.
+* `EUID` **identifica i privilegi di un processo**, i privilegi di un processo non sono determinato da `RUID`, ma dal `EUID`.
   
 Normalmente sono uguali `RUID == EUID`. Quando eseguiamo un programma con `setuid` sono diversi, `EUID` lo prende dall'UID dell'orwner che andiamo ad eseguire, se ha `s` al posto di `x`, ogni volta che il processo viene eseguito `EUID` nel processo diventa `0`. quindi ha diritti di root.
 
@@ -115,7 +115,7 @@ ls -l mycat
 mycat /etc/shadow # eseguo mycat per vedere le password
 mycat: /etc/shadow: Permission denied
 ```
-Se non ha `s` e se non abbiamo permessi per eseguirlo ci dice `Permission denied` perchè l'abbiamo mandato noi e perchè `EUID` è il nostro.
+Se non ha `s` e se non abbiamo permessi per eseguirlo ci dice `Permission denied` perché l'abbiamo mandato noi e perché `EUID` è il nostro.
 
 ```sh
 sudo chmod 4755 mycat
@@ -125,7 +125,7 @@ Il 4 assegna `setuid`.
 Il trucco è il `sudo`, senza `sudo` non funziona, serve sempre un `system admin` per abilitare `setuid`.
 
 #### Come funziona?
-Quando un processo viene generato (forka), si dupplica il genitore, figlio prende UID del genitore, tipicamente immediatamente dopo il figlio esegue `execve`, a questo punto `execve` passa come paramentro il `Path` di un file eseguibile. Se il file che deve essere eseguito ha un `setuid bit` settato a 1 allora viene cambiato `EUID` del programma figlio e viene eseguito come owner di quel file.
+Quando un processo viene generato (forka), si duplica il genitore, figlio prende UID del genitore, tipicamente immediatamente dopo il figlio esegue `execve`, a questo punto `execve` passa come paramento il `Path` di un file eseguibile. Se il file che deve essere eseguito ha un `setuid bit` settato a 1 allora viene cambiato `EUID` del programma figlio e viene eseguito come owner di quel file.
 
 Per settarlo si usa `chmod`.
 
@@ -152,7 +152,7 @@ $* # * variabile contiene argomenti
 $# # è un variabile di sys che contiene il numero di argomenti di *
 ```
 ```sh
-    shell interpreta commandi per gestione del sistema
+    shell interpreta comandi per gestione del sistema
 
     bob='hello world'
     foo = 3 # non lasciare spazi. Cerca comando foo e passa come argomento 3
@@ -251,7 +251,7 @@ echo "Current Time is: $Hour:$Minute:$Second"
 ~~~
 
 ### Exercise #1
-Write a script that upon invocation shows the time and date and lists all logged-in users. the script then saves this infor to a logfile.
+Write a script that upon invocation shows the time and date and lists all logged-in users. the script then saves this info to a logfile.
 
 ~~~sh
 #!/bin/bash
@@ -265,7 +265,7 @@ echo $DATE $USR > log
 ~~~
 
 ### Exercise 2
-Write a shell script wich individuates all files with permissions 0777 inside a given directory and save them on a file namesd yyyy-mm-dd taken from the current date.
+Write a shell script which individuates all files with permissions 0777 inside a given directory and save them on a file namesd `yyyy-mm-dd` taken from the current date.
 
 ~~~sh
 #!/bin/bash
@@ -501,7 +501,7 @@ Assembly è un linguaggio di programmazione inventato negli anni '50, è un ling
 
 Assembler è il programma che converte il programma assembly in un file eseguibile.
 
-è **importante** nel mondo della sicurezza, per analizzare il codice (virus) (si fa reverse engeering del codice eseguibile).
+è **importante** nel mondo della sicurezza, per analizzare il codice (virus) (si fa reverse engineering del codice eseguibile).
 
 * permette di trovare errori difficili da trovare senza,
 * permette di ottimizzare il codice (è praticolarmente snello),
@@ -543,9 +543,9 @@ Intel usa la rappresentazione **Little Endian** (in memoria non in registri)
 
 Si può sommare solo dati in registri `reg` e numeri immediati `imm`.
 
->little endian veniva utilizzato in un protocollo di trasmissione, i dati venivano inviati al contrario, quindi, sono stati sviluppati calcolatori che raccoglievano questi dati e li copovolgevano.
+>little endian veniva utilizzato in un protocollo di trasmissione, i dati venivano inviati al contrario, quindi, sono stati sviluppati calcolatori che raccoglievano questi dati e li capovolgevano.
 
->Intel deve grantire la retro-compatibility, questo perché ha un accordo on Microsoft.
+>Intel deve garantire la retro-compatibility, questo perché ha un accordo on Microsoft.
 
 ## Registri
 Registri sono delle posizioni di memoria che sono direttamente accessibile dal processore. 

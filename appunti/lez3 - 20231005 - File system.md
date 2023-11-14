@@ -2,7 +2,7 @@
 id: '3'
 lezione: "20231005"
 title: "File system"
-author: "Sam. Kaluwaduge"
+author: "Sam. K."
 keywords: 
 ---
 <style>

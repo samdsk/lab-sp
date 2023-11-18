@@ -1,4 +1,15 @@
-# Pwn Beby mem
+# Pwn Babymem
+
+## Useful stuff
+```sh
+# remote login
+ssh -i key hacker@"www.your dojo.com"
+# copy challenge to your host
+scp -i key hacker@"www.your dojo.com":/challenge/* .
+```
+[Binary Ninja](https://cloud.binary.ninja/)
+
+[Pwn college Memory Error Lecture](https://www.youtube.com/watch?v=hUUcsFPeH9w&t=5236s)
 
 ## 1.0 - 1.1
 ```py
@@ -175,3 +186,4 @@ hint: man strlen
 
 ## 8.1 
 Note: find buffer size and win_a.. address and play with it
+

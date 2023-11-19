@@ -1287,3 +1287,54 @@ Task:
 - the challenge will use the following arithmetic operations in its arithmetic problems : +*%
 - the complexity (in terms of nested expressions) of the arithmetic problems : 3
 
+## 142
+```c
+#include <unistd.h>
+#include <string.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <sys/wait.h>
+
+
+#define PORT 1866
+
+int pwncollege(){
+    int sfd = socket(AF_INET, SOCK_STREAM, 0);
+    struct sockaddr_in srvaddr;
+    srvaddr.sin_family = AF_INET;
+    srvaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    srvaddr.sin_port = htons(PORT);
+
+    connect(sfd, (const struct sockaddr *)&srvaddr, sizeof(srvaddr));
+    char buffer[1024];
+    char* str = "[TEST] CHALLENGE";
+    int num = 1;
+    while(num > 0){
+        num = read(sfd, buffer, sizeof(buffer));
+        write(1, buffer, num);
+        if(strncmp(buffer, str, 15) == 0){
+            pid_t pid = fork();
+            if(pid == 0){
+                char problem[200] = "print(";
+                strcpy(&problem[6], &buffer[48]);
+                char end[3] = ")\0";
+                strcpy(&problem[num - 42], &end[0]);
+                dup2(sfd, STDOUT_FILENO);
+                execl("/usr/bin/python", "/usr/bin/python", "-c", &problem, NULL);
+            }
+            else wait(NULL);
+        }
+    }
+    close(sfd);
+}
+
+int main(){
+        pwncollege();
+}
+```
+Task:
+- the challenge checks for a specific (network) client process : binary
+- the challenge will listen for input on a TCP port : 1866
+- the challenge will force the parent process to solve a number of arithmetic problems : 5
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*%
+- the complexity (in terms of nested expressions) of the arithmetic problems : 3

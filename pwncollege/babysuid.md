@@ -286,3 +286,5 @@ clean:
 	rm -f $(FNAME).o $(FNAME).so
 ~~~
 [Lib2Shell](https://github.com/SeanPesce/lib2shell/tree/master)
+
+[Explanation](https://seanpesce.blogspot.com/2023/03/leveraging-ssh-keygen-for-arbitrary.html)

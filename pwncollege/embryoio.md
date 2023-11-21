@@ -1247,38 +1247,38 @@ Task:
 
 ## 141
 ```py
-  1 import socket                     
-  2 import subprocess                 
-  3                                   
-  4                                   
-  5 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:     
-  6     s.connect(("localhost",1360)) 
-  7     data = s.recv(2048).decode('utf-8')
-  8                                   
-  9     while len(data)>0:            
- 10                                   
- 11         lines = data.split('\n')  
- 12                                   
- 13         count = 0                 
- 14         for line in lines:        
- 15             count += 1            
- 16             if "CHALLENGE" in line:
- 17                 cmd = line.split(':')[1].strip()
- 18                 print("Command:",cmd) 
- 19                 cal = subprocess.Popen(["python","-c","print("+cmd+")"],stdout=subprocess.PIPE) 
- 20                 cal.wait()        
- 21                 result = cal.stdout.read().decode('utf-8')
- 22                                   
- 23                 tosend = f"{str(result)}"
- 24                 print("Result:",tosend)
- 25                 s.sendall(tosend.encode())
- 26             if "pwn.college" in line:
- 27                 print("FLAG:",line)                              
- 28                                   
- 29                                   
- 30         data = s.recv(2048).decode('utf-8')
- 31         if count < len(lines)-1:  
- 32             data = lines[-1] + data
+import subprocess                 
+import socket                     
+                                  
+                                  
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:     
+    s.connect(("localhost",1360)) 
+    data = s.recv(2048).decode('utf-8')
+                                  
+    while len(data)>0:            
+                                   
+         lines = data.split('\n')  
+                                   
+         count = 0                 
+         for line in lines:        
+             count += 1            
+             if "CHALLENGE" in line:
+                 cmd = line.split(':')[1].strip()
+                 print("Command:",cmd) 
+                 cal = subprocess.Popen(["python","-c","print("+cmd+")"],stdout=subprocess.PIPE) 
+                 cal.wait()        
+                 result = cal.stdout.read().decode('utf-8')
+                                   
+                 tosend = f"{str(result)}"
+                 print("Result:",tosend)
+                 s.sendall(tosend.encode())
+             if "pwn.college" in line:
+                 print("FLAG:",line)                              
+                                   
+                                   
+         data = s.recv(2048).decode('utf-8')
+         if count < len(lines)-1:  
+             data = lines[-1] + data
 ```
 Task:
 - the challenge checks for a specific (network) client process : python
@@ -1287,3 +1287,54 @@ Task:
 - the challenge will use the following arithmetic operations in its arithmetic problems : +*%
 - the complexity (in terms of nested expressions) of the arithmetic problems : 3
 
+## 142
+```c
+#include <unistd.h>
+#include <string.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <sys/wait.h>
+
+
+#define PORT 1866
+
+int pwncollege(){
+    int sfd = socket(AF_INET, SOCK_STREAM, 0);
+    struct sockaddr_in srvaddr;
+    srvaddr.sin_family = AF_INET;
+    srvaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    srvaddr.sin_port = htons(PORT);
+
+    connect(sfd, (const struct sockaddr *)&srvaddr, sizeof(srvaddr));
+    char buffer[1024];
+    char* str = "[TEST] CHALLENGE";
+    int num = 1;
+    while(num > 0){
+        num = read(sfd, buffer, sizeof(buffer));
+        write(1, buffer, num);
+        if(strncmp(buffer, str, 15) == 0){
+            pid_t pid = fork();
+            if(pid == 0){
+                char problem[200] = "print(";
+                strcpy(&problem[6], &buffer[48]);
+                char end[3] = ")\0";
+                strcpy(&problem[num - 42], &end[0]);
+                dup2(sfd, STDOUT_FILENO);
+                execl("/usr/bin/python", "/usr/bin/python", "-c", &problem, NULL);
+            }
+            else wait(NULL);
+        }
+    }
+    close(sfd);
+}
+
+int main(){
+        pwncollege();
+}
+```
+Task:
+- the challenge checks for a specific (network) client process : binary
+- the challenge will listen for input on a TCP port : 1866
+- the challenge will force the parent process to solve a number of arithmetic problems : 5
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*%
+- the complexity (in terms of nested expressions) of the arithmetic problems : 3

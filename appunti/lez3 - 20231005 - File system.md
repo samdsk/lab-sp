@@ -3,7 +3,7 @@ id: '3'
 lezione: "20231005"
 title: "File system"
 author: "Sam. K."
-keywords: 
+keywords: ["File system","Compiti del file system"]
 ---
 <style>
     strong{
@@ -21,7 +21,7 @@ keywords:
 # File system
 Il file system è un struttura dati che ci permette di gestire dei file, trovare, condividere.
 
-## il file sistem è composto da tre componenti principali:
+## Il file system è composto da tre componenti principali:
 -   **drive** luogo fisico dove archiviamo i dati es. hard disk, 
 -   **directories** dei file particolari che permette di raggruppare diversi file ed altri cartelle, inoltre, indicano il percorso dove vengono salvati i dati. 
 -   **file** è una sequenza di bit che rappresenta i dati vogliamo salvare.

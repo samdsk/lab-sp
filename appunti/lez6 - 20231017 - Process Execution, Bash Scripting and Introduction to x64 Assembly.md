@@ -3,7 +3,7 @@ id: '6'
 lezione: "20231017"
 title: "Process Execution, Bash Scripting and Introduction to x64 Assembly"
 author: "Sam. K."
-keywords: 
+keywords: ["Process Execution", "Signals", "Wait", "Privilege Escalation", "Complete Mediation", "SETUID", "Bash Scripting", "ENV variables"]
 ---
 <style>
     strong{
@@ -36,7 +36,7 @@ int main (int argc, char * argv[], char * envp[]){
     }
 }
 ~~~
-## Sytem call
+## System call
 Quando un processo ha bisogno di accedere a zone riservate all'OS, deve usare system call. Attraverso la system call avviene un meccanismo di "mezzo" content switch con cui il sistema entra in modalità kernel e manda in esecuzione la system call.
 
 Il commando `strace <processo>` permette di vedere syscalls che vengono effettuate durante l'esecuzione di un processo. 
@@ -165,10 +165,9 @@ $# # è un variabile di sys che contiene il numero di argomenti di *
 
 ```
 
-## ENV variables - Variabili d'ambiente sono memorizzati in
+## ENV variables - Variabili d'ambiente
 
-Alcuni variabili importanti
-
+Alcuni variabili importanti:
 ~~~sh
 PS1 # è la riga del prompt
 PATH # contiene la lista delle directory dove andare a cercare i file binari dei programmi
@@ -203,7 +202,7 @@ Note: `$@` and `$*` must be quoted in order to perform as described. Otherwise, 
 Per eseguire un file script `chmod +x <filename>` oppure `bash <filename>`.
 
 ### System wide
-* /etc/enviroment : specifically meant for env vars
+* /etc/environment : specifically meant for env vars
 * /etc/env.d/* : env vars, split in multiple files 
 * /etc/profile : all type of initialization scripts
 * /etc/profile.d/* : initialization scripts

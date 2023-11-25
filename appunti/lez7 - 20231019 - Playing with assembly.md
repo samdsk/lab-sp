@@ -3,7 +3,7 @@ id: '7'
 lezione: "20231019"
 title: "Playing with assembly"
 author: "Sam. K."
-keywords: 
+keywords: ["Assembly","Assembly Registri", "Assembly Subregisters", "Assembly Data", "indirizzamento", "Register addressing", "Indirizzamento immediato", "Indirizzamento indiretto", "Base Pointer Addressing", "Differenza tra indirizzamento diretto ed indiretto", "Little Endian", "RIP", "Jumps", "System call"]
 ---
 <style>
     strong{
@@ -214,7 +214,7 @@ il dividendo bisogna caricarlo in `rax`, il quoziente viene caricato in `rax` e 
     shl reg,number # to shift left
     shr reg,number # to shift right 
 
-## Stack ops
+## Stack Ops
 
     pop reg # reg to load
     push reg # reg to store

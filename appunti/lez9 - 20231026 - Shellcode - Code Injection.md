@@ -3,7 +3,7 @@ id: '9'
 lezione: "20231026"
 title: "Shellcode"
 author: "Sam. K."
-keywords: 
+keywords: ["Shellcode", "Code Injection", "Codice Vulnerabile", "Codice Vulnerabile", "Memory layout 64bit", "Shellcode Carrier", "Shellcode Attacco"]
 ---
 <style>
     strong{
@@ -69,11 +69,11 @@ Eseguiamo il programma in gdb finché non crasha con signal Segmentation Fault `
 
 ![GDB seg fault](assets/images/gdb_seg.png)
 ~~~sh
-    # trovre regione di memoria dove il programma ha fallito
-    x/s $rip # register instruction pointer / program counter
-    print $rip # address: 0x7fffffffda80
+# trovre regione di memoria dove il programma ha fallito
+x/s $rip # register instruction pointer / program counter
+print $rip # address: 0x7fffffffda80
 
-    info proc map # mostra la memoria attuale
+info proc map # mostra la memoria attuale
 ~~~
 In questo momento il `program counter $rip` contiene l'indirizzo (di stack) dell'istruzione che sta provando ad eseguire (`0x7fffffffda80`). 
 
@@ -134,7 +134,7 @@ jae 4
 
 Si estrae la sezione .text dal file ELF con il comando `objcopy --dump-section .text=RawFile executable`.
 
-### Carrier
+### Shell Carrier
 
 prima di testarlo bisogna iniettarlo per questo si usa un programma che si chiama `Carrier` perché non può essere eseguito da solo.
 

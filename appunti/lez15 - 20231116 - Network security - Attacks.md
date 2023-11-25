@@ -3,7 +3,7 @@ id: '15'
 lezione: "20231116"
 title: "Network Security"
 author: "Sam. K."
-keywords: 
+keywords: ["ARP Poisoning","ARP spoofing","MITM Effects","Denial of Service","DoS","DDoS","Smurf Attack","SYN Flood", "TCP Session Hijacking", "Mitnick Attack", "Remote shell", "rsh"]
 ---
 
 <style>

@@ -3,7 +3,7 @@ id: '4'
 lezione: "20231010"
 title: "Controllo degli accessi"
 author: "Sam. K."
-keywords: 
+keywords: ["Controllo degli accessi", "Security policy", "Access control", "ACL", "ITU-T X.800", "Capability List", "i-node", "Reference Monitor", "UID","GID","EUID","EGID","RUID","RGID", "ACL+" ]
 ---
 <style>
     strong{
@@ -30,7 +30,7 @@ chi sei -> cosa fare -> registrare
 
 - **Subject** soggetto: _componenti attivi del sistema_ umano/processo che esegue per conto di un utente.
 - **Object** oggetto: _parte passiva_ sono le risorse.
-- **Operazoni di accesso**: _diritti di accesso_ cosa puo fare l'utente.
+- **Operazioni di accesso**: _diritti di accesso_ cosa puo fare l'utente.
   
 ## Security policy
 Alla base di tutto ci sono le regole:
@@ -107,7 +107,7 @@ utente -> entra -> diventa un soggetto -> ogni volte che deve accedere ad un ogg
 
 ## Come viene utilizzato questi sistemi in UNIX
 
-UNIX ha dottato una politica di accesso discrezionale DAC per quanto riguarda il file system.
+UNIX ha dotato una politica di accesso discrezionale DAC per quanto riguarda il file system.
 
 `users` utenti sono tutti coloro che hanno un account, salvato nel `/etc/passwd`
 passwd contiene elenco degli utenti autorizzati ad accedere a quel sistema.
@@ -188,7 +188,7 @@ d dir
 l link
 ```
 
-Commandi per cambiare ACL:
+Comandi per cambiare ACL:
 
     chmod 0754 filename
     rwxr-xr--
@@ -203,8 +203,6 @@ Commandi per cambiare ACL:
 Cedere ownership: (tipicamente fatto da root)
 
     chown newower:newgroup filename
-
-
 
 `execve` **potrebbe modificare** `EUID` del processo: quando si fa fork si eredita RUID ed EUID del genitore e quando il processo figlio fa execve è possibile che modifichi l'EUID (prende quello del file). Es. utente 1000 manda in esecuzione il commando `ls`, `ls` ha come `uid 0` perché è di `root`, quindi il processo ls che l'utente ha eseguito avrà `RUID 1000` ed `EUID 0`. Questo succede solo ai file `setuid`.
 

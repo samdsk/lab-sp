@@ -3,7 +3,7 @@ id: '2'
 lezione: "20231003"
 title: "Intro Linux"
 author: "Sam. K."
-keywords: 
+keywords: ["Linux","Come viene creato un processo in linux/unix", "Come avviene la trasformazione da un programma ad un processo", "Content switch", "Interrupt", "Linux process commands", "I/O redirection"]
 ---
 <style>
     strong{
@@ -193,7 +193,7 @@ Alla chiusura del processo child PCB del processo resta e sarà rimosso dal geni
 
 In Unix ogni processo ha un parent processo. Al parent processo viene mandato un **segnal alla chiusura** del child tramite il metodo `wait()`.
 
-Cosa sucedde a un processo quando un processo si dimentica di fare la terminazione di child  (senza fare wait)? si creano **processi zombie** (processi fantasma) che sono dei processi che non hanno genitori. questi processi vengono rimossi dall'OS periodicamente.
+Cosa succede a un processo quando un processo si dimentica di fare la terminazione di child  (senza fare wait)? si creano **processi zombie** (processi fantasma) che sono dei processi che non hanno genitori. questi processi vengono rimossi dall'OS periodicamente.
 
 ## Linux process commands
 

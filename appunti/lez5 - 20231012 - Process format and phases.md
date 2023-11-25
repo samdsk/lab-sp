@@ -3,7 +3,7 @@ id: '5'
 lezione: "20231012"
 title: "Process format and phases"
 author: "Sam. K."
-keywords: 
+keywords: ["Process Format", "Process Phases", "VIM", "Executable and Linkable Format", "ELF", "Section Header Table", "Segment Header", "Come nasce un processo dal shell", "Loading a Process", "dinamicamente linkato", "staticamente linkato", "Linux Process"]
 ---
 <style>
     strong{
@@ -136,7 +136,6 @@ I componenti di un file ELF sono tre: Header, Section, Segments.
     Section header table
 
 `readelf -h filename` # legge un file ELF
-
 
     // ELF Header
     magic_number: un numero che rappresenta il tipo di file

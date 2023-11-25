@@ -69,11 +69,11 @@ Eseguiamo il programma in gdb finché non crasha con signal Segmentation Fault `
 
 ![GDB seg fault](assets/images/gdb_seg.png)
 ~~~sh
-    # trovre regione di memoria dove il programma ha fallito
-    x/s $rip # register instruction pointer / program counter
-    print $rip # address: 0x7fffffffda80
+# trovre regione di memoria dove il programma ha fallito
+x/s $rip # register instruction pointer / program counter
+print $rip # address: 0x7fffffffda80
 
-    info proc map # mostra la memoria attuale
+info proc map # mostra la memoria attuale
 ~~~
 In questo momento il `program counter $rip` contiene l'indirizzo (di stack) dell'istruzione che sta provando ad eseguire (`0x7fffffffda80`). 
 

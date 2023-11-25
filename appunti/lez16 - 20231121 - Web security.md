@@ -3,7 +3,7 @@ id: '16'
 lezione: "20231121"
 title: "Web security"
 author: "Sam. K."
-keywords: 
+keywords: ["xss","xss reflective","xss stored","xss-game.appspot.com", "xss payloads"]
 ---
 
 <style>
@@ -14,7 +14,8 @@ keywords:
         border-radius:5px;
     }
 </style>
-# Web security - attacchi web
+
+# Web Security - Attacchi Web
 
 Web browser è un applicazione che permette di renderizzare una pagina web.
 
@@ -40,8 +41,8 @@ In cui la vittima è convinto a cliccare un link (come un search query) che cont
 ### Stored XSS
 In cui il codice maligno è memorizzato permanentemente sul database e verrà eseguito a in saputa della vittima ogni volta che visita la pagina.
 
-    strstr(string_to_control,string_to_find);
-    str_replace(str_to_be_replaced,str_to_replace_with,str)
+    strstr(string_to_control, string_to_find);
+    str_replace(str_to_be_replaced, str_to_replace_with, str)
 
 `xss payload` per trovare vari payload di attacco
 
@@ -51,8 +52,9 @@ xss stored (lez16_2)
 
     htmlspecialchars(str_to_parse);
 
-se ce un errore viene eseguito la funzione f()
-<img src="x" onerror="f()"><script>function f(){alert(1)}</script>
+se ce un errore del caricamento dell'immagine viene eseguito la funzione `f()`
+
+    <img src="x" onerror="f()"><script>function f(){alert(1)}</script>
 
 
 

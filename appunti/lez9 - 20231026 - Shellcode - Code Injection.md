@@ -3,7 +3,7 @@ id: '9'
 lezione: "20231026"
 title: "Shellcode"
 author: "Sam. K."
-keywords: 
+keywords: ["Shellcode", "Code Injection", "Codice Vulnerabile", "Codice Vulnerabile", "Memory layout 64bit", "Shellcode Carrier", "Shellcode Attacco"]
 ---
 <style>
     strong{
@@ -134,7 +134,7 @@ jae 4
 
 Si estrae la sezione .text dal file ELF con il comando `objcopy --dump-section .text=RawFile executable`.
 
-### Carrier
+### Shell Carrier
 
 prima di testarlo bisogna iniettarlo per questo si usa un programma che si chiama `Carrier` perché non può essere eseguito da solo.
 

@@ -3,7 +3,7 @@ id: '8'
 lezione: "20231024"
 title: "Playing with assembly - parte 2"
 author: "Sam. K."
-keywords: 
+keywords: ["Assembly", "Base Pointer", "RBP", "GDB"]
 ---
 <style>
     strong{

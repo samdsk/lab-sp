@@ -3,7 +3,7 @@ id: '1'
 lezione: "20230928"
 title: "History of attacks and Terminology"
 author: "Sam. K."
-keywords: 
+keywords: ["Storia degli attacchi hacker principali","Mitnick", "Stuxnet", "Wannacry", "Solarwinds","Citibank", "Human hacking", "Terminologia", "Le sfide di computer security", "Definizioni in sicurezza informatica", "RFC 2828", "Vulnerabilità", "Minacce", "Threats", "Attacchi", "Conseguenze degli attacchi", "Principali tipi di attacchi", "Contromisure", "Fundamental Security Design Principles", "La superficie di attacco", "Computer security strategy"]
 ---
 <style>
     strong{
@@ -54,7 +54,7 @@ Capitolo 1 del libro di testo
     dovevano essere distribuite ai clienti che utilizzavano il sistema
     "Orion". Non è stato rilevato per 6 mesi.
 
-## Human hacking
+## Human Hacking
 
 Consiste nel modificare/deviare il pensiero umano attraverso pubblicità,
 notizie mirate. Si procede **analizzando i profili psicologici**
@@ -69,7 +69,7 @@ sviluppato da università di Cambridge) per ottenere i dati (in modo
 ricorsivo amici di amici di amici) di persone senza consenso. Sono
 partiti da 270K utenti fino a raggiungere 87M di utenti.
 
-# Terminologie
+# Terminologia
 
 ## Hacker
 
@@ -189,7 +189,7 @@ adattate in base al livello di rischio.
     periodicamente), quindi, la sicurezza deve essere anche user
     friendly.
 
-# Definizioni in sicurezza informatica -- RFC 2828
+# Definizioni in sicurezza informatica - RFC 2828
 
 ![A diagram of a risk management Description automatically
 generated](/assets/images/cia.png)
@@ -259,7 +259,7 @@ perdita di integrità, **Leaky**: perdita di confidenzialità,
 
 -   **outsider**: inizializzato dall'esterno.
 
-### Conseguenze degli attacchi -- cosa può fare un attaccante
+### Conseguenze degli attacchi - cosa può fare un attaccante
 
 -   **Divulgazione** non autorizzata *Unauthorized* *Disclosure*:
 

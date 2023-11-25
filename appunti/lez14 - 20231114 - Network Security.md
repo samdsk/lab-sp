@@ -3,7 +3,7 @@ id: '14'
 lezione: "20231114"
 title: "Network Security"
 author: "Sam. K."
-keywords: 
+keywords: ["Network Security","rete", "LAN", "WAN", "Network interface card","NIC", "MAC Address", "Protocolli", "Encapsulation", "spoofing", "Sniffing", "Wiretap", "Eavesdropping","Tecniche di intercettazione","Tool per intercettazione", "Reconnaissance","fingerprinting","Port scanning", "Nmap", "Common Vulnerability Enumeration"]
 ---
 
 <style>

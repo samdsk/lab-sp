@@ -3,7 +3,7 @@ id: '19'
 lezione: "20231212"
 title: "Access Control - Parte 2"
 author: "Sam. K."
-keywords: [""]
+keywords: ["Access Control", "Mandatory Access Control", "MAC", "80386", "80X86 MAC Policy", "Descriptor Privilege Level", "DPL", "Current Privilege Level", "CPL", "DPL per dati", "Requested Privilege Level", "RPL", "DPL per istruzioni", "Control Transfer", "Controlled Invocation", "Call Gate", "GATE", "Interrupt descriptor table", "Privileged Instructions", "Log Files", "Log management systems", "SIEM", "Crittografia", "Data Encryption Standard", "DES", "Advanced Encryption Standard", "AES", "Block ciphers", "Electronic Code Book", "ECB", "Cipher Block Chaining", "CBC", "Crittografia a chiave pubblica", "Firma Digitale", "Digital Signature", "MITM"]
 ---
 
 <style>
@@ -240,36 +240,103 @@ SIEM Security information event manager sono log analyzer che usano ML e AI, che
 
 # Crittografia
 
-sp_3
+Crittografia usato in una maniera appropriata consente di risolvere il problema di confidenzialità e integrità dell'informazione. 
 
-in modo **reversibile**
+La crittografia è la scienza di cui lo scopo / l'obbiettivo è quello di individuare dei metodi per la trasformazione di documenti di varia natura in modo **REVERSIBILE**, cioè il loro contenuto originale possa essere accessibile da particolari destinatari.
 
-crittoanalisi: la scienza che si occupa 
+La teoria complementare è quello di crittoanalisi, è la scienza che si occupa dati dei testi trasformati in maniera reversibile dalla crittografia di risalire al contenuto originale.
 
-confidenzialita
-integrita
-autenticazione
-non ripudiabilita
+Nell'ambito della cybersecurity la crittografia viene impiegato per:
+* confidenzialita,
+* integrita,
+* autenticazione,
+* non ripudiabilità
 
-cerchiamo una funzione biettiva 
+Modello a cui si riferisce (tipicamente nell'ambito network security) è un modello dove abbiamo un mittente, un destinatario e un intruso il cui scopo è quello di capire che stanno comunicando.
 
-se usiamo una funzione suriettiva, 
+![diagramma](assets/images/cryptosystem.jpg)
 
-crittografia  puo assere simmetrica (unica chiave per encryption che per decryption) che assimetrica (abbiamo due chiavi una chiave privata e una chiave pubblica)
+La crittografia può essere a chiave privata oppure simmetrica (unica chiave per encryption che per decryption) ed a chiave pubblica oppure asimmetrica (abbiamo due chiavi una chiave privata e una chiave pubblica). (Quello più vecchio è quello dove la chiave è privata).
 
-quello piu vecchio è quello dove la chiave è privata 
+Come funzione di encryption quello che cerchiamo è una funzione biettiva, (ogni elemento dell'insieme dominio ha un solo elemento del codominio).
 
-stream cypher cifra una carattere alla volta
+Se usiamo una funzione suriettiva avremmo che non sapremmo qual'è il messaggio di partenza.
 
-block cypher cifrano a blocchi
+$$ Encryption = E : M \times K \rightarrow C $$
+$$ Decryption = D : C \times K \rightarrow M $$
 
-1977 primo tentativo per attaccare des diffie e hellman
+* La funzione di _encryption_ prende una chiave, un messaggio e restituisce un cipher-text.
+* La funzione inversa che è _decryption_ prende la chiave, il cipher-text e restituisce il messaggio originale.
 
-block cyphers
-
-problema di chiave simmetrica è quello di comunicarla ad un altra persona.
-
-si usa diffie hellman 1976
+Per cifrare un testo si possono usare due _strategie_:
+* **stream cipher** : cifra una carattere alla volta, es. XOR,
+* **block cipher** : cifrano a blocchi, es. EBC, CBC, CFB, ecc.
 
 
+||Stream|Block|
+|-|-|-|
+|Vantaggi|La velocità di trasformazione <br> propagazione degli errori bassa| Maggiormente diffuso <br> Immune all'inserimento dei simboli| 
+|Svantaggi| Non molto diffuso <br> Può essere facilmente compromesso o modificato| Lento <br> necessità di un padding <br> propagazione degli errori alta|
+
+## Data Encryption Standard - DES
+DES è un sistema nato intorno negli anni 70, è stato progettato da IBM. è un block cipher a 64 bits con una chiave effettivo da 56 bits + 8 bit di controllo = 64 bits. Inoltre, esistono diversi tipi di DES come Double DES, Triple DES.
+
+Nel 1977 DES _Whitfield Diffie_ e _Martin Hellman_, dichiarano che una chiave da 56 bits è vulnerabile ad attacchi brute force, perché 56 bits sono troppo pochi.
+
+Nel 1997, con circa 3500 macchine riuscirono a fare un brute force attack in 4 mesi. Attualmente DES può essere decifrato in poche ore. Invece, Triple DES richiede circa 2000 anni.
+
+## Advanced Encryption Standard - AES
+Rijndael oppure AES è il sostituto di DES, sviluppato da due Belgi Joan Daemene e Vincent Rijmen, è un cifrario simmetrico a blocchi di 128 bits con una chiave che può essere 128, 192 oppure 256 bits. (16 caratteri)
+
+## Block ciphers
+
+### Electronic Code Book - ECB
+È una modalità di utilizzo dei cifrari a blocchi. Prendo un plain text lo divido a blocchi e li cifro a blocchi. In questo caso usiamo DES, quindi, blocchi da 64 bits.
+
+![EBC](assets/images/ECB.png)
+
+La problematica di ECB: se prendo due blocchi di plain text uguali cipher text saranno uguali. è stato risolto con CBC.
+
+
+### Cipher Block Chaining - CBC
+Questa tecnica risolve il problema di ECB utilizzando la concatenazione. (DES blocchi da 64 bits)
+Il primo blocco viene inizializzato con un vettore di inizializzazione (un dato casuale) e nei blocchi seguenti viene utilizzato il cipher text del blocco precedente come I.V.
+
+![CBC](assets/images/cbc.png)
+
+Problematica di CBC: è l’applicazione, se non ricevo tutti dati del blocco precedente correttamente non posso decriptare blocco successivo. Inoltre, non posso parallelizzare le fasi di encryption e decryption.
+
+La differenza tra i due è:
+
+![ECB problem](assets/images/ECB_problem.png)
+
+## Crittografia a chiave pubblica
+
+Il problema di fondo è lo scambio di chiave, bisogna comunicare la chiave ad un'altra persona, quindi, richiede un canale al di fuori dei meccanismi di comunicazione standard sicuro attraverso il quale comunicare la chiave (canale _"out of band"_). Come si fa farlo sulla rete?
+
+Nel 1976, Diffie ed Hellman hanno pubblicato uno studio in cui hanno introdotto un nuovo modo fare crittografia "New Directions in Cryptography", che gli è valso il Turing Award.
+
+L'idea si basa su un modo che prevedere che ogni persona che deve comunicare in modo segreto invece di avere una chiave ne usa due, una chiave pubblica e una chiave segreta.
+
+Le chiavi vengono generate a coppie, tutto quello che viene cifrato con la chiave privata può essere decifrato con la chiave pubblica e viceversa.
+
+![Asymmetri Encryption](assets/images/asymmetric%20encryption.png)
+
+Proprietà fondamentale: solo la chiave pubblica corrispondente può essere usato per decifrare quello che stato cifrato con la chiave privata e viceversa. Quindi, sono una coppia di chiavi uniche.
+
+Requisito fondamentale, la chiave privata deve essere segreta.
+
+Questo è l'uso della crittografia a chiave pubblica per garantire la confidenzialità dell'informazione.
+
+## Firma Digitale - Digital Signature
+Io che ho la mia chiave privata, con la chiave privata posso cifrare il messaggio e tutti quelli che hanno la mia pubblica possono decifrarlo, quindi dal punto di vista della confidenzialità la proprietà non vale più. Dato che il messaggio cifrato con quella chiave privata posso generarlo solo io è come se firmasse, quindi, quest'operazione è in qualche modo equiparata all'operazione di firma. 
+
+**Firma digitale** è un operazione di cifratura di un testo con la propria chiave privata. In questo modo afferma la paternità di qualcosa. Secondo la legge, si garantisce la l'autenticità e in fase giudiziaria non si può negare di averlo generato, "**non ripudiabilità**".
+
+## Man in the Middle - MITM
+Alice chiede a Bob la sua chiave pubblica, Eve intercetta la richiesta di Alice e Eva manda una sua richiesta a Bob chiedendo la sua chiave pubblica. Quindi, Eva manda ad Alice la sua chiave pubblica invece di Bob dicendo che di Bob. A questo punto abbiamo un attacco Man in the Middle.
+
+![MITM asymmetric](assets/images/mitm_asymmetric.png)
+
+Problema, come si fa Alice sapere che la chiave pubblica che ha ricevuto è davvero di Bob e non di qualcuno altro?
 

@@ -1,7 +1,7 @@
 ---
-id: '19'
+id: '20'
 lezione: "20231212"
-title: "Access Control - Parte 2"
+title: "Access Control - Parte 2 - Crittografia Intro"
 author: "Sam. K."
 keywords: ["Access Control", "Mandatory Access Control", "MAC", "80386", "80X86 MAC Policy", "Descriptor Privilege Level", "DPL", "Current Privilege Level", "CPL", "DPL per dati", "Requested Privilege Level", "RPL", "DPL per istruzioni", "Control Transfer", "Controlled Invocation", "Call Gate", "GATE", "Interrupt descriptor table", "Privileged Instructions", "Log Files", "Log management systems", "SIEM", "Crittografia", "Data Encryption Standard", "DES", "Advanced Encryption Standard", "AES", "Block ciphers", "Electronic Code Book", "ECB", "Cipher Block Chaining", "CBC", "Crittografia a chiave pubblica", "Firma Digitale", "Digital Signature", "MITM"]
 ---
@@ -15,7 +15,7 @@ keywords: ["Access Control", "Mandatory Access Control", "MAC", "80386", "80X86 
     }
 </style>
 
-# Access Control - Parte 2
+# Access Control - Parte 2 - Crittografia Intro
 
 Quali sono i meccanismi di protezione che un calcolatore adotta per evitare diverse forme di abuso e di attacchi informatici? 
 

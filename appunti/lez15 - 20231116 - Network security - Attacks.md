@@ -15,6 +15,12 @@ keywords: ["ARP Poisoning","ARP spoofing","MITM Effects","Denial of Service","Do
     }
 </style>
 
+## Materiale
+* [NMAP cap cap 5. Port Scanning Techniques and Algorithms](https://nmap.org/book/scan-methods.html)
+* [NMAP cap 8. Remote OS Detection](https://nmap.org/book/osdetect.html)
+* [Mitnick Attack](/appunti/assets/docs/Mitnick_Attack.pdf)
+* [slides](/appunti/assets/docs/Schema%20rete,%20nmap,%20mitm.pdf)
+
 # Network security - Attacks
 Attacchi di rete sfruttano le vulnerabilità dei meccanismi di comunicazione all'interno dei protocolli, che sono stati pensati per un contesto di collaborazione (non antagonista).
 

@@ -15,6 +15,9 @@ keywords: ["Network Security","rete", "LAN", "WAN", "Network interface card","NI
     }
 </style>
 
+## Materiale
+* [Articolo storico](/appunti/assets/docs/acsac-ipext.pdf)
+
 # Network Security
 ![Alice](assets/images/alice_attacker.webp)
 

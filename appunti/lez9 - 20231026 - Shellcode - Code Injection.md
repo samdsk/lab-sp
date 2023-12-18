@@ -14,6 +14,9 @@ keywords: ["Shellcode", "Code Injection", "Codice Vulnerabile", "Codice Vulnerab
     }
 </style>
 
+## Materiale
+* [Writing 64-Bit Shellcode](https://null-byte.wonderhowto.com/how-to/writing-64-bit-shellcode-part-1-beginner-assembly-0161593/)
+
 # Shellcode
 Shellcode è un pezzo di codice che ha caratteristiche particolari, tra cui il dover essere scritto in linguaggio macchina che viene usato per sfruttare le vulnerabilità all'interno di un codice attraverso attacco di tipo **injection**. Lo shell code, tipicamente viene iniettato all'interno di un processo in esecuzione e magicamente questo lo esegue.
 

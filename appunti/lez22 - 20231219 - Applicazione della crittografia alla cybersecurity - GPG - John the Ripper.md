@@ -1,7 +1,7 @@
 ---
 id: '22'
 lezione: "20231219"
-title: ""
+title: "Applicazione della crittografia alla cybersecurity - GPG - John the Ripper"
 author: "Sam. K."
 keywords: ["IPSEC","Servizi offerti da IPSEC", "IPSEC Protocols", "Tunnel Mode", "Transport Mode", "Authentication Header", "AH", "Come funziona l'integrity check", "Encapsulated Security Payload", "ESP", "Security policy database", "Security Association database", "Internet Key Exchange Protocol", "IKE", "IKE Outbound", "IKE Inbound", "Benefici di IPsec", "Svantaggi IPsec", "Transport Level Security", "Servizi del protocollo TLS", "Handshake protocol", "Record protocol", "Cipher Suite", "Come si calcola il master secret", "Record protocol", "Vulnerabilità di TLS", "End-to-End Encryption", "EE2E", "Protocollo MTProto", "Cloud chats", "Secret chats", "Signal protocol", "Registration Fase", "Session set-up Fase", "Key Ratchet", "openPGP", "GPG", "Web of trust", "Marginal Trust", "John the ripper", "ID degli algoritmi"]
 ---
@@ -445,6 +445,3 @@ Il campo `gecos` contiene delle informazioni personali sull'utente.
 * `$2y$` = Eksblowfish,
 * `$5$` = SHA256,
 * `$6$` = SHA512.
-
-
-

@@ -73,9 +73,7 @@ partiti da 270K utenti fino a raggiungere 87M di utenti.
 
 ## Hacker
 
-![A hexagon with text in it Description automatically
-generated](./images/media/image2.png){width="2.4375in"
-height="2.5520833333333335in"}Inizialmente, Hacker è una persona che
+Inizialmente, Hacker è una persona che
 voleva capire le cose fino in fondo come funzionavano (un termine
 positivo). Ma adesso gli hacker in realtà sono Cracker: una persona che
 cerca recuperare informazioni sensibili col fine di usarli per il
@@ -88,6 +86,8 @@ significato: **Misure** e **controlli** che **garantiscono** la
 **confidenzialità**, **integrità** e **disponibilità** dei sistemi
 informatici che comprende *hardware, software, firmware e informazione
 che viene processata, memorizzata e comunicata*.
+
+![A hexagon with text in it Description automatically generated](assets/images/cia.png)
 
 ## Un sistema sicuro
 
@@ -190,9 +190,6 @@ adattate in base al livello di rischio.
     friendly.
 
 # Definizioni in sicurezza informatica - RFC 2828
-
-![A diagram of a risk management Description automatically
-generated](/assets/images/cia.png)
 
 -   **Adversary** (threat agent) *avversario*: Individui che hanno
     intento di fare attività di attacco.

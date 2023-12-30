@@ -3,7 +3,7 @@ id: '23'
 lezione: "20231221"
 title: "Defensive Cybersecurity"
 author: "Sam. K."
-keywords: [""]
+keywords: ["Defensive Cybersecurity", "Cyber Security Framework", "NIST", "Firewall", "Packet filter", "Stateful inspection", "Firewall rules", "Demilitarized Zone","DMZ", "Proxy Firewall", "Circuit Level Proxy", "Application Level Gateway", "Air Gap", "Trasparenza rispetto le applicazioni", "Next generation Firewall", "NGFW", "Intrusion Detection Systems", "IDS", "Host Based Intrusion detection systems", "HIDS", "Network Based IDS", "NIPS", "IDS errors", "Intrusion Prevention Systems", "IPS", "Security Operation Center", "SOC", "Computer Security Incident Response Team", "CSIRT", "Wazuh"]
 ---
 
 <style>
@@ -15,7 +15,7 @@ keywords: [""]
     }
 </style>
 
-# Introduzione a "Defensive Cybersecurity"
+# Introduzione a Defensive Cybersecurity
 Per rilevare prima possibile un attacco informatico sono state introdotte varie tecnologie, alcune sono di tipo preventivo ma maggior parte sono detection response, quindi, rilevano un attacco in corso e quindi provano a rispondere.
 
 Il lavoro di chi fa sicurezza è quello di definire una strategia di difesa, che è fatto di tanti momenti e device diversi. Ogni scelta ha una sua finalità. 
@@ -192,7 +192,7 @@ Ci sono due modi con cui questi rilevano attacchi:
 
     Es. la frequenza e il luogo da uno si logga, quante volte viene cambiato la password, il carico di lavoro medio sul cpu, quali sono programmi eseguiti, quali sono i file che vengono usati, ecc. Quindi si fa una **profilazione degli utenti e poi si analizza i comportamenti**.
 
-#### Host Intrusion detection systems - HIDS
+#### Host Based Intrusion detection systems - HIDS
 Usano per fare detection:
 * tutti file di log
 * tutte le system calls
@@ -206,7 +206,7 @@ Usano per fare detection:
 * access to email contact list
 * directory traversal
 
-#### Network based IDS - NIPS 
+#### Network Based IDS - NIPS 
 Analizano:
 * network pattern matching
 * stateful matching
@@ -237,20 +237,19 @@ network based, host based, individua eventuali vulnerabilità e cerca di evitare
 
 Nel SOC lavorano SOC analysts, sono quelli che ricevono gli alert dalla SIEM, quindi, SIEM riceve alert dalla IDS, gli analizza e decide quali tenere e quali scartare, quelli che tiene buoni li invia agli analisti. Gli analisti di primo livello se non riescono risolvere l'alert lo invia al livello successivo di SOC analysts senior e decidono se l'incidente è buono o meno. Se al secondo livello individua che alert è vero (quindi un attacco in corso) a questo punto per gestire l'incidente viene passato al livello 3.
 
-#### Computer Security Incident Response Team CSIRT
+#### Computer Security Incident Response Team - CSIRT
 La gestione dell'incidente viene passato ad un team specializzato nella gestione degli incidenti informatici Computer Security Incident Response Team CSIRT. Prima chiamati Computer Emergency Response Team CERT.
 
 ![SOC Tiers](assets/images/soc%20tiers.jpg)
 
 Primo CERT italiano 1994 creato all'Unimi, terzo CERT europeo, sono stati introdotti dopo l'attacco di Morris.
 
-# Lab 
+# Wazuh - SIEM 
 
-wazuh xdr e siem
+Wazuh è un SIEM e Extended Detection and Response XDR, incorpora un insieme di tecnologie che sono ossec, planc z, elastic. Praticamente logga tutti gli eventi del sistema.
 
-xdr = contra attacca response
+XDR = rileva e contrattacca.
 
-i dati prende dai log
+![Wazuh](assets/images/wazuh_security-platform-2740.webp)
 
-tecnologie dietro wazuh sono ossec planc z, elastic 
 

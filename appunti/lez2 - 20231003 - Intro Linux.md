@@ -114,13 +114,6 @@ Si **porta in memoria centrale** il programma (la sequenza di istruzioni) tipica
 **PCB** è una struttura dati che viene usata dall'OS per tenere traccia delle attività che viene svolto dal processo:
 - l'indirizzo dello stack di quel processo,
 - l'indirizzo dove ha caricato le istruzioni del processo.
-  
-|Address space|
-|----|
-|program code|
-|static data|
-|heap (dynamically allocated)|
-|stack (dynamically allocated)|
 
 ![Address Space](assets/images/address_space.png)
 

@@ -67,7 +67,7 @@ Nel 78 UNIX si divide, At&T compra kernel di UNIX e diventa un sistema proprieta
 
 Nel 1991 tutto converge in Linux sviluppato da Linus Travolds.
 
-[web-vm Linux](jsLinux.com)
+[web-vm Linux](https://bellard.org/jslinux/)
 
 shell = interprete del comandi
 read cmd -> interpreta -> execute -> display -> read
@@ -95,7 +95,6 @@ un commando è formato
 
 Quando eseguo un cmd l'OS crea un processo.
 
-
 ## Come viene creato un processo in Linux/UNIX
 Quando un utente esegue un programma (sequenza di istruzioni) l'OS genera un processo.
 
@@ -105,7 +104,7 @@ Per mandare in esecuzione un programma l'OS utilizza la nozione di processo e pr
 
 Ad ogni cmd di shell corrisponde un programma che stanno nella directory `user/bin`. Un processo può essere generato anche dal programmatore.
 
-`syscall` che si utilizza per generare un processo è **`fork()`**.
+`syscall` che si utilizza per generare un processo è `fork()`.
 
 ## Come avviene la trasformazione da un programma ad un processo?
 
@@ -131,7 +130,6 @@ Il context switch può essere eseguito, quando scade il quanto di tempo, quando 
 Context switch è un _interrupt driven operation_.
 
 Ogni processo di UNIX ha un genitore/un proprietario.
-
 
 ## Interrupt 
 `clock interrupt`

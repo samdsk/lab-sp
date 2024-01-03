@@ -16,13 +16,13 @@ keywords: ["Process Execution", "Signals", "Wait", "Privilege Escalation", "Comp
 
 # Process Execution
 
-Quando eseguiamo un eseguibile non va immediatamente in esecuzione il programma che abbiamo scritto, **vanno prima in esecuzione una serie di routine di sistema** (funzioni di sistema) che **inizializzano una serie di variabili** dell'OS e dell'ambiente, che vengono agganciate al nostro programma, dopo di che ad un certo punto viene chiamato la funzione `_libc_start_main()` che contiene all'interno la chiamata alla `main()` del nostro programma.
+Quando eseguiamo un eseguibile, non va immediatamente in esecuzione il programma che abbiamo scritto, **vanno prima in esecuzione una serie di routine di sistema** (funzioni di sistema) che **inizializzano una serie di variabili** dell'OS e dell'ambiente che vengono agganciate al nostro programma, dopo di che ad un certo punto viene chiamato la funzione `_libc_start_main()` che contiene all'interno la chiamata alla `main()` del nostro programma.
 
 Questo può essere visto analizzando EFL file del programma (ce una serie di funzioni prima del `main()`).
 
 Un processo va in esecuzione con una serie di argomenti. Un **main di C ha 3 argomenti**:
 * `argc` il numero di argomenti, 
-* `char * argv[]` puntatore a una sequenza di caratteri che contiene **argomenti per il programma**, 
+* `char *argv[]` puntatore a una sequenza di caratteri che contiene **argomenti per il programma**, 
 * `char *envp[]` contiene un puntatore alle **variabili d'ambiente**, sono una serie di variabili del sistema a cui il nostro programma può accedere che vengono solitamente inizializzate in fase di definizione della shell.
 
 ~~~c
@@ -37,7 +37,7 @@ int main (int argc, char * argv[], char * envp[]){
 }
 ~~~
 ## System call
-Quando un processo ha bisogno di accedere a zone riservate all'OS, deve usare system call. Attraverso la system call avviene un meccanismo di "mezzo" content switch con cui il sistema entra in modalità kernel e manda in esecuzione la system call.
+Quando un processo ha bisogno di accedere a zone riservate all'OS, deve usare le system call. Attraverso una system call avviene un meccanismo di "mezzo" content switch con cui il quale **il sistema entra in modalità kernel e manda in esecuzione la system call**.
 
 Il commando `strace <processo>` permette di vedere syscalls che vengono effettuate durante l'esecuzione di un processo. 
 
@@ -59,7 +59,7 @@ Sono delle _syscall speciali_ che **mettono in pausa l'esecuzione del processo e
 
 Un processo termina in due modi:
 1. attraverso l'**`EXIT`**,
-2. se non raggiunge l'`exit` allora è successo qualcosa che non va, allora termina con un **SIGNAL** (di solito il signal lo riceve se ce qualcosa che non va). Questo signal può essere gestito dal processo e terminare da solo, oppure interviene l'os e lo blocca.
+2. se non raggiunge l'`exit` allora è successo qualcosa che non va, allora termina con un **SIGNAL** (di solito il signal lo riceve se ce qualcosa che non va). Questo signal **può essere gestito dal processo e terminare da solo oppure interviene l'OS e lo blocca**.
 
 Tutti processi devono essere terminati dal loro genitore, il processo con `exit` dice all'os di aver finito, quindi, OS rimuove tutte le risorse allocate al processo (memoria, file, ecc.).
 
@@ -67,18 +67,18 @@ Resta solo PCB del processo all'interno della READY-QUEUE.
 
 Il PCB viene rimosso dal genitore nel momento in cui fa la `wait()`, è compito del genitore fare `wait()` per il suo processo figlio.
 
-**Durante l'istante che occorre tra l'`exit` del figlio e `wait` del genitore, il processo è uno stato di zombie** (processo figlio in esecuzione fa exit a questo punto il genitore deve andare in esecuzione fare `wait` sul processo figlio, per il genitore di essere mandato in esecuzione potrebbe chiedere un istante di tempo (magari è l'ultimo della ready-queue)).
+**Durante l'istante che occorre tra l'`exit` del figlio e `wait` del genitore, il processo è uno stato di zombie** (processo figlio in esecuzione fa exit, a questo punto, il genitore deve andare in esecuzione e fare `wait` sul processo figlio, per il genitore di essere mandato in esecuzione potrebbe chiedere un istante di tempo (magari è l'ultimo della ready-queue)).
 
-Se il genitore si dimentica di fare `wait` sul processo figlio (magari il programmatore si è dimenticato di farlo), quindi, il figlio rischia di essere zombie per tutta la durata del sistema.
+Se il genitore si dimentica di fare `wait` sul processo figlio (magari il programmatore si è dimenticato di farlo), quindi, il figlio rischia di essere un processo zombie per tutta la durata del sistema.
 
-La soluzione per **terminare processi zombie**: Per evitare che un processo figlio vada in zombie esiste un processo demone del sistema che va in esecuzione periodicamente che va a guardare i processi zombie, gli cambia il pid (ogni figlio ha PID del genitore) e gli **assegna PID 1**, processo 1 è un processo che va in esecuzione periodicamente e **fa `wait` per processi zombie** e li termina.
+La soluzione per **terminare i processi zombie**: Per evitare che un processo figlio vada in zombie esiste un processo demone del sistema che va in esecuzione periodicamente che va a guardare i processi zombie, gli cambia il pid (ogni figlio ha PID del genitore) e gli **assegna PID 1**, processo 1 è un processo che va in esecuzione periodicamente e **fa `wait` per processi zombie** e li termina.
 
 
 ## Privilege Escalation via Complete Mediation
 Il meccanismo **Complete Mediation** si usa tutte le volte che si rende necessario **assegnare ad un oggetto dei diritti di accessi superiori** di quelli che sono stati assegnati inizialmente. 
 
-Viene utilizzato, per assegnare ad **un processo temporaneamente i diritti superiori**.
-e per **garantire che il processo non ne abusi** di diritti superiori, quindi, si usarli in modo corretto.
+Viene utilizzato per assegnare ad **un processo temporaneamente i diritti superiori**
+e per **garantire che il processo non ne abusi** di diritti superiori, quindi, si assicura che vengano usate in modo corretto.
 
 **Privilege escalation** è quando passiamo da uno stato di diritti inferiore ad uno stato di diritti superiore.
 
@@ -89,7 +89,7 @@ Il meccanismo che viene usato per fare **complete mediation nell'ambito del file
 
 `setuid` **permette ad un utente di accedere/usufruire** i diritti di accesso di quel programma nel momento in cui lo manda in esecuzione.
 
-Nel file `etc/shadow` l'utente normale può fare nulla, come fa un utente scrivere la password se non ha permessi? Quindi, bisogna dare permessi quando l'utente desidera di cambiare la password.
+Nel file `etc/shadow` l'utente normale non può fare nulla, come fa un utente scrivere la password se non ha permessi? Quindi, bisogna dare permessi quando l'utente desidera di cambiare la password.
 
 Per risolvere questo problema si prende il programma `/usr/bin/passwd` che permette di cambiare la password e gli assegna `setuid`.
 
@@ -97,13 +97,13 @@ Se osserviamo i permessi di owner (è root) del file `/usr/bin/passwd` notiamo c
 
     -rwsr-xr-x /usr/bin/passwd
 
-Quindi, nella fase in cui utente esegue `passwd` viene eseguito (l'utente diventa root) con permessi dell'owner (root) del file.
+Quindi, nella fase in cui l'utente esegue `passwd` viene eseguito (l'utente diventa root) con permessi dell'owner (root) del file.
 
 #### Come funziona `setuid` internamente?
 
 Ogni processo ha due uid: `RUID`, `EUID` (che stanno nel PCB)
-* `RUID` è userID **UID di chi ha generato il processo** (UID che viene assegnato dal sistema quando creaiamo un utente, si trova in `/etc/passwd`);
-* `EUID` **identifica i privilegi di un processo**, i privilegi di un processo non sono determinato da `RUID`, ma dal `EUID`.
+* `RUID` è userID **UID di chi ha generato il processo** (UID che viene assegnato dal sistema quando creiamo un utente, si trova in `/etc/passwd`);
+* `EUID` **identifica i privilegi di un processo**, i privilegi di un processo non sono determinati da `RUID` ma dal `EUID`.
   
 Normalmente sono uguali `RUID == EUID`. Quando eseguiamo un programma con `setuid` sono diversi, `EUID` lo prende dall'UID dell'orwner che andiamo ad eseguire, se ha `s` al posto di `x`, ogni volta che il processo viene eseguito `EUID` nel processo diventa `0`. quindi ha diritti di root.
 
@@ -220,11 +220,9 @@ Per eseguire un file script `chmod +x <filename>` oppure `bash <filename>`.
 #!/bin/bash
 echo "Hello world!"
 echo "$USER, your current dir is $PWD"
-echo `ls`
+echo `ls -la` # Per eseguire comandi inline
 exit # clean way to exit a shell script
 ~~~
-
-Per eseguire comandi inline usare backtick `ls -la`
 
 ~~~sh
 #!/bin/bash
@@ -425,7 +423,7 @@ done
     done
 
 ### Example 7
-sleep ms # mette in wait il proc per ms secondi
+`sleep x` # mette in wait il processo per `x` millisecondi.
 
 The following script waits until a non-empty file input.txt has been:
 ```sh
@@ -500,21 +498,21 @@ Assembly è un linguaggio di programmazione inventato negli anni '50, è un ling
 
 Assembler è il programma che converte il programma assembly in un file eseguibile.
 
-è **importante** nel mondo della sicurezza, per analizzare il codice (virus) (si fa reverse engineering del codice eseguibile).
+Assembly è **importante** nel mondo della sicurezza, in particolare permette di analizzare il codice (es. codice di un virus) (si fa reverse engineering del codice eseguibile). Inoltre:
 
 * permette di trovare errori difficili da trovare senza,
-* permette di ottimizzare il codice (è praticolarmente snello),
+* permette di ottimizzare il codice (è particolarmente snello),
 * permette di riparare un codice senza il source code,
 * disassemble permette di riparare oppure modificare un eseguibile.
 
 Noi usiamo assembler x64 di Intel/Microsoft (contiene anche 32bit)
 
-* Netwide assebmler NASM (usato da open source), 
+* Netwide assembler NASM (usato da open source), 
 * Flat assembler FASM,
 * Traditional microsoft MASM detto anche intel assembly
 instruction.
 
-L'architettura Intel è un architettura CISC.
+L'architettura Intel è un'architettura CISC (Complex instruction set computer).
 
 Una riga di istruzione assembly:
 

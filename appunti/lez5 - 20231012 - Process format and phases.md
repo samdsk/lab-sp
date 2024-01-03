@@ -105,9 +105,9 @@ vim ha 9 buffer per fare cut/paste
 
 Il file compilato contiene una serie di informazioni che servono all'OS per far eseguire il programma.
 
-Il codice sorgente `.c` viene dato in pasto al compilatore, il compilatore solitamente generava un codice oggetto `.o` che viene dato al linker. Adesso gcc compilatore fa entrambe compile + linking. L'unico formata eseguibile è quello binario.
+Il codice sorgente `.c` viene dato in pasto al compilatore, il compilatore solitamente generava un codice oggetto `.o` che viene dato al linker. Adesso `gcc` compilatore fa entrambe `compile + linking`. L'unico formato eseguibile è quello binario.
 
-Il compilatore fa due passate nella prima passata trasforma il programma in assembler (assemblatore è contenuto dentro il compilatore), assembler trasforma in un programma oggetto, l'oggetto entra dentro il linker, il linker recupera le librerie per poi generare il formato eseguibile.
+Il compilatore fa due passate, nella prima passata, trasforma il programma in assembler (assemblatore è contenuto dentro il compilatore), assembler trasforma in un programma oggetto, l'oggetto entra dentro il linker, il linker recupera le librerie per poi generare il formato eseguibile.
 
 Una volta che il programma è in formato eseguibile esiste un programma dell'OS che si chiama **Loader** che carica il programma. 
 

@@ -15,7 +15,7 @@ keywords: ["Controllo degli accessi", "Security policy", "Access control", "ACL"
 </style>
 # Controllo degli accessi (Linux)
 
-Controllo degli accessi: far accedere solo la persona autorizzata. Uno degli obbiettivi principali dell'OS è quello di introdurre dei meccanismi che garntiscono confidenzialità, integrità, disponibilità delle informazioni che vengono inseriti del sistema.
+Controllo degli accessi: far accedere solo la persona autorizzata. Uno degli obbiettivi principali dell'OS è quello di introdurre dei meccanismi che garantiscono confidenzialità, integrità, disponibilità delle informazioni che vengono inseriti del sistema.
 
 Il sistema di protezione è costituito da 3 entità principali:
 - Il meccanismo di autenticazione: il sistema verifica l'identità di chi sta usando, 
@@ -30,7 +30,7 @@ chi sei -> cosa fare -> registrare
 
 - **Subject** soggetto: _componenti attivi del sistema_ umano/processo che esegue per conto di un utente.
 - **Object** oggetto: _parte passiva_ sono le risorse.
-- **Operazioni di accesso**: _diritti di accesso_ cosa puo fare l'utente.
+- **Operazioni di accesso**: _diritti di accesso_ cosa può fare l'utente.
   
 ## Security policy
 Alla base di tutto ci sono le regole:
@@ -61,9 +61,7 @@ Prima soluzione ridurre numero di righe, raggruppando utenti per gruppi.
   
 > **i-node** è una struttura dati presente sul hdd, è contenuto in una struttura dati chiamato **i-node table**. i-node contiene metadati relativi ai file, data di ultima modifica, creazione ecc. Per ogni file esiste un inode, unix mette ACL dentro i-node. In UNIX tutte le risorse sono file. `i-node_table(i-node(acl))`.
 
-Controllo degli accessi viene fatto con un token. 
-
-- **Capability** list: introdotto da Dennis and Van Horn. Consente di avere accesso attraverso un token. (usato nei sistemi Windows). viene caricato nella zona di memoria di kernel e gestito dal kernel il quale permette di essere protetto dagli utenti, perché utenti non hanno accesso al kernel. (utente non può accedere alla zona di memoria del kernel).
+- **Capability** list: introdotto da Dennis and Van Horn. Consente di avere accesso attraverso un token (Controllo degli accessi viene fatto con un token) (usato nei sistemi Windows). Viene caricato nella zona di memoria di kernel e gestito dal kernel il quale permette di essere protetto dagli utenti, perché utenti non hanno accesso al kernel. (utente non può accedere alla zona di memoria del kernel).
 
 > In UNIX kernel ha una zona di memoria (Giga più alto) riservata a cui i processi utenti non possono accedere. Quando si cerca di accedere si crea un Segmentation Fault.
 

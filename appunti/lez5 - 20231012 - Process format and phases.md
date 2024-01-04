@@ -194,17 +194,21 @@ Sezioni servono per costruire l'eseguibile, **i segmenti per compongono l'esegui
 
 `objdump -S` per leggere ELF header 
 
-`objdump -d` **disassebmly** mostra il codice assembler del file ELF.
+`objdump -d` **disassembly** mostra il codice assembler del file ELF.
 
 `objcopy` to copy ELF sections.
 
-type dice il tipo di file:
+Il `type` del Header dice il tipo di file, può `REL` oppure `DYN`.
 
-`gcc -c` crea un file di tipo **REL rilocabile** (una che si può spostare) compilatore come prima cosa fa traduce il programma assumendo che sia l'unico programma eseguibile, programma viene me.
+* `gcc -c` crea un file (file oggetto) di tipo **REL - Relocatable File** (rilocabile) (un file che si può spostare). Nel formato REL il compilatore come prima cosa fa, traduce il programma assumendo che il programma sia l'unico programma all'interno della memoria del calcolatore. Come se partisse dall'indirizzo zero. Assegna al programma degli indirizzi partendo da zero.
+  
+  Nella fase generazione del codice oggetto vengono aggiunti le funzioni di libreria. A questo il programma non parte più da zero ma da un altro indirizzo. Perché il compilatore aggiunge le funzioni che servono per il programma il alto (es. la funzione printf di C).
 
-**Vantaggio**: gli si può modificare gli indirizzi.
+  Per questo il codice è disposto in maniera rilocabile, per essere spostato quando le funzioni saranno aggiunte.
 
-`gcc -o` crea un file di tipo **DYN eseguibile**.
+    **Vantaggio**: gli si può modificare gli indirizzi.
+
+* `gcc -o` crea un file di tipo eseguibile (ma linkato dinamicamente, con le librerie shared) **DYN - Position-Independent Executable file**.
 
 ![readelf -h diff between bin and obj files](assets/images/diff_readelf-h_bin_obj.png)
 
@@ -227,7 +231,7 @@ Se il file inizia con `#!` sh-bang allora shell chiama l'interprete riferimento 
 
 File **dinamicamente linkato** : linka a runtime le cose che sono condivise. Risparmio spazio, es. perché se uso la stessa libraria in diversi processi mi basta tenere in memoria solo copia della libreria. Ma è lento perché devo andare a cercare la parte che mi serve nella memoria centrale. inoltre, serve un programmino che intercetta le richieste.
 
-File **staticamente linkato** : è autonomo, contiene tutto quello che serve per essere eseguito auto consistente.
+File **staticamente linkato** : è autonomo, contiene tutto quello che serve per essere eseguito, è auto consistente.
 
 `readelf -a nameOfExec` # per capire l'interprete.
 

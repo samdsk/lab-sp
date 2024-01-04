@@ -14,6 +14,9 @@ keywords: ["Process Execution", "Signals", "Wait", "Privilege Escalation", "Comp
     }
 </style>
 
+## Materiale
+* [SETUID](https://www.cbtnuggets.com/blog/technology/system-admin/linux-file-permissions-understanding-setuid-setgid-and-the-sticky-bit)
+
 # Process Execution
 
 Quando eseguiamo un eseguibile, non va immediatamente in esecuzione il programma che abbiamo scritto, **vanno prima in esecuzione una serie di routine di sistema** (funzioni di sistema) che **inizializzano una serie di variabili** dell'OS e dell'ambiente che vengono agganciate al nostro programma, dopo di che ad un certo punto viene chiamato la funzione `_libc_start_main()` che contiene all'interno la chiamata alla `main()` del nostro programma.

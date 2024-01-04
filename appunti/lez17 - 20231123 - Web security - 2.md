@@ -14,6 +14,8 @@ keywords: ["sql injection","sql","php", "sql injection payloads", "sql map"]
         border-radius:5px;
     }
 </style>
+## Materiale
+* [Slides](/appunti/assets/docs/web_security.pdf)
 
 # Web security - 2
 ```sh

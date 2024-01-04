@@ -14,8 +14,8 @@ keywords: ["Storia degli attacchi hacker principali","Mitnick", "Stuxnet", "Wann
     }
 </style>
 
-## Materiale di approfondimento
-Capitolo 1 del libro di testo
+## Materiale
+* Cap 1 del libro di testo
 
 # Storia degli attacchi hacker principali
 

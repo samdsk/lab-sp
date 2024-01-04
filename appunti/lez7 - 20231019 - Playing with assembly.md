@@ -13,6 +13,9 @@ keywords: ["Assembly","Assembly Registri", "Assembly Subregisters", "Assembly Da
         border-radius:5px;
     }
 </style>
+## Materiale
+* [Assembly](https://www.conradk.com/x86-64-assembly-from-scratch/)
+* [Assembly Tuts](https://github.com/0xAX/asm)
 
 # Playing with assembly
 

@@ -14,6 +14,8 @@ keywords: ["Access Control", "Mandatory Access Control", "MAC", "80386", "80X86 
         border-radius:5px;
     }
 </style>
+## Materiale
+* Cap 2 libro di testo
 
 # Access Control - Parte 2 - Crittografia Intro
 

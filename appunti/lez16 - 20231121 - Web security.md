@@ -14,6 +14,8 @@ keywords: ["xss","xss reflective","xss stored","xss-game.appspot.com", "xss payl
         border-radius:5px;
     }
 </style>
+## Materiale
+* [Esempi della lezione](/appunti/assets/docs/lezione16-17.zip)
 
 # Web Security - Attacchi Web
 

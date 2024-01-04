@@ -14,6 +14,10 @@ keywords: ["Host protection systems","momento autenticazione", "moment autorizza
         border-radius:5px;
     }
 </style>
+## Materiale
+* Cap 4 libro del testo
+* [Dispensa sul controllo degli accessi](/appunti/assets/docs/Access%20Controls_2.pdf)
+* [Hw access control](/appunti/assets/docs/Protection_80386.pdf)
 
 # Host protection systems
 

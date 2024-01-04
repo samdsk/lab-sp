@@ -13,6 +13,10 @@ keywords: ["Controllo degli accessi", "Security policy", "Access control", "ACL"
         border-radius:5px;
     }
 </style>
+## Materiale
+* Cap 4 libro del testo
+* [Access Control](/appunti/assets/docs/AccessControl.pdf)
+
 # Controllo degli accessi (Linux)
 
 Controllo degli accessi: far accedere solo la persona autorizzata. Uno degli obbiettivi principali dell'OS è quello di introdurre dei meccanismi che garantiscono confidenzialità, integrità, disponibilità delle informazioni che vengono inseriti del sistema.

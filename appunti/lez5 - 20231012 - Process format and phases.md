@@ -13,9 +13,16 @@ keywords: ["Process Format", "Process Phases", "VIM", "Executable and Linkable F
         border-radius:5px;
     }
 </style>
+## Materiale
+* [VIM](/appunti/assets/docs/unix-vi-editor.pdf)
+* [ELF](https://cirosantilli.com/elf-hello-world)
+* [Linking & Loading - Real Example](https://brightprogrammer.in/2023/09/24/Linking-Loading-Real-Example/)
+
+
+
 # Process Format and Phases 
 
-# Grep
+## Grep
 Permette di ricercare stringhe all'interno di un file `grep [options] pattern [FILE]`
 
 [GREP Cheat Sheet](assets/docs/grep_cheatsheet.pdf)
@@ -49,7 +56,7 @@ grep usa espressioni regolari
     any line in hello.txt that contains a three characters sequenze that ends with a lowercase letter from l to z. es. [abl] [xyz]
 
 
-# VIM/VI
+## VIM/VI
 (è stato il primo editor di linux)    
 `vi / vim filename`
 

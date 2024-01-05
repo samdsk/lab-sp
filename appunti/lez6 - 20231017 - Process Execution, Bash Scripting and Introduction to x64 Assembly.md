@@ -70,11 +70,13 @@ Resta solo PCB del processo all'interno della READY-QUEUE.
 
 Il PCB viene rimosso dal genitore nel momento in cui fa la `wait()`, è compito del genitore fare `wait()` per il suo processo figlio.
 
+Le funzioni di wait: `wait()` della `libc`, syscall `sys_wait4` o`sys_waitid`.
+
 **Durante l'istante che occorre tra l'`exit` del figlio e `wait` del genitore, il processo è uno stato di zombie** (processo figlio in esecuzione fa exit, a questo punto, il genitore deve andare in esecuzione e fare `wait` sul processo figlio, per il genitore di essere mandato in esecuzione potrebbe chiedere un istante di tempo (magari è l'ultimo della ready-queue)).
 
-Se il genitore si dimentica di fare `wait` sul processo figlio (magari il programmatore si è dimenticato di farlo), quindi, il figlio rischia di essere un processo zombie per tutta la durata del sistema.
+Se il genitore si dimentica di fare `wait` sul processo figlio (magari il programmatore si è dimenticato di farlo), quindi, il figlio rischia di essere un processo zombie per tutta la durata del sistema. (possono causare memory leak)
 
-La soluzione per **terminare i processi zombie**: Per evitare che un processo figlio vada in zombie esiste un processo demone del sistema che va in esecuzione periodicamente che va a guardare i processi zombie, gli cambia il pid (ogni figlio ha PID del genitore) e gli **assegna PID 1**, processo 1 è un processo che va in esecuzione periodicamente e **fa `wait` per processi zombie** e li termina.
+La soluzione per **terminare i processi zombie**: Per evitare che un processo figlio vada in zombie, esiste un processo demone (`process reaper`) del sistema che va in esecuzione periodicamente che va a guardare i processi zombie, gli cambia il pid (ogni figlio ha PID del genitore) e gli **assegna PID 1**, processo 1 è un processo che va in esecuzione periodicamente e **fa `wait` per processi zombie** e li termina.
 
 
 ## Privilege Escalation via Complete Mediation

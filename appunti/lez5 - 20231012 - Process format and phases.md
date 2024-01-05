@@ -124,13 +124,13 @@ Il **loader di UNIX** è `ld`
 
 Le informazioni di un file eseguibile/oggetto creato dal compilatore è formattato in un formato standard ben definito, nel caso di UNIX è il formato **Executable and Linkable Format ELF**. Nel mondo Windows si chiama **Portable Executable PE**. (ELF è usato anche da PlayStation)
 
-![ELF Layout](assets/images/Elf-layout.webp)
 
 ## Componenti di ELF
 
 I componenti di un file ELF sono tre: Header, Section, Segments.
 
-    ELF Header
+![ELF Layout](assets/images/Elf-layout.webp)
+
     Program header table
     .text // codice del programma tradotto in codice binario
     .rodata // initialized read only data
@@ -142,7 +142,8 @@ I componenti di un file ELF sono tre: Header, Section, Segments.
     ...
     Section header table
 
-`readelf -h filename` # legge un file ELF
+### ELF Header
+`readelf -h filename` # mostra ELF Header di un file ELF
 
     // ELF Header
     magic_number: un numero che rappresenta il tipo di file
@@ -157,14 +158,14 @@ I componenti di un file ELF sono tre: Header, Section, Segments.
     e_shnum: number of section headers;
     e_shstrndx: index in section header table denoting section dedicated to hold section names.
 
-Le sezioni sono tutte le informazioni che servono per costruire l'eseguibile, viene usato per la fase successiva del linking. Il numero di sezioni dipende dalla grandezza del programma, dalle librerie che il programma usa, ecc. Quindi, non sono presenti tutte le sezioni del programma nel file ELF.
-
 ![EFL Header](assets/images/readelf-h_elf_header.png)
 
-### Section Header Table
-Sezioni sono delle strutture dati e servono per costruire segmenti.
+### Sections
+**Le sezioni** hanno tutte le informazioni che servono per costruire l'eseguibile, viene usato nella fase successiva del linking. Il numero di sezioni dipende dalla grandezza del programma, dalle librerie che il programma usa, ecc. Quindi, non sono presenti tutte le sezioni del programma nel file ELF. Le sezioni presenti nel maggior parte dei casi sono `.text`, `.rodata` e `.data`.
 
-`readelf -S filename` # per vedere le sezioni del file
+Section Header Table è una struttura dati che contiene elenco delle sezioni e loro indirizzi e altre informazioni che servono per costruire segmenti.
+
+`readelf -S <filename>` # per vedere la section table del file
 
     // Section Header
     sh_name : name of the section
@@ -178,8 +179,8 @@ Sezioni sono delle strutture dati e servono per costruire segmenti.
 
 ![Section Header](assets/images/readelf-S_section_header.png)
 
-### Segment Header
-Sezioni servono per costruire l'eseguibile, **i segmenti per compongono l'eseguibile**. Vengono chiamati **Program Header**, sono dei pezzi di codice e dei dati, preparati per essere caricati nella memoria. 
+### Segments
+Sezioni servono per costruire l'eseguibile, **i segmenti compongono l'eseguibile**. Vengono chiamati **Program Header**, sono composti dai pezzi di codice e dei dati, preparati per essere caricati nella memoria. 
 
     // Program Header
     p_type : kind of segment 

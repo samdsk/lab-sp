@@ -33,15 +33,15 @@ php server ha una convenzione che manda pagina `index.php` per ogni pagina 404.
     GET /test.html # una get request dal netcat
 
 ## Cross site scripting - XSS
-Cross site scripting è un attacco web che inietta del codice maligno (normalmente Javascript) dal lato client-side per rubare dati di session oppure altre attività maligni. Principalmente, questi attacchi sono dovuti all'assenza di controlli sull'input inserito dall'utente (input sanitization). 
+Cross site scripting è un attacco web che inietta del codice malevolo (normalmente Javascript) dal lato client-side per rubare dati di session oppure altre attività maligni. Principalmente, questi attacchi sono dovuti all'assenza di controlli sull'input inserito dall'utente (input sanitization). 
 
 ### Reflected XSS
-In cui la vittima è convinto a cliccare un link (come un search query) che contiene del codice maligno. Il codice viene eseguito mediante la risposta del web server oppure come risultato della operazione.
+In cui la vittima è convinto a cliccare un link (come un search query) che contiene del codice malevolo. Il codice viene eseguito mediante la risposta del web server oppure come risultato della operazione.
 
 `http://target.com/aform.html?search=<script>alert(‘XSS by Gaurav’);</script>`
 
 ### Stored XSS
-In cui il codice maligno è memorizzato permanentemente sul database e verrà eseguito a in saputa della vittima ogni volta che visita la pagina.
+In cui il codice malevolo è memorizzato permanentemente sul database e verrà eseguito a in saputa della vittima ogni volta che visita la pagina.
 
     strstr(string_to_control, string_to_find);
     str_replace(str_to_be_replaced, str_to_replace_with, str)

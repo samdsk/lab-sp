@@ -23,7 +23,7 @@ docker exec -it <container_name> /bin/sh # per accedere al container con termina
 ```
 
 ## SQL injection
-SQL injection è una tecnica di attacco web che permette di bypassare controllo degli accessi, estrarre informazioni dal database oppure di compromettere il database attraverso una iniezione del codice SQL maligno. 
+SQL injection è una tecnica di attacco web che permette di bypassare controllo degli accessi, estrarre informazioni dal database oppure di compromettere il database attraverso una iniezione del codice SQL malevolo. 
 
 ![SQL injection](assets/images/SQL-Injection.jpg)
 

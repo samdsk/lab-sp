@@ -22,9 +22,9 @@ keywords: [""]
 
 # Crittografia - parte 2
 
-Il problema della integrità, come facciamo garantire l'integrità? Encryption non ci garantire l'integrità, cioè come facciamo sapere che quando riceviamo un messaggio cifrato quello è l'originale?
+Il problema della integrità, come facciamo garantire l'integrità? **Encryption non ci garantire l'integrità**, cioè come facciamo sapere che quando riceviamo un messaggio cifrato quello è l'originale?
 
-Perché encryption non si risolve questo problema? un attacco di tipo MITM potrebbe modificare alcuni bit a caso, quindi, il contenuto non è l'originale.
+Perché encryption non si risolve questo problema? **un attacco di tipo MITM potrebbe modificare** alcuni bit a caso, quindi, il contenuto non è l'originale.
 
 ## Hash functions
 
@@ -33,13 +33,13 @@ Per risolvere questo tipo problema si usano delle **funzioni One-way** chiamati 
 ![Hash function](assets/images/hash-function.png)
 
 Proprietà:
-* one-way : difficili da invertire,
-* collision resistant : difficile trovare due input che danno lo stesso output.
+* **one-way** : difficili da invertire,
+* **collision resistant** : difficile trovare due input che danno lo stesso output.
 
 è una funzione suriettiva, se output è una stringa da 128 bit allora abbiamo un codominio 2<sup> 128</sup> per causa di forza maggiore tanti elementi del dominio mappano sullo stesso elemento del dominio ma dato che è estremamente difficile (richiede qualche secolo di computazione) trovare una collisione possiamo considerare che siano praticamente collision free.
 
 ### Applicazioni
-Cambiando solo un bit dell'input si cambia completamente la stringa di output. Questo significa che possiamo usare funzioni hash per **verificare l'integrità di un file/documento**.
+**Cambiando solo un bit dell'input si cambia completamente la stringa di output**. Questo significa che possiamo usare funzioni hash per **verificare l'integrità di un file/documento**.
 
 ```
 Hello World -> SHA256 -> a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e
@@ -49,9 +49,9 @@ Hello world -> SHA256 -> 64ec88ca00b268e5ba1a35678a1b5316d212f4f366b2477232534a8
 
 ![Hash password](assets/images/hash%20password.png)
 
-* Per verificare l'integrità dei pacchetti/applicazioni scaricati dall'internet.
+* Per verificare **l'integrità dei pacchetti/applicazioni** scaricati dall'internet.
 
-* Un'altra applicazione è quella legata alla firma digitale, dato che la crittografia asimmetrica è estremamente lenta per documenti grandi, la firma digitale cifra l'hash del documento. Calcolare l'hash è molto veloce rispetto encryption.
+* Un'altra applicazione è quella legata alla **firma digitale**, dato che la crittografia asimmetrica è estremamente lenta per documenti grandi, **la firma digitale cifra l'hash del documento**. Calcolare l'hash è molto veloce rispetto encryption.
 
 ![Digital signature](assets/images/digital_signature.png)
 
@@ -66,9 +66,9 @@ Hello world -> SHA256 -> 64ec88ca00b268e5ba1a35678a1b5316d212f4f366b2477232534a8
 * SHA2 : output 224, 256, 384  e 512 bits, al momento non è stato attaccato.
 
 ## Key Hash Message Authentication Code - HMAC
-L'hash da solo non basta per garantire l'integrità, durante la trasmissione qualcuno potrebbe intercettare il messaggio, cambiarlo e calcolare hash di un messaggio alterato e inviarlo.
+**L'hash da solo non basta per garantire l'integrità, durante la trasmissione qualcuno potrebbe intercettare il messaggio, cambiarlo e calcolare hash di un messaggio alterato e inviarlo**.
 
-Per garantire l'integrità usando l'hash dobbiamo aggiungere Key Hash Message Authentication Code - HMAC, quindi, tramite aggiunta di una chiave. La chiave non è per encryption ma serve per l'integrità.
+Per **garantire l'integrità usando l'hash** dobbiamo aggiungere **Key Hash Message Authentication Code** - **HMAC**, quindi, tramite aggiunta di una chiave. La chiave non è per encryption ma serve per l'integrità.
 
 Lo si fa, perché calcolare l'hash più rapido che fare un encryption.
 
@@ -85,15 +85,15 @@ Come facciamo avere la certezza che una chiave pubblica appartiene effettivament
 
 ![MIMT](assets/images/mitm_c2.png)
 
-La soluzione che viene applicato è che quando un utente sottomette la sua chiave pubblica ad un altro, l'utente insieme alla sua chiave pubblica deve legare un certificato di autenticità. 
+La soluzione che viene applicato è che quando un utente sottomette la sua chiave pubblica ad un altro, **l'utente insieme alla sua chiave pubblica deve legare un certificato di autenticità**. 
 
 * Chi è che attesta la autenticità? usando la carta d'identità, è lo stato (ministero dell'interno). 
-* Un altro approccio è lo scambio della fiducia rispetto un altro utente della rete. Pretty Good Privacy PGP adesso diventato `GPG`.  
+* Un altro approccio è **lo scambio della fiducia rispetto un altro utente della rete**. Pretty Good Privacy PGP adesso diventato **`GPG`**.  
 
 ### X509 and PKI
 Lo standard X509 è basato su Public Key Infrastructures PKI, basato su certification authority. 
 
-  * Certification authority - CA : certifica che tale chiave pubblica appartiene al tale, tutti certificati sono raccolti in una public infrastructure. Il certificato digitale è la chiave pubblica firmata digitalmente dal CA.
+  * Certification authority - CA : **certifica che tale chiave pubblica appartiene al tale**, tutti certificati sono raccolti in una public infrastructure. **Il certificato digitale è la chiave pubblica firmata digitalmente** dal CA.
 
 ```console
 # per trovare/scaricare il certificato
@@ -138,22 +138,22 @@ Le transazioni di bancarie con una carta di credito/debito vengono fatte tramite
 
 Il chip ha con sè una coppia di chiavi, pubblica e privata. 
 
-Come funziona il riconoscimento? La carta è ritenuta valida se contiene una coppia di chiavi firmate da Certification Authority riconosciute Visa o Mastercard. 
+Come funziona il riconoscimento? **La carta è ritenuta valida se contiene una coppia di chiavi firmate da Certification Authority riconosciute Visa o Mastercard**. 
 
-Quando si inserisce nel terminale, la carta invia la il certificato della chiave pubblica, il terminale contiene i certificati validi rilasciati da CA e verifica il certificato, adesso devo verificare che ci sia anche la chiave privata, mando un numero casuale alla carta e chiedo di firmarlo digitalmente (la chiave privata non esce mai dalla carta) e la carta invia la firma al terminale, infine, il terminale verifica la firma.
+Quando si inserisce nel terminale, la **carta invia la il certificato della chiave pubblica**, il terminale contiene i certificati validi rilasciati da CA e verifica il certificato, adesso devo verificare che ci sia anche la chiave privata, **mando un numero casuale alla carta e chiedo di firmarlo digitalmente** (la chiave privata non esce mai dalla carta) e la carta invia la firma al terminale, infine, il terminale verifica la firma.
 
 ![Chip terminal](assets/images/chip_terminal.png)
 
 Come viene fatto una transazione? 
-Terminale acquisisce la chiave pubblica, i dati della transazione viene mandato alla carta, si digita il pin, sblocco i circuiti, viene fatto la firma dei dati della transazione, quindi, io firmo digitalmente l'acquisto e i dati vengono mandati al terminale, terminale verifica che la firma sia valida, infine i dati della transazione più la firma vengono mandati a Mastercard oppure a Visa. E non si può negare la transazione a meno che ci sia una denuncia dello smarrimento della carta.
+**Terminale acquisisce la chiave pubblica, i dati della transazione viene mandato alla carta, si digita il pin, sblocco i circuiti, viene fatto la firma dei dati della transazione, quindi, io firmo digitalmente l'acquisto e i dati vengono mandati al terminale, terminale verifica che la firma sia valida, infine i dati della transazione più la firma vengono mandati a Mastercard oppure a Visa. E non si può negare la transazione** a meno che ci sia una denuncia dello smarrimento della carta.
 
 ![Chip transaction](assets/images/chip_terminal_2.png)
 
 ## Request For Comments - RFC
-Sono documenti tecnici pubblici che standardizzano la rete. Vengono creati per esempio quando si crea un protocollo di rete, si aggregano un insieme di persone (come rappresentanti di cisco, microsoft, apple, ecc) si crea un gruppo di lavoro, alla fine si raggiunge un accordo e si realizza RFC finale.
+Sono **documenti tecnici pubblici che standardizzano la rete**. Vengono creati per esempio quando si crea un protocollo di rete, si aggregano un insieme di persone (come rappresentanti di cisco, microsoft, apple, ecc) si crea un gruppo di lavoro, alla fine si raggiunge un accordo e si realizza RFC finale.
 
 ## Protocollo Key Exchange di Diffie-Hellman
-Un algoritmo che permette di scambiarsi le chiavi pubblici su una rete non sicura. Si basa sul problema matematico del logaritmo discreto sui campi finito. 
+Un algoritmo che **permette di scambiarsi le chiavi pubblici su una rete non sicura**. Si basa sul problema matematico del **logaritmo discreto sui campi finiti**. 
 
 $$ \log_{b}{x} = y \bmod n $$
 $$ b^y = x \bmod n $$
@@ -176,9 +176,9 @@ Se qualcuno intercetta $R_{Alice}$ oppure $R_{Bob}$, per poter calcolare il nume
 
 ![Diffie Hellman](assets/images/DiffieHellman.png)
 
-Problema: MITM, blocca $\alpha^{R_{Alice}} \bmod p$ inviato da Alice a Bob e invia il suo $\alpha^{R_{Evil}} \bmod p$ a Bob e viceversa ad Alice.
+**Problema**: MITM, blocca $\alpha^{R_{Alice}} \bmod p$ inviato da Alice a Bob e invia il suo $\alpha^{R_{Evil}} \bmod p$ a Bob e viceversa ad Alice.
 
-Soluzione: lo si risolve con l'utilizzo di certificati digitali.
+**Soluzione**: lo si risolve con **l'utilizzo di certificati digitali**.
 
 ## Strategia generale
 
@@ -196,11 +196,11 @@ Per autenticità utilizzo la firma digitale.
 * Problema di performance e di scelta architetturale: crittografia simmetrica estremamente veloce ma gestione delle chiavi pesante. Crittografia asimmetrica estremamente inefficiente e richiede ... . 
   
 * L'altro problema grosso è dal punto di visto informatico dove facciamo la crittografia, può essere fatta in diversi fasi:
-  * A livello applicazione, cioè, il programma cifra i dati prima dell'output.
-  * A livello sistema, cioè, chi scrive il sistema che si occupa della crittografia, il sistemista decide per esempio se farlo a livello trasporto come TCP oppure a livello rete come IP. Richiede infrastruttura differenti in base al livello che sceglie. Il vantaggio è che il programmatore non deve preoccupare della crittografia ci pensa il sistema. 
-  * Se lo faccio a livello IP è completamente trasparente. La faccio per tutta la connessione web.  
-  * Se la faccio a livello TCP la faccio a livello di connessione, quindi posso decidere a quale connessione farlo, invece se lo faccio a livello IP non ho questa granularità, l'IP non può decidere su diverse sessioni. Il programmatore non è più svincolato come al livello sistema.
-  * Se lo faccio a livello Application, della crittografia si occupa il programmatore.
+  * A **livello applicazione**, cioè, il programma cifra i dati prima dell'output, della crittografia si occupa il programmatore.
+  * A **livello sistema**, cioè, chi scrive il sistema che si occupa della crittografia, il sistemista decide per esempio se farlo a livello trasporto come TCP oppure a livello rete come IP. Richiede infrastruttura differenti in base al livello che sceglie. Il vantaggio è che il programmatore non deve preoccupare della crittografia ci pensa il sistema. 
+  * Se lo faccio a **livello IP** è completamente trasparente. La faccio per tutta la connessione web.  
+  * Se la faccio a **livello TCP** la faccio a livello di connessione, quindi posso decidere a quale connessione farlo, invece se lo faccio a livello IP non ho questa granularità, l'IP non può decidere su diverse sessioni. Il programmatore non è più svincolato come al livello sistema.
+
   
 Se io cifro a livello IP e TCP il dato rimane in chiaro per livello soprastanti, solo se cifro a livello applicazione ho la garanzia della sicurezza. Per questo bisogna usare End-to-End Encryption in questo modo solo le due parti terminali della comunicazione sono in grado di accedere al contenuto in chiaro tutto quanto in mezzo non riesce leggere. Gmail cifra a livello trasporto. 
 

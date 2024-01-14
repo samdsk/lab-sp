@@ -20,15 +20,15 @@ keywords: ["IPSEC","Servizi offerti da IPSEC", "IPSEC Protocols", "Tunnel Mode",
 </script>
 
 # Applicazione della crittografia alla cybersecurity
-Le principali applicazioni di crittografia sono legate ai protocolli di comunicazione. Ci sono altre applicazioni come crypto file systems che consente di cifrare i dati sul hard. 
+Le principali **applicazioni di crittografia sono legate ai protocolli di comunicazione**. Ci sono altre applicazioni come crypto file systems che consente di cifrare i dati sul hard. 
 
 ## Network Security: IPSEC
 
-Il protocollo principale che usa la crittografia a livello di rete è IPSEC, originariamente è stato un sotto modulo sviluppato per IPv6 poi è stato adottato anche dal protocollo IPv4.
+Il protocollo principale che usa la **crittografia a livello di rete è IPSEC**, originariamente è stato un sotto modulo sviluppato per IPv6 poi è stato adottato anche dal protocollo IPv4.
 
 ![IPv4 Header](assets/images/ipv4.png)
 
-L'obiettivo di IPSEC è quello di **cifrare e autenticare** il traffico a livello IP, è una risposta agli attacchi di intercettazione e agli attacchi di spoofing.
+L'**obiettivo** di IPSEC è quello di **cifrare e autenticare** il traffico a livello IP, **è una risposta agli attacchi di intercettazione e agli attacchi di spoofing**.
 
 >Ultimo RFC 4301-4307 (december 2005) 
 
@@ -49,12 +49,12 @@ L'obiettivo di IPSEC è quello di **cifrare e autenticare** il traffico a livell
   * Partial sequence integrity, previene packet replay (replay attack).
 * Possibile nascondere l'indirizzo IP del mittente limited traffic flow confidentiality
 
-La cosa importante è che questi servizi sono trasparenti alle applicazioni (a livelli sopra transport layer), cioè che tutti questi servizi vengono forniti a livello di sistema operativo, il programmatore che scrive applicazioni in una macchina che contiene ipsec non deve preoccuparsi del fatto che i suoi vengano intercettati sulla rete e dell'ip spoofing. Ovviamente tutto questo vale fino che il pacchetto arrivi alla macchina di destinazione, una volta decifrato il system admin può vedere il contenuto.
+La cosa **importante è che questi servizi sono trasparenti alle applicazioni** (a livelli sopra transport layer), cioè che tutti questi servizi vengono forniti a livello di sistema operativo, il programmatore che scrive applicazioni in una macchina che contiene ipsec non deve preoccuparsi del fatto che i suoi vengano intercettati sulla rete e dell'ip spoofing. Ovviamente tutto questo vale fino che il pacchetto arrivi alla macchina di destinazione, una volta decifrato il system admin può vedere il contenuto.
 
 ### IPSEC Protocols
 IPSEC viene sviluppato con due tipi di protocolli:
-* **Authentication Header** - AH: fornisce servizi di integrità, fa un controllo di integrità su tutto il pacchetto,
-* **Encapsulated Security Payload** - ESP: fornisce servizi di confidenzialità. Può fare sia encryption che authentication, a differenza di AH, ESP fa il controllo di integrità sul payload ma non sul header.
+* **Authentication Header** - AH: fornisce servizi di **integrità**, fa un **controllo di integrità su tutto il pacchetto**,
+* **Encapsulated Security Payload** - ESP: fornisce servizi di **confidenzialità**. Può fare sia **encryption** che **authentication**, a differenza di AH, ESP fa il **controllo di integrità sul payload ma non sul header**.
 
 In realtà, con l'utilizzo di IPSEC si sono resi conto che bastava ESP. AH è stato fatto downgraded da MUST a MAY, quindi, non è più obbligatorio.
 
@@ -66,20 +66,19 @@ IPSEC può operare in due modalità:
 
 ![IPSEC Headers](assets/images/ipsec.png)
 
-* **Tunnel mode**: il pacchetto ipsec viene wrappato in un pacchetto IP, questo viene fatto per reggere la transizione da IPv4 a IPv6 e per far viaggiare il pacchetto su una rete che non supporta IPSEC. Es. far comunicare le macchine con ipsec con quelli senza ipsec. Tunnel mode è usato con VPN.
+* **Tunnel mode**: il pacchetto ipsec viene **wrappato in un pacchetto IP**, questo viene fatto per reggere la transizione da IPv4 a IPv6 e per far viaggiare il pacchetto su una rete che non supporta IPSEC. Es. far comunicare le macchine con ipsec con quelli **senza ipsec**. Tunnel mode è usato con VPN.
   
-* **Transport mode**: usato per inviare pacchetti tra due macchine con ipsec.
+* **Transport mode**: usato per inviare pacchetti tra due **macchine con ipsec**.
 
 ### Authentication Header - AH 
-L'header di AH contiene 
-Si prende un pacchetto IP, a cui si aggiungono oltre ad altre informazioni si aggiunge Security Parameter Index **SPI** ed un Integrity Check Value **ICV** (Authentication Data).  
+L'header di AH contiene : Security Parameter Index **SPI** ed un Integrity Check Value **ICV** (Authentication Data).  
 
-Il payload è dato da, se tunnel mode da IP + Data e se transport mode da TCP/UDP + Data.
+Il payload è dato da: se **tunnel** mode da **IP + Data** e se **transport** mode da **TCP/UDP + Data**.
 
 ![AH header](assets/images/Authentication-Header-Format.png)
 
 #### Come funziona l'integrity check? 
-Si prende un pacchetto IP, si prende AH header, si prendono i dati ed attraverso una chiave di integrità si fa doppio hash (SHA1) e il risultato viene inserito nell'AH. 
+Si prende un pacchetto IP, si prende AH header, **si prendono i dati ed attraverso una chiave di integrità si fa doppio hash** (SHA1) e il risultato viene inserito nell'AH. 
 
 ![AH Integrity check](assets/images/ah_integrity.jpg)
 
@@ -95,8 +94,8 @@ ESP garantisce confidenzialità e integrità del payload.
 Il router capisce che stiamo lavorando dal numero di protocollo. IPSEC protocollo 50 per ESP e 51 per AH.
 
 ESP può essere usato da solo come cifratura oppure cifratura + autenticazione. 
-* Solo cifratura : Cifra il payload e IPv6 extension header ed in tunnel mode cifra tutto il pacchetto IP, 
-* cifratura + autenticazione: aggiunge il controllo di integrità al payload.
+* **Solo cifratura** : Cifra il **payload e IPv6 extension header** ed in tunnel mode cifra tutto il pacchetto IP, 
+* **cifratura + autenticazione**: aggiunge il controllo di **integrità al payload**.
 
 AH autentica IP payload e alcune parti del header in transport mode ed in tunnel mode autentica tutto il pacchetto.
 
@@ -110,12 +109,12 @@ AH autentica IP payload e alcune parti del header in transport mode ed in tunnel
 
 Idea: bisogna lavorare a livello di sistema modificando il codice di protocollo IP, cambiando il comportamento in base al tipo di pacchetto se deve fare trasformazioni crittografiche oppure no.
 
-In pratica: si parte con una richiesta all'utente di definire un Security Policy Database, 
+In pratica: si parte con una richiesta **all'utente di definire un Security Policy Database**.
 
 #### Security policy database
 Dice cosa fare al traffico. Es. tutti il traffico dalla mia macchina ad un server particolare me lo deve cifrare.
 
-Le SP specificano: che tipo di trasformazioni fare sul pacchetto, se andiamo in tunnel mode oppure in transport, traffico se sul quel traffico bisognare una trasformazione crittografica, trasformazione che vogliamo effettuare sul pacchetto, ecc.
+Le SP specificano: che **tipo di trasformazioni fare sul pacchetto**, se andiamo in tunnel mode oppure in transport, se fare una trasformazione crittografica sul quel traffico, trasformazione che vogliamo effettuare sul pacchetto, ecc.
 
 Opzioni:
 * `--sp-source` = source address
@@ -129,12 +128,12 @@ Opzioni:
 * `--sa-name` = security association name
 * `--sp-name` = security policy name
 
-Va definito per ogni tipologia traffico, cioè per ogni copia di ip source e destination.
+Va definito per ogni tipologia di traffico, cioè per ogni copia di ip source e destination.
 
 Questi informazioni non sono sufficienti. Che trasformazione crittografica devo fare? Controllo d'integrità e/o encryption, quale algoritmo usare? es. SHA1, SHA2.
 
 #### Security Association database
-Dice come implementare le policy, cioè, dice per ogni coppia di host che cosa bisogna fare.
+**Dice come implementare le policy**, cioè, dice per ogni coppia di host che cosa bisogna fare.
 
 Perché sono divisi in due? perché in caso di vulnerabilità di un algoritmo crittografico basta cambiare il codice, altrimenti bisogna modificare anche la policy.
 
@@ -150,27 +149,27 @@ Opzioni:
 * `--sa-name` = security association name
 
 ### Internet Key Exchange Protocol - IKE
-All'inizio la configurazione era manuale, quindi, bisognava mettersi d'accordo con le persone con si comunicava. Introducendo il protocollo IKE è stato automatizzato il processo di configurazione.
+All'inizio la configurazione era manuale, quindi, bisognava mettersi d'accordo con le persone con si comunicava. **Introducendo il protocollo IKE è stato automatizzato il processo di configurazione**.
 è un protocollo che viene attivato inconsapevolmente all'utente.
 
 #### IKE Outbound
-A livello IP arriva il pacchetto da spedire con IP Source/Destination con questi campi si accede alla ricerca del Security Policy Database (source, destination, port), se devo applicare ipsec consulto il corrispondente record sul Security Association Database, se non è definito IKE lo definisce contrattando con il destinatario. Nel momento in cui ho SA applico al pacchetto le trasformazioni richieste e invio nella rete.
+A livello IP arriva il pacchetto da spedire **con IP Source/Destination con questi campi si accede alla ricerca del Security Policy Database** (source, destination, port), se devo applicare ipsec consulto il corrispondente record sul Security Association Database, se non è definito IKE lo definisce contrattando con il destinatario. Nel momento in cui ho SA applico al pacchetto le trasformazioni richieste e invio nella rete.
 
 ![IKE outbound](assets/images/ike_outbound.jpg)
 
 #### IKE Inbound
-Il pacchetto ipsec contiene il parametro Security Parametro Index SPI che viene usato in ricezione per accedere al Security Association Database, quando ricevo il pacchetto non so fare la trasformazione (decifrarlo), una volta trovato vado vedere se SA combacia con Security Policy e applico trasformazioni, altrimenti scarto il pacchetto.
+Il pacchetto ipsec contiene il parametro Security Parameter Index **SPI** che **viene usato in ricezione per accedere al Security Association Database**, quando ricevo il pacchetto non so fare la trasformazione (decifrarlo), una volta trovato vado vedere se **SA combacia con Security Policy e applico trasformazioni, altrimenti scarto il pacchetto**.
 
 ![IKE inbound](assets/images/ike_inbound.jpg)
 
 #### Benefici di IPsec
-* fornisce un buon livello di sicurezza a tutti livelli superiori a TCP,
-* trasparente a TCP, a tutte le applicazioni, al programmatore e all'utente finale,
-* facilmente estendibile a nuovi protocolli crittografici
+* **fornisce un buon livello di sicurezza a tutti livelli superiori a TCP**,
+* **trasparente a TCP**, a tutte le applicazioni, al programmatore e all'utente finale,
+* **facilmente estendibile a nuovi protocolli crittografici**
 
 #### Svantaggi IPsec - Drawbacks
-* Rallentamento del traffico perché la cifratura costa (anche se simmetrica é veloce) (ike usa Diffie-Hellman),
-* messaggi broadcast non si possono fare perché serve un SA con ogni dispositivo della rete.
+* **Rallentamento del traffico perché la cifratura costa** (anche se simmetrica é veloce) (ike usa Diffie-Hellman),
+* **messaggi broadcast non si possono fare** perché serve un SA con ogni dispositivo della rete.
 
 ## Transport Level Security - TLS / SSL
 IPsec nasce dopo TCP security, il primo protocollo ad affrontare il problema di sicurezza sulla rete è stato SSL poi diventato TLS. è un protocollo sviluppato da Netscape e standardizzato con RFC 2246. Ha come obiettivo quello di stabilire un canale sicuro tra due host a livello di trasporto.
@@ -214,9 +213,9 @@ Layer TLS viene posto sopra il layer TCP.
 ### Handshake
 
 #### Come funziona handshake protocol?
-1. Client invia un `numero casuale` e un oggetto chiamato `cipher_suite` ed altre informazioni (come time) al server. 
+1. Client **invia un `numero casuale` e un oggetto chiamato `cipher_suite`** ed altre informazioni (come time) al server. 
 
-2. Il server risponde a sua volta con un altro numero random, una cipher_suite (confermando o meno cipher suite del client in questo caso propone un suite più adatto al server), session id e la chiave pubblica del server.
+2. Il server risponde a sua volta con un altro **numero random, una cipher_suite** (confermando o meno cipher suite del client in questo caso propone un suite più adatto al server), session id e la chiave pubblica del server.
 
 3. Client prende la chiave pubblica del server e calcola la `premaster_secret`.
 
@@ -263,14 +262,14 @@ Il protocollo Handshake è tutto automatizzato, infatti, IPsec con IKE incorpora
 ![Final Handshake Diagram](assets/images/tls%20handshake.jpg)
 
 ### Record protocol
-Una volta definiti le chiavi sono state definite con protocollo handshake, il record protocol prende il pacchetto TCP, lo frammenta, fa eventualmente una compressione, calcola Message Authentication Code MAC, fa la cifratura, aggiunge header TLS ed invia al layer successivo.
+Una volta definiti le chiavi sono state definite con protocollo handshake, **il record protocol prende il pacchetto TCP, lo frammenta, fa eventualmente una compressione, calcola Message Authentication Code MAC, fa la cifratura, aggiunge header TLS ed invia al layer successivo**.
 
 ![TLS record protocol](assets/images/tsl%20record.png)
 
 HTTPS è la versione di HTTP che utilizza TLS.
 
 #### Vulnerabilità di TLS
-Rispetto IPsec, il principale criticità di TLS è il fatto che non è più trasparente rispetto ad applicazione. Se si vuole fare una applicazione che fa una cifratura del traffico bisogna modificarlo in modo da usare TLS invece di TCP, mentre con IPsec, se un'applicazione viene montato su un sistema con IPsec da quel momento è siamo sicuri che tutto il traffico generato dall'applicazione sarà cifrato. Invece, se la macchina non ha IPsec, la cifratura bisogna metterlo a livello applicazione. Quindi, TLS non è trasparente ad applicazione, per cui tutte le applicazioni che vogliono usare cifratura, controllo di integrità a livello di trasporto devono essere modificati.
+Rispetto IPsec, il principale criticità di TLS è il fatto che **non è più trasparente rispetto ad applicazione**. Se si vuole fare una applicazione che fa una cifratura del traffico bisogna modificarlo in modo da usare TLS invece di TCP, mentre con IPsec, se un'applicazione viene montato su un sistema con IPsec da quel momento è siamo sicuri che tutto il traffico generato dall'applicazione sarà cifrato. Invece, se la macchina non ha IPsec, la cifratura bisogna metterlo a livello applicazione. Quindi, **TLS non è trasparente ad applicazione, per cui tutte le applicazioni che vogliono usare cifratura, controllo di integrità a livello di trasporto devono essere modificati**.
 
 * Beast 2011: è un exploit del browser che utilizza una vulnerabilità del CBC per estrarre plaintext da una sessione cifrato.
 * Heartbleed 2014: rubava private keys da server che usava una versione vulnerabile di OpenSSL.
@@ -286,22 +285,22 @@ Amministratori di server di Gmail possono leggere l'email (viene letto tra TLS e
 
 In direzione inversa, da IP passa a TCP che a sua volta passa a TLS che lo decifra e passa l'email in chiaro all'applicazione.
 
-Per non essere letto bisogna usare una end-to-end encryption, viene decifrato a livello dell'applicazione, quindi, solo l'utente può leggere il messaggio in chiaro.
+Per non essere letto bisogna usare una **end-to-end encryption, viene decifrato a livello dell'applicazione, quindi, solo l'utente può leggere il messaggio in chiaro**.
 
 End-to-End viene usato generalmente dalle applicazioni messaggistiche come Whatsapp, Telegram e Signal. Ma GPG permette di usarlo anche per email.
 
 Telegram usa il protocollo **MTProto**, Whatsapp e Signal usa il protocollo **Signal**.
 
-Il problema dell'algoritmo di Diffie-Hellman è che richiede che i due utenti si interagiscano per generare l'informazione segreta comune tra i due ma non sempre la persona che riceve un messaggio è raggiungibile. Quindi, servirebbe un Diffie-Hellman non interattivo.
+Il **problema dell'algoritmo di Diffie-Hellman è che richiede che i due utenti si interagiscano per generare l'informazione segreta comune tra i due** ma non sempre la persona che riceve un messaggio è raggiungibile. Quindi, servirebbe un Diffie-Hellman non interattivo.
 
 ### Protocollo MTProto 
-è un insieme di protocolli crittografici che permette di avere un cifratura end-to-end, progettato per Telegram. Presuppone che tutto quello che sta sotto il livello di applicazione è non-sicuro. 
+è un **insieme di protocolli crittografici che permette di avere un cifratura end-to-end**, progettato per Telegram. Presuppone che tutto quello che sta sotto il livello di applicazione è non-sicuro. 
 
 Prevede due modalità: cloud chats e secret chats.
 
-In caso di cloud chats, i messaggi sono memorizzati in chiaro sul server invece secret chats sono memorizzati cifrati.
+In caso di **cloud chats, i messaggi sono memorizzati in chiaro sul server invece secret chats sono memorizzati cifrati**.
 
-Gli utenti non comunicano direttamente tra di loro ma attraverso un server. Il messaggio viene memorizzato sul server finché non viene scaricato da un device.
+Gli **utenti non comunicano direttamente tra di loro ma attraverso un server**. Il messaggio viene memorizzato sul server finché non viene scaricato da un device.
 
 #### Cloud chats - MTProto 2.0
 Alice $A_s$ e Bob $B_s$ attraverso Diffie-Hellman stabiliscono due chiavi AES segrete con il server. 
@@ -312,7 +311,7 @@ Quando Alice deve comunicare con Bob, dice al server che voglio comunicare con B
 
 #### Secret chats
 
-Nelle secret chat DH viene fatto direttamente tra A e B senza il server di mezzo come nel caso di cloud chats ma i messaggi vengono inviati attraverso un server comunque.
+Nelle secret chat **DH viene fatto direttamente tra A e B** senza il server di mezzo come nel caso di cloud chats ma i messaggi vengono inviati attraverso un server comunque.
 
 Problema è che il server potrebbe fare MITM. Si assume che il serve sia fidato.
 
@@ -345,12 +344,12 @@ Nel momento in cui Alice vuole comunicare con Bob, accede alle informazioni pubb
 
 	SK = KDF(DH1 || DH2 || DH3)
 
-La chiave `SK` viene usato per cifrare il messaggio da inviare. Quindi, le chiavi sono generati tramite un misto ci informazioni di A e un misto di informazioni di B.
+La chiave `SK` viene usato per cifrare il messaggio da inviare. Quindi, **le chiavi sono generati tramite un misto di informazioni di A e un misto di informazioni di B**.
 
-B per decifrare accede alle informazioni pubbliche di A e rifa i conti.
+B per **decifrare accede alle informazioni pubbliche di A** e rifa i conti.
 
 #### Key Ratchet
-Un algoritmo che prende una chiave e ne genera una tante altre. Ad ogni messaggio di whatsapp viene generato una chiave differente.
+Un algoritmo che prende una chiave e ne genera delle tante altre. Ad ogni messaggio di whatsapp viene generato una chiave differente.
 
 ![Key Ratchet](assets/images/key_ratchet.png)
 

@@ -14,6 +14,12 @@ keywords: ["Access Control", "Mandatory Access Control", "MAC", "80386", "80X86 
         border-radius:5px;
     }
 </style>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+
 ## Materiale
 * Cap 2 libro di testo
 
@@ -262,8 +268,8 @@ Come funzione di encryption quello che cerchiamo è una funzione biettiva, (ogni
 
 Se usiamo una funzione suriettiva avremmo che non sapremmo qual'è il messaggio di partenza.
 
-$$ Encryption = E : M \times K \rightarrow C $$
-$$ Decryption = D : C \times K \rightarrow M $$
+$$Encryption = E : M \times K \rightarrow C$$
+$$Decryption = D : C \times K \rightarrow M$$
 
 * La funzione di _encryption_ prende una chiave, un messaggio e restituisce un cipher-text.
 * La funzione inversa che è _decryption_ prende la chiave, il cipher-text e restituisce il messaggio originale.

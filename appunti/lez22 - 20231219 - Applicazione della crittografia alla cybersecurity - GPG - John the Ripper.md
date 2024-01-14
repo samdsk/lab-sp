@@ -14,6 +14,10 @@ keywords: ["IPSEC","Servizi offerti da IPSEC", "IPSEC Protocols", "Tunnel Mode",
         border-radius:5px;
     }
 </style>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
 
 # Applicazione della crittografia alla cybersecurity
 Le principali applicazioni di crittografia sono legate ai protocolli di comunicazione. Ci sono altre applicazioni come crypto file systems che consente di cifrare i dati sul hard. 

@@ -15,6 +15,11 @@ keywords: [""]
     }
 </style>
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+
 # Crittografia - parte 2
 
 Il problema della integrità, come facciamo garantire l'integrità? Encryption non ci garantire l'integrità, cioè come facciamo sapere che quando riceviamo un messaggio cifrato quello è l'originale?

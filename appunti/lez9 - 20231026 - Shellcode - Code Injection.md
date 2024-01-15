@@ -20,10 +20,10 @@ keywords: ["Shellcode", "Code Injection", "Codice Vulnerabile", "Codice Vulnerab
 # Shellcode
 Shellcode è un pezzo di codice che ha caratteristiche particolari, tra cui il dover essere scritto in linguaggio macchina che viene usato per sfruttare le vulnerabilità all'interno di un codice attraverso attacco di tipo **injection**. Lo shell code, tipicamente viene iniettato all'interno di un processo in esecuzione e magicamente questo lo esegue.
 
-Lo shell code contiene codificato in linguaggio macchina le azioni che l'attaccante vuole eseguire sulla macchina.
+Lo shell code contiene il codice in linguaggio macchina le azioni che l'attaccante vuole eseguire sulla macchina.
 
 ## Code Injection
-Attacco di base è di tipo **Code Injection** (iniettare codice), prima mandarlo in esecuzione, il codice viene messo all'interno della memoria. La `code injection` è possibile su questi calcolatori grazie al fatto che essi si basano sull'architettura di **John Von Neumann**. **Il principio fondamentale di questa architettura è che i dati e il codice condividono lo stesso spazio di memoria**, infatti iniezione di codice avviene **sfruttando istruzioni di I/O**, quindi dati che vengono messi in memoria occupano lo stesso spazio di memoria. 
+Attacco di base è di tipo **Code Injection** (iniettare codice), prima di mandarlo in esecuzione, il codice viene messo all'interno della memoria. Il `code injection` è possibile su questi calcolatori grazie al fatto che essi si basano sull'architettura di **John Von Neumann**. **Il principio fondamentale di questa architettura è che i dati e il codice condividono lo stesso spazio di memoria**, infatti iniezione di codice avviene **sfruttando istruzioni di I/O**, quindi dati che vengono messi in memoria occupano lo stesso spazio di memoria. 
 
 ![Von Nuemann](assets/images/Von_Neumann_Architecture.png)
 

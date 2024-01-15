@@ -53,7 +53,7 @@ Come si fa ARP Poisoning? Uno dei metodi che si usa è mandare delle reply senza
 
 Quindi, consiste nel convincere un host A a mandare il pacchetto all'host C (attaccante) invece che a B. cioè, l'attaccante dice che l'ip della vittima (B) ha l'indirizzo MAC dell'attaccante.
 
-Questo funziona perché a livello subnet per inviare pacchetti non si usa il MAC address.
+Questo funziona perché a livello subnet per inviare pacchetti si usa il MAC address.
 
 Il commando `arp -a` oppure `arp /a` in Windows mostra la tabella di entry.
 
@@ -83,9 +83,9 @@ Le vulnerabilità che sono stati sfruttati:
 * `ettercap`: creato da ex studenti Alberto Ornaghi e Marco Valleri di UNIMI.
 
 ## Denial of Service - DoS | Distributed DoS - DDoS
-Denial of service, è un attacco che va minare la proprietà di disponibilità di un sistema. Confidenzialità ed integrità possono essere protette attraverso adottamento di tecniche crittografiche ma ad oggi contro la disponibilità non si conoscono delle soluzioni (per attacchi  pesanti).
+Denial of service, **è un attacco che va minare la proprietà di disponibilità di un sistema**. Confidenzialità ed integrità possono essere protette attraverso adottamento di tecniche crittografiche ma ad oggi contro la disponibilità non si conoscono delle soluzioni (per attacchi  pesanti).
 
-Obbiettivo è quello di bloccare un utente legittimo dal usare un servizio oppure sistema all'interno di rete, è basato essenzialmente sul far esaurire una risorsa a un sistema, quindi il sistema non è in grado di erogare il servizio oppure nessun servizio.
+**Obbiettivo è quello di bloccare un utente legittimo dal usare un servizio oppure sistema all'interno di rete**, è basato essenzialmente sul far esaurire una risorsa a un sistema, quindi il sistema non è in grado di erogare il servizio oppure nessun servizio.
 
 Tipi di risorse a cui si riferisce:
 * Tempo di CPU,
@@ -113,7 +113,7 @@ In questo caso si va esaurire la tabella dei processi, è una tabella dell'OS di
 ### Smurf Attack
 Smurf attack non funzionano più, consiste nel ripetere richieste ping.
 
-Come fa a generare miliardi di ping? un computer multithread non riesce a generare abbastanza richieste ping, quindi, si prende un pacchetto IP, come source address si mette l'indirizzo della vittima, come **destination address si mette broadcast address** (tutti host )di una rete gigante. 
+Come fa a generare miliardi di ping? un computer multithread non riesce a generare abbastanza richieste ping, quindi, si prende un pacchetto IP, come source address si mette l'indirizzo della vittima, come **destination address si mette broadcast address** (tutti gli host) di una rete gigante. 
 
 Con ping sull'indirizzo broadcast della rete, tutti gli host ricevono una richiesta di ping e quindi tutti questi host rispondono alla vittima contemporaneamente.
 
@@ -122,21 +122,21 @@ Soluzione: quando trova un destination address di tipo broadcast lo viene scarta
 ![Smurf attack](assets/images/smurf-attack.webp)
 
 ### SYN flood
-SYN flood è un attacco di livello TCP che va saturare la tabella delle connessioni di un host.
+SYN flood è **un attacco di livello TCP che va saturare la tabella delle connessioni di un host** (server).
 
 Come avviene la connessione TCP? Il three-way handshake: il client che vuole comunicare manda un pacchetto `SYN` (sincronizza), in questo pacchetto allega un numero casuale `x`, il server risponde con un `SYN` con il suo numero casuale `y` con numero casuale del client `x+1` da questo client capisce che il server gli sta rispondendo. A questo punto client deve dimostrare che ha ricevuto `SYN` da parte del server, lo fa con un pacchetto `ACK` (acknowledgement) contenente `y+1`. 
 
 ![TCP handshake](assets/images/threeway-handshake.jpg)
 
-Ogni macchina ha una tabella delle richieste di connessione TCP, quando il server riceve una richiesta di `SYN` lo inserisce nella tabella con l'indirizzo IP del client, dopo di chè quando il server riceve `ACK y+1` dal client, quindi, connessione stabilità tra server-client, il server cancella l'entry dalla tabella. 
+Ogni macchina ha una tabella delle richieste di connessione TCP, quando il server riceve una richiesta di `SYN` lo inserisce nella tabella con l'indirizzo IP del client, dopo di che quando il server riceve `ACK Y+1` dal client, quindi, connessione stabilità tra server-client, il server cancella l'entry dalla tabella. 
 
 Il server riconosce la connessione, perché il server memorizza l'indirizzo ip del client (source ip address) e la porta sulla quale richiede il servizio.
 
 Questo meccanismo viene sfruttato per fare un attacco di tipo DDoS.
 
-Incomincio a generare una serie di `SYN` al server, quindi il server comincia scrivere le richieste pendenti nella sua tabella e mi manda `SYN + ACK` ma io non li mando `SYN + ACK`, cosi si satura la tabella delle connessioni pendenti del server, quindi, non può più accettare nuove connessioni finché non si libera da qualche connessione, cioè la macchine non è più accessible dalla rete.
+Incomincio a **generare una serie di `SYN` al server**, quindi il server comincia **scrivere le richieste pendenti nella sua tabella** e mi manda `SYN + ACK` ma **io non li mando `SYN + ACK`**, cosi si satura la tabella delle connessioni pendenti del server, quindi, non può più accettare nuove connessioni finché non si libera da qualche connessione, cioè la macchine non è più accessible dalla rete.
 
-Per evitare questo di attacchi bisognerebbe modificare protocollo TCP che è "impossibile".
+Per evitare questo tipo di attacchi bisognerebbe modificare protocollo TCP che è "impossibile".
 
 Generalmente per Distributed DoS vengono usate delle botnet.
 
@@ -145,15 +145,15 @@ Generalmente per Distributed DoS vengono usate delle botnet.
 L'attacco più massiccio è quello fatto ai servizi Amazon con traffico da 2,3Tbps
 
 ## TCP Session Hijacking
-TCP Hijacking è un attacco storico di livello TCP (4) che si pensa abbia fatto Kavin Mitnick (lui l'ha negato). Sfrutta una serie di criticità dei sistemi negli anni 94-95. 
+TCP Hijacking è **un attacco storico di livello TCP** (4) che si pensa abbia fatto Kavin Mitnick (lui l'ha negato). Sfrutta una serie di criticità dei sistemi negli anni 94-95. 
 
-Alla base di questo attacco ce il 3-way handshake e che il server riconosce il client sulla base di seguenti dati: IP, PORT, Y+1 (syn ack inviato dal client). Noi sappiamo che IP e PORT non dati che garantiscono l'autenticità di un oggetto, nel senso che possono essere modificati. L'unica cosa difficile da indovinare è `Y+1` perché è un numero random generato dal server.
+Alla base di questo attacco ce il **3-way handshake** e che il server riconosce il client sulla base di seguenti dati: IP, PORT, Y+1 (syn ack inviato dal client). Noi sappiamo che **IP e PORT sono dati che non garantiscono l'autenticità di un oggetto, nel senso che possono essere modificati**. L'unica cosa **difficile da indovinare è `Y+1` perché è un numero random** generato dal server.
 
-L'idea di questo attacco è ho due host A e B, che hanno stabilito una connessione TCP, ad un certo punto voglio che A invece di parlare con B parli con C (attaccante), dirotta i dati da A verso C e da C verso B. Il problema è che B riconosce A attraverso il numero `ACK Y+1`. Il numero `Y+1` viene incrementato per ogni pacchetto che si trasmette, si aggiunge il numero di byte trasmessi sommato al `Y` iniziale, quindi il server tiene traccia del numero `Y` e client del `X` (finestre TCP).
+L'idea di questo attacco è ho due host A e B, che hanno stabilito una connessione TCP, ad un certo punto voglio che A invece di parlare con B parli con C (attaccante), dirotta i dati da A verso C e da C verso B. **Il problema è che B riconosce A attraverso il numero `ACK Y+1`**. Il numero `Y+1` viene incrementato per ogni pacchetto che si trasmette, **si aggiunge il numero di byte trasmessi sommato al `Y` iniziale**, quindi il server tiene traccia del numero `Y` e client del `X` (finestre TCP).
 
-Se io mi intrometto in una connessione TCP tra due host, e voglio che l'host B riconosca il traffico mandato da me (C), devo conoscere i valori `X` e `Y`. Perché se il pacchetto non ha il sequenze number giusto viene scartato automaticamente.
+Se io mi intrometto in una connessione TCP tra due host, e voglio che l'host B riconosca il traffico mandato da me (C), devo conoscere i valori `X` e `Y`. Perché **se il pacchetto non ha il sequenze number giusto viene scartato automaticamente**.
 
-Es. per far credere a B che il pacchetto arriva da A, il pacchetto deve avere, ipA, portA, x+n, quindi, devo conoscere `x`. 
+Es. per far credere a B che il pacchetto arriva da A, il pacchetto deve avere, ipA, portA, `X + n`, quindi, devo conoscere `X`. 
 
 Un **pacchetto TCP è valido**, solo quando IP address, port, seq num sono validi.
 

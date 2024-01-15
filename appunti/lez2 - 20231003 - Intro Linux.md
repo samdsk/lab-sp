@@ -24,20 +24,20 @@ keywords: ["Linux","Come viene creato un processo in Linux/UNIX", "Come avviene 
 Lab = matteo.zoia@unimi.it | andrea.monzani@unimi.it
 
 # Intro Linux
-Un sistema di calcolo può essere suddiviso per strati e i componenti possono essere classificati per funzione logica:
+Un **sistema di calcolo può essere suddiviso per strati** e i componenti possono essere classificati per funzione logica:
 
-- abbiamo da una parte le applicazioni, le applicazioni usano  il sistema operativo per funzionare.
-- sistema operativo a sua volta si appoggia sul system software che è un componente che fa parte del kernel. 
-- system software è un programma che ha il compito di gestire le risorse e fornisce servizi di base ai software di livello superiore.
+- abbiamo da una parte le **applicazioni**, le applicazioni usano  il sistema operativo per funzionare.
+- **sistema operativo** a sua volta si appoggia sul system software che è un componente che fa parte del kernel. 
+- **system software** è un programma che ha il compito di gestire le risorse e fornisce servizi di base ai software di livello superiore.
   
 sys user | app software | OS | sys software (kernel) | hardware
 
 Il sistema operativo prende il controllo della macchina nel momento in cui accendiamo il pc, è il programma con cui l'utente interagisce.
 
-I compiti dell'OS sono :
-- garantire confidenzialità, affidabilità, disponibilità delle informazioni che l'utente immette nel sistema.
-- gestire esclusivamente le risorse  (cpu, mem, periferiche) (è l'unico programma abilitato a gestire le risorse).
-- deve garantire la ottimalità dell'uso delle risorse.
+I **compiti** dell'OS sono :
+- **garantire confidenzialità, affidabilità, disponibilità** delle informazioni che l'utente immette nel sistema.
+- **gestire** esclusivamente le **risorse**  (cpu, mem, periferiche) (è l'unico programma abilitato a gestire le risorse).
+- deve **garantire la ottimalità dell'uso delle risorse**.
 
 le applicazioni non possono dialogare direttamente con hardware, devono fare un `syscall` mediante OS.
 
@@ -61,9 +61,9 @@ I sistemi operativi si distinguono per `syscall`, dalle utilità di sistema, int
 
 # Linux - Introduction
 È un derivato di UNIX. UNIX nasce alla fine di 1960. deriva da un progetto **Multics** (multiplexed information and computing sys).
-Ken Thomposon UNIX **uniplexed information and computing system**. Riscrive in c, quello che favorisce la diffusione è che era **open source**. Quindi la gente si interessarono di piu per fare testi ecc.
+Ken Thomposon UNIX **uniplexed information and computing system**. Riscrive in c, quello che favorisce la diffusione è che era **open source**. Quindi la gente si interessarono di più per testare ecc.
 
-Nel 78 UNIX si divide, At&T compra kernel di UNIX e diventa un sistema proprietario "sys 5" e la parte open source BSD Berkley System Distribution. 
+Nel 78 UNIX si divide, AT&T compra kernel di UNIX e diventa un sistema proprietario "sys 5" e la parte open source BSD Berkley System Distribution. 
 
 Nel 1991 tutto converge in Linux sviluppato da Linus Travolds.
 
@@ -98,7 +98,7 @@ Quando eseguo un cmd l'OS crea un processo.
 ## Come viene creato un processo in Linux/UNIX
 Quando un utente esegue un programma (sequenza di istruzioni) l'OS genera un processo.
 
-**Processo** è l'insieme di attività che l'OS svolge per poter eseguire le istruzioni contenute all'interno di un programma. Le risorse (sono private al processo) che un processo ha sono: memoria centrale, cpu, risorse di I/O.
+**Processo** **è l'insieme di attività che l'OS svolge per poter eseguire le istruzioni contenute all'interno di un programma**. Le risorse (sono private al processo) che un processo ha sono: memoria centrale, cpu, risorse di I/O.
 
 Per mandare in esecuzione un programma l'OS utilizza la nozione di processo e prima di mandare in esecuzione l'OS controlla le risorse di cui ha bisogno il programma. (Es. quanta memoria ho a disposizione, ecc.)
 

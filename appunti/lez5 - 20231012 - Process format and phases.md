@@ -13,9 +13,16 @@ keywords: ["Process Format", "Process Phases", "VIM", "Executable and Linkable F
         border-radius:5px;
     }
 </style>
+## Materiale
+* [VIM](/appunti/assets/docs/unix-vi-editor.pdf)
+* [ELF](https://cirosantilli.com/elf-hello-world)
+* [Linking & Loading - Real Example](https://brightprogrammer.in/2023/09/24/Linking-Loading-Real-Example/)
+
+
+
 # Process Format and Phases 
 
-# Grep
+## Grep
 Permette di ricercare stringhe all'interno di un file `grep [options] pattern [FILE]`
 
 [GREP Cheat Sheet](assets/docs/grep_cheatsheet.pdf)
@@ -49,7 +56,7 @@ grep usa espressioni regolari
     any line in hello.txt that contains a three characters sequenze that ends with a lowercase letter from l to z. es. [abl] [xyz]
 
 
-# VIM/VI
+## VIM/VI
 (è stato il primo editor di linux)    
 `vi / vim filename`
 
@@ -105,9 +112,9 @@ vim ha 9 buffer per fare cut/paste
 
 Il file compilato contiene una serie di informazioni che servono all'OS per far eseguire il programma.
 
-Il codice sorgente `.c` viene dato in pasto al compilatore, il compilatore solitamente generava un codice oggetto `.o` che viene dato al linker. Adesso gcc compilatore fa entrambe compile + linking. L'unico formata eseguibile è quello binario.
+Il codice sorgente `.c` viene dato in pasto al compilatore, il compilatore solitamente generava un codice oggetto `.o` che viene dato al linker. Adesso `gcc` compilatore fa entrambe `compile + linking`. L'unico formato eseguibile è quello binario.
 
-Il compilatore fa due passate nella prima passata trasforma il programma in assembler (assemblatore è contenuto dentro il compilatore), assembler trasforma in un programma oggetto, l'oggetto entra dentro il linker, il linker recupera le librerie per poi generare il formato eseguibile.
+Il compilatore fa due passate, nella prima passata, trasforma il programma in assembler (assemblatore è contenuto dentro il compilatore), assembler trasforma in un programma oggetto, l'oggetto entra dentro il linker, il linker recupera le librerie per poi generare il formato eseguibile.
 
 Una volta che il programma è in formato eseguibile esiste un programma dell'OS che si chiama **Loader** che carica il programma. 
 
@@ -117,13 +124,13 @@ Il **loader di UNIX** è `ld`
 
 Le informazioni di un file eseguibile/oggetto creato dal compilatore è formattato in un formato standard ben definito, nel caso di UNIX è il formato **Executable and Linkable Format ELF**. Nel mondo Windows si chiama **Portable Executable PE**. (ELF è usato anche da PlayStation)
 
-![ELF Layout](assets/images/Elf-layout.webp)
 
 ## Componenti di ELF
 
 I componenti di un file ELF sono tre: Header, Section, Segments.
 
-    ELF Header
+![ELF Layout](assets/images/Elf-layout.webp)
+
     Program header table
     .text // codice del programma tradotto in codice binario
     .rodata // initialized read only data
@@ -135,7 +142,8 @@ I componenti di un file ELF sono tre: Header, Section, Segments.
     ...
     Section header table
 
-`readelf -h filename` # legge un file ELF
+### ELF Header
+`readelf -h filename` # mostra ELF Header di un file ELF
 
     // ELF Header
     magic_number: un numero che rappresenta il tipo di file
@@ -150,14 +158,14 @@ I componenti di un file ELF sono tre: Header, Section, Segments.
     e_shnum: number of section headers;
     e_shstrndx: index in section header table denoting section dedicated to hold section names.
 
-Le sezioni sono tutte le informazioni che servono per costruire l'eseguibile, viene usato per la fase successiva del linking. Il numero di sezioni dipende dalla grandezza del programma, dalle librerie che il programma usa, ecc. Quindi, non sono presenti tutte le sezioni del programma nel file ELF.
-
 ![EFL Header](assets/images/readelf-h_elf_header.png)
 
-### Section Header Table
-Sezioni sono delle strutture dati e servono per costruire segmenti.
+### Sections
+**Le sezioni** hanno tutte le informazioni che servono per costruire l'eseguibile, viene usato nella fase successiva del linking. Il numero di sezioni dipende dalla grandezza del programma, dalle librerie che il programma usa, ecc. Quindi, non sono presenti tutte le sezioni del programma nel file ELF. Le sezioni presenti nel maggior parte dei casi sono `.text`, `.rodata` e `.data`.
 
-`readelf -S filename` # per vedere le sezioni del file
+Section Header Table è una struttura dati che contiene elenco delle sezioni e loro indirizzi e altre informazioni che servono per costruire segmenti.
+
+`readelf -S <filename>` # per vedere la section table del file
 
     // Section Header
     sh_name : name of the section
@@ -171,8 +179,8 @@ Sezioni sono delle strutture dati e servono per costruire segmenti.
 
 ![Section Header](assets/images/readelf-S_section_header.png)
 
-### Segment Header
-Sezioni servono per costruire l'eseguibile, **i segmenti per compongono l'eseguibile**. Vengono chiamati **Program Header**, sono dei pezzi di codice e dei dati, preparati per essere caricati nella memoria. 
+### Segments
+Sezioni servono per costruire l'eseguibile, **i segmenti compongono l'eseguibile**. Vengono chiamati **Program Header**, sono composti dai pezzi di codice e dei dati, preparati per essere caricati nella memoria. 
 
     // Program Header
     p_type : kind of segment 
@@ -194,17 +202,21 @@ Sezioni servono per costruire l'eseguibile, **i segmenti per compongono l'esegui
 
 `objdump -S` per leggere ELF header 
 
-`objdump -d` **disassebmly** mostra il codice assembler del file ELF.
+`objdump -d` **disassembly** mostra il codice assembler del file ELF.
 
 `objcopy` to copy ELF sections.
 
-type dice il tipo di file:
+Il `type` del Header dice il tipo di file, può `REL` oppure `DYN`.
 
-`gcc -c` crea un file di tipo **REL rilocabile** (una che si può spostare) compilatore come prima cosa fa traduce il programma assumendo che sia l'unico programma eseguibile, programma viene me.
+* `gcc -c` crea un file (file oggetto) di tipo **REL - Relocatable File** (rilocabile) (un file che si può spostare). Nel formato REL il compilatore come prima cosa fa, traduce il programma assumendo che il programma sia l'unico programma all'interno della memoria del calcolatore. Come se partisse dall'indirizzo zero. Assegna al programma degli indirizzi partendo da zero.
+  
+  Nella fase generazione del codice oggetto vengono aggiunti le funzioni di libreria. A questo il programma non parte più da zero ma da un altro indirizzo. Perché il compilatore aggiunge le funzioni che servono per il programma il alto (es. la funzione printf di C).
 
-**Vantaggio**: gli si può modificare gli indirizzi.
+  Per questo il codice è disposto in maniera rilocabile, per essere spostato quando le funzioni saranno aggiunte.
 
-`gcc -o` crea un file di tipo **DYN eseguibile**.
+    **Vantaggio**: gli si può modificare gli indirizzi.
+
+* `gcc -o` crea un file di tipo eseguibile (ma linkato dinamicamente, con le librerie shared) **DYN - Position-Independent Executable file**.
 
 ![readelf -h diff between bin and obj files](assets/images/diff_readelf-h_bin_obj.png)
 
@@ -227,7 +239,7 @@ Se il file inizia con `#!` sh-bang allora shell chiama l'interprete riferimento 
 
 File **dinamicamente linkato** : linka a runtime le cose che sono condivise. Risparmio spazio, es. perché se uso la stessa libraria in diversi processi mi basta tenere in memoria solo copia della libreria. Ma è lento perché devo andare a cercare la parte che mi serve nella memoria centrale. inoltre, serve un programmino che intercetta le richieste.
 
-File **staticamente linkato** : è autonomo, contiene tutto quello che serve per essere eseguito auto consistente.
+File **staticamente linkato** : è autonomo, contiene tutto quello che serve per essere eseguito, è auto consistente.
 
 `readelf -a nameOfExec` # per capire l'interprete.
 

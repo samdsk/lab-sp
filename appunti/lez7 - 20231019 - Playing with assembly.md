@@ -13,6 +13,9 @@ keywords: ["Assembly","Assembly Registri", "Assembly Subregisters", "Assembly Da
         border-radius:5px;
     }
 </style>
+## Materiale
+* [Assembly](https://www.conradk.com/x86-64-assembly-from-scratch/)
+* [Assembly Tuts](https://github.com/0xAX/asm)
 
 # Playing with assembly
 
@@ -30,38 +33,39 @@ LOOP:
 ```
 
 Un programma assembly può essere suddiviso in tre sezioni: 
-* `section .data` : sezione per dichiarare dati inizializzati oppure costanti, 
-* `section .bss`: per dichiarare variabili, 
-* `section .text`: sezione di codice.
-  * `global _start`: dice al kernel dove inizia l'esecuzione del programma.
+* `.section .data` : sezione per dichiarare dati inizializzati oppure costanti, 
+* `.section .bss`: per dichiarare variabili, 
+* `.section .text`: sezione di codice.
+  * `.global _start`: dice al kernel dove inizia l'esecuzione del programma.
 
 ~~~s
-section .text
-    global _start
+.intel_syntax noprefix # utilizza sintassi intel x86 senza prefisso
+.section .text
+    .global _start
 _start:
 ~~~
 
 I dati in un programma assembler possono essere memorizzati in **registri** (memorizzati in una memoria direttamente accessibile dal processore) o in **variabili** (memorizzati in memoria). Registri hanno il _tempo di accesso più veloce in assoluto_.
 
-Il procesore può manipolare **esclusivamente i dati all'interno i registri**. Quindi, per modificare un variabile, l'unico modo è portare il contenuto della variabile dentro un registro -> modificare il contenuto del registro -> e scriverlo/spostarlo in un variabile. Quindi, non è possibile modificare il contenuto di un variabile in memoria.
+Il processore può manipolare **esclusivamente i dati all'interno i registri**. Quindi, per modificare un variabile, l'unico modo è portare il contenuto della variabile dentro un registro -> modificare il contenuto del registro -> e scriverlo/spostarlo in un variabile. Quindi, non è possibile modificare il contenuto di un variabile in memoria.
 
 ## Registri
 Ci sono 16 registri da 64bit, i primi 8 sono: RAX, ..., RDX, RBP, RSI, RDI, e RSP; i rimanenti 8 hanno una nomenclatura R8 - R15.
 
 ### Subregisters
-Nell'ambito della architettura Intel per il **back compatibility**, i registri sono fatti in modo tale che **è possibile accedere a sottoproduzioni del registro** proprio per garantire il codice scritto negli anni precedenti.
+Nell'ambito della architettura Intel per il **back compatibility**, i registri sono fatti in modo tale che **è possibile accedere a sotto porzioni del registro** proprio per garantire il codice scritto negli anni precedenti.
 
 RAX registro da 64bit, EAX lo stesso registro ma i 32 bit meno significativi, AX i 16 bit meno significativi di RAX, AL per 8 bit meno significati di RAX (RIGHT), AH per 8 bit più significativi di ultimi 16 bit di RAX (LEFT).
 
-Nei nuovi registri (R8-R15) si può la stessa cosa, R8 `qword`, R8D lower `dword` (ultimi 32bit), R8W lowest `word` (ultimi 16bit), R8B lowest `byte` (ultimi 8bit) (equivale a R8L e non ce R8H). 
+Nei nuovi registri (R8-R15) si può fare la stessa cosa, R8 `qword`, R8D lower `dword` (ultimi 32bit), R8W lowest `word` (ultimi 16bit), R8B lowest `byte` (ultimi 8bit) (equivale a R8L e non ce R8H). 
 
 ![x64 Registers](assets/images/x64_registers.png)
 ![Register names](assets/images/register-names_2.png)
 
 ## Dati
 Inoltre, in assembly esistono solo dati di tpo **numeri** e **caratteri**.
-* **Numeri** sn rappresentati usando la rappresentazione binaria.
-* Per rappresentazione dei dati in formato **carattere** si fa riferimento all'**unicode** in particolare **UTF-8**. (ogni carattere occupa un byte).
+* **Numeri** sono rappresentati usando la rappresentazione binaria.
+* Per la rappresentazione dei dati in formato **carattere** si fa riferimento all'**unicode** in particolare **UTF-8**. (ogni carattere occupa un byte).
 
 ![UTF-8 table](assets/images/ASCII_code_chart.png)
 
@@ -87,11 +91,12 @@ dd  0x12345678          # 0x78 0x56 0x34 0x12
 
 ~~~s
 .text # the actual code
-resb rese byte
-resw un word
-resq arrya of ten reals
-databyte db 0x55 
-db 'hello',
+resb x      # reserva x bytes
+resw x      # reserva x words (16 bits)
+resd x      # reserva x double-words (32 bits)
+resq x      # reserva x quad-words (64bits)
+db 0x55     # riserva un byte e assegnando 0x55
+db 'hello'  # riserva 5+1 bytes l'ultimo è null 0x00 e assegna hello\x00
 ~~~
 
 ## Modalità di indirizzamento dei dati all'interno della memoria
@@ -114,7 +119,7 @@ Lavora con i dati presenti nel registro.
 
 ### Indirizzamento immediato
 ~~~s
-mov dword ptr rax,12 # dat interpretato come decimale, se 0x12 interpreta come HEX
+mov dword ptr rax,12 # dato viene interpretato come decimale, se 0x12 interpreta come HEX esadecimale
 mov dword ptr rax,0x80 # sposta per 32bit il valore 0x80 dentro il registro rax (cioè utilizza ultimi 32 bit del registro RAX non modificando quello che ce nei primi bit)
 ~~~
 
@@ -135,13 +140,14 @@ Sposto in `rcx` il contenuto della locazione di memoria di `rax` (usa il puntato
 #### Base Pointer Addressing
 
     mov rax, [rcx + number]
-    # esmpio di indirizzamento indiretto
+    # esempio di indirizzamento indiretto
     [number]
     [reg]
     [reg + number]    
     [reg + reg * scale] # scale is 1,2,4 and 8 only
+    [reg + reg * scale +/- offset] == +/-offset[reg + reg * scale] # dove l'offset può essere sia negativo che positivo
 
-Se conosco a priori l'indirzzo di memoria posso usare questo
+Se conosco a priori l'indirizzo di memoria posso usare questo
 mov rcx, 0x20000 # the value 2000 s loaded in rcx.
 
 ~~~c
@@ -239,7 +245,7 @@ Il flusso di controllo (if/for/while) di un programma assembly viene controllato
 
 je (jump equal), jg (jump greater), jge (jump greater or equal), jl (jump less), jle (jump less or), ...
 
-### Instruction Pointer Resgiter **`RIP`**
+### Instruction Pointer Register **`RIP`**
 è il registro che contiene l'indirizzo del prossimo istruzione.
 
 ### Jumps
@@ -253,7 +259,7 @@ Per ogni salto esistono tre tipi di salti:
 * Indirect jumps: `jmp [reg + number]`
 
 ### Compare `cmp`
-L'operazione di compare setta la flag Zero Flag ZF a 1 se cmp è uguale a ZERO, altrimenti a 1.
+L'operazione di compare setta la flag Zero Flag ZF a 0 se cmp è uguale a ZERO, altrimenti a 1.
 
 #### Esempio if-else_if-else
 ~~~s
@@ -333,7 +339,7 @@ L'operazione di compare setta la flag Zero Flag ZF a 1 se cmp è uguale a ZERO, 
 
 
 ## System call
-Assembly usa syscall per fare operazioni complicate. Si tratta di memorizzare il numero del syscall, all'interno del registro `RAX` dopo di che si predispongono gli argomenti eventuali nei registri `RDI, RSI, RDX, R10, R8, R9`.
+Assembly usa syscall per fare operazioni complicate. Si tratta di memorizzare il numero del syscall, all'interno del registro `RAX` dopo di che si predispongono gli eventuali argomenti nei registri `RDI, RSI, RDX, R10, R8, R9`.
 
 ### Esempio Input da tastiera
 Per leggere da tastiera syscall numero 0 in RAX e in RSI l'indirizzo di un buffer dove mettere i dati letti e in RDX il numero di caratteri che si vuole leggere.

@@ -14,6 +14,10 @@ keywords: ["Host protection systems","momento autenticazione", "moment autorizza
         border-radius:5px;
     }
 </style>
+## Materiale
+* Cap 4 libro del testo
+* [Dispensa sul controllo degli accessi](/appunti/assets/docs/Access%20Controls_2.pdf)
+* [Hw access control](/appunti/assets/docs/Protection_80386.pdf)
 
 # Host protection systems
 
@@ -24,11 +28,11 @@ Un meccanismo di protezione deve prevedere tre momenti:
 
 Prima di tutto, **autenticazione**: è necessario sapere chi è la persona che entra "dimmi chi sei?", 
 
-**autorizzazione**: (le politiche di controllo degli accessi) dopo aver qualificato la persona decido quello che può fare "chi può fare cosa". E il processo viene sottoposto ad un auditing, dove si va a verificare che le decisioni intraprese del processo di autorizzazione siano corrette. Questo, per evitare gli errori della fase di autorizzazione.
+**autorizzazione**: (le politiche di controllo degli accessi) dopo aver qualificato la persona decido quello che può fare "chi può fare cosa". E il processo viene sottoposto ad un **auditing**, dove si va a verificare che le **decisioni intraprese del processo di autorizzazione siano corrette**. Questo, per evitare gli errori della fase di autorizzazione.
 
 **Meccanismi di enforcement**, sono meccanismi che consentono di mettere in pratica le politiche di autorizzazione e controllo degli accessi.
 
-**Accountability**, è la parte di audit in cui io tengo traccia di tutto quello che è stato fatto, perché possono verificarsi dei problemi e quindi, successivamente controllo le azioni che sono state fatte per verificare che sono state correttamente implementate queste le regole.
+**Accountability**, è la parte di audit in cui io **tengo traccia di tutto quello che è stato fatto**, perché possono verificarsi dei problemi e quindi, successivamente **controllo le azioni che sono state fatte per verificare che sono state correttamente implementate queste le regole**.
 
 Esempio Night club:
 * Autenticazione: controllo ID,
@@ -47,18 +51,18 @@ auditing...
 * **Rights**: diritti di accesso. Es. la memory (read, write, execute), non tutti possono fare tutto.
 
 ## Reference monitor
-Utente arriva, attraverso il processo di identificazione/autenticazione si fa riconoscere, una volta che entrato, quindi, l'utente ha bisogno di accedere a qualche risorsa, quindi, inoltra una richiesta, la richiesta viene intercettata da reference monitor e verifica le politiche. In base al contenuto della richiesta decide se garantire l'accesso oppure negare.
+Utente arriva, attraverso il processo di identificazione/autenticazione si fa riconoscere, una volta che entrato, quindi, l'utente ha bisogno di accedere a qualche risorsa, quindi, **inoltra una richiesta, la richiesta viene intercettata da reference monitor e verifica le politiche. In base al contenuto della richiesta decide se garantire l'accesso oppure negare**.
 
-**Reference monitor** è un insieme di meccanismi che che tramite un insieme componenti effettua il controllo degli accessi. è in parte dell'os e in generale è distribuita a diversi livelli. 
+**Reference monitor** è un insieme di meccanismi che tramite un insieme di componenti effettua il controllo degli accessi. è in parte dell'os e in generale è distribuita a diversi livelli. 
 
-**Aspetto critico** di questo sistema è che deve essere incorruttibile, quindi, bisogna garantire che sia incorruttibile il controllo degli accessi.
+**Aspetto critico** di questo sistema è che **deve essere incorruttibile**, quindi, bisogna garantire che sia incorruttibile il controllo degli accessi.
 
 Dal punto di visto informatico, deve essere un oggetto contenuto in dimensione (in termini di linee di codice) più è complicato ha più possibilità di contenere bug. 
 
 ## Identification and Authentication
-La politica di sicurezza, sostanzialmente definisce, chi può accedere a quale oggetto del sistema e in che modalità. Nel momento in cui decide chi può accedere a una risorsa è necessario avere un meccanismo che individui perfettamente gli utenti che provano ad accedere ad una risorsa, questa fase di riconoscimento dell'utente viene effettuata nella fase identificazione ed autenticazione.
+La politica di sicurezza, sostanzialmente **definisce chi può accedere a quale oggetto del sistema e in che modalità**. Nel momento in cui decide chi può accedere a una risorsa è necessario avere un meccanismo che individui perfettamente gli utenti che provano ad accedere ad una risorsa, questa fase di riconoscimento dell'utente viene effettuata nella fase di identificazione ed autenticazione.
 
-Il meccanismo per far si che un calcolatore sia in grado identificare una persona è suddiviso in due fasi:
+Il meccanismo per far si che un calcolatore sia in grado di identificare una persona è suddiviso in due fasi:
 1. **Fase di identificazione**: inizialmente la persona dice "chi è" fa una attestazione di identità. Es. nome cognome.
 2. **Fase di autenticazione** : dopo di che, attraverso una serie di meccanismi, il calcolatore verifica se questa identità sia vera o falsa.
 
@@ -72,7 +76,7 @@ La prima cosa che il calcolatore fa è quello capire se l'utente stia mentendo, 
 3. **what you are** : feature particolare fisica, impronta digitale.
 
 ### Password - What you know
-Come si fa proteggere la password? quello che viene memorizzato non è la password ma il digest di una funzione Hash f(x). Lo si usa per garantire la segretezza.
+Come si fa proteggere la password? quello che **viene memorizzato non è la password ma il digest di una funzione Hash f(x)**. Lo si usa per garantire la segretezza.
 
 Il file delle password (`/etc/shadow`) è accessibile solo al root.
 
@@ -82,10 +86,10 @@ Il calcolatore prende la password in chiaro gli si applica la funzione hash e co
 Non sono vulnerabilità implicite del meccanismo, in punto di vista ideale è perfetto. Il problema è l'uso che fa l'essere umano.
 
 Principali criticità: 
-* lack of awareness by end users, gli utenti non capiscono a cosa server una password,
-* lack password policies that are strictly enforced, mancanza di politiche rigide per l'uso e generazione delle password.
-* metodi di cifratura deboli,
-* le password vengono memorizzate in modo insicuro.
+* lack of awareness by end users, gli utenti non capiscono a cosa serve una password,
+* lack password policies that are strictly enforced, **mancanza di politiche rigide** per l'uso e generazione delle password.
+* metodi di **cifratura deboli**,
+* le password vengono **memorizzate in modo insicuro**.
 
 ### Low-tec password obtaining
 * primo metodo è il **guessing** attraverso social engineering,
@@ -114,7 +118,7 @@ def bruteforce():
 ```
 ![password power](assets/images/passwd%20power.png)
 
-* **Dictionary attacks**: facendo degli studi si scopre che le persone usano le password secondo una serie di situazioni come il paese, dove lavora, hobby, ecc. detto anche social engineering. Quindi, si usano una serie di password già noti. Solitamente con il dizionario giusto si ha una probabilità di 20% di trovare la password.
+* **Dictionary attacks**: facendo degli studi si scopre che le persone usano le password secondo una serie di situazioni come il paese, dove lavora, hobby, ecc. detto anche social engineering. Quindi, **si usano una serie di password già noti**. Solitamente con il dizionario giusto si ha una probabilità di 20% di trovare la password.
   
     Tools: 
     * [pwndump3](www.openwall.com/passwords/dl/pwdump), 
@@ -127,9 +131,9 @@ def bruteforce():
     * http://www.packetstormsecurity.nl/Crackers/wordlists
     * http://www.outpost9.com/files/WordLists.html
 
-* **Rainbow attacks**: salta la parte di generazione del hash per velocizzare dictionary attack, usa un dictionary delle parole hash. 
+* **Rainbow attacks**: salta la parte di generazione del hash per velocizzare dictionary attack, **usa un dictionary delle parole hash**. 
   
-  Per evitare questo attacco di usa il "salt" serve per complicare il rainbow attacks, il sistema genera un numero casuale che viene usato per cifrare.
+  Per evitare questo attacco di usa il **"salt" serve per complicare il rainbow attacks**, il sistema genera un numero casuale che viene usato per cifrare.
 
 ![etc passwd](assets/images/etc_passwd.jpg)
 ![etc passwd](assets/images/etc_shadow.jpg)
@@ -145,27 +149,27 @@ Se si ha il file `/etc/shadow` si può fare dictionary attack perché il file co
 ### Biometric - Tratti biometrici - What you are
 >you are your key - Schneier
 
-Permette di identificare univocamente tramite le caratteristiche fisiche di una persona, i tratti somatici più diffusi sono l'importa, la retina, la faccia. Inoltre, esistono anche identificazione tramite caratteristiche comportamentali come la voce, il modo di battere la tastiera, ecc.
+Permette di **identificare univocamente tramite le caratteristiche fisiche di una persona**, i tratti somatici più diffusi sono l'importa, la retina, la faccia. Inoltre, esistono anche identificazione tramite caratteristiche comportamentali come la voce, il modo di battere la tastiera, ecc.
 
 #### Problemi legati alla biometria
 
-* _intrusivi_ : es. come nel caso della retina che utilizza un raggio laser per scannerizzare, 
-* _costosi_ : il lettore biometrico più è sofisticato più è costoso, il file delle password è praticamente gratis.
-* _single point of failure_ : si come abbiamo di fronte dei meccanismi che il funzionamento è probabilistico, se il tratto somatico subisce delle variazioni non possiamo più utilizzarlo,
+* **_intrusivi_** : es. come nel caso della retina che utilizza un raggio laser per scannerizzare, 
+* **_costosi_** : il lettore biometrico più è sofisticato più è costoso, il file delle password è praticamente gratis.
+* **_single point of failure_** : si come abbiamo di fronte dei meccanismi che il funzionamento è probabilistico, se il tratto somatico subisce delle variazioni non possiamo più utilizzarlo,
 * _sampling error_ : dato che usiamo meccanismi che si basano sulla probabilita ci possono essere degli errori di campionamento,
-* _false reading_ : conseguentemente al punto precedente ci possono essere degli errori di lettura,
+* **_false reading_** : conseguentemente al punto precedente ci possono essere degli errori di lettura,
 * _speed_ : è più lento rispetto la password,
 * _forgery_ : può essere copiato/rifatto.
 
 la biometria viene usata per due momenti: 
-* individuare/identificazione (principale applicazione, usato negli aeroporti),
-* autenticare.
+* **individuare/identificazione** (principale applicazione, usato negli aeroporti),
+* **autenticare**.
   
-Nel caso delle password la persona si identifica con il nome utente, quindi era l'utente che doveva dire chi è, mentre con il biometrico, avendo le caratteriste il calcolatore può identificare l'utente.
+Nel caso delle **password la persona si identifica con il nome utente**, quindi era l'utente che doveva dire chi è, mentre con **il biometrico, avendo le caratteriste il calcolatore può identificare l'utente**.
 
 Nella fase di autenticazione abbiamo: 
-* una fase **_enrollment_**: la fase in cui si acquisiscono i dati biometrici. Generalmente fatta una volta sola, è la fase _più critica_ se si sbaglia questa fase potrebbe non riconoscere più, es. nel caso di impronta digitale si fa alla prima volta che si utilizza lo smartphone, 
-* una fase di **_recognition_** / verification : in cui si acquisisce il dato biometrico e confrontato con quello esistente in db.
+* una fase **_enrollment_**: la fase in cui si **acquisiscono i dati biometrici**. Generalmente fatta una volta sola, è **la fase _più critica_** se si sbaglia questa fase potrebbe non riconoscere più, es. nel caso di impronta digitale si fa alla prima volta che si utilizza lo smartphone, 
+* una fase di _recognition_ / **verification** : in cui si acquisisce il dato biometrico e confrontato con quello esistente in db.
 
 ![enrollment recognition](assets/images/enrollment%20recognition.png)
 
@@ -190,21 +194,21 @@ In realtà è la seguente:
 ![real classificatori](assets/images/real%20classificatori.png)
 
 ### Spoofing - masquerade attack
-Sono attacchi in cui si falsifica faceID, l'impronta.
+Sono attacchi in cui si **falsifica dati biometrici** come faceID, l'impronta.
 
 ### Something you have
-Il sistema usa qualcosa che ha solo quell'utente, chiamato token, può essere sia attivo che passivo.
+Il sistema usa qualcosa che ha solo quell'utente, chiamato **token**, può essere sia **attivo** che **passivo**.
 
 #### OTP - One Time Password
-Usato tipicamente dalle banche è un dispositivo che inizialmente viene sincronizzato con il server della banca. Adesso sono sostituiti dai generatori su smartphone.
+Usato tipicamente dalle banche è un dispositivo che inizialmente viene sincronizzato con il server della banca e **genera un numero sincronizzato col il server**. Adesso sono sostituiti dai generatori su smartphone.
 
 l'idea è nata quando si facevano attacchi di password sniffing, perché i dati sulla rete viaggiavano in chiaro.
 
 #### Smart cards
-Hanno un circuito integrato che è in grado di eseguire algoritmi crittografici. Permette di fare autenticazione e identificazione in modo sicuro.
+Hanno **un circuito integrato che è in grado di eseguire algoritmi crittografici**. Permette di fare **autenticazione e identificazione** in modo sicuro.
 
-#### Skimming
-I token sono vulnerabili agli attacchi di tipo skimming, in cui si utilizza un dispositivo che legge i dati dopo la fase di autenticazione dal macchinetta di bancomat.
+#### Attacchi Skimming
+I **token sono vulnerabili agli attacchi di tipo skimming**, in cui si utilizza un dispositivo che legge i dati dopo la fase di autenticazione dal macchinetta di bancomat.
 
 #### Sim Cards
 Esempio di utilizzo: la sim registrato precedentemente in banca, viene utilizzato come metodo identificazione. 
@@ -214,24 +218,24 @@ La sim al momento dell'acquisto viene registrato al nome della persona che lo ac
 ![gsm](assets/images/gsm.png)
 
 #### Strong authentication - Multifactor authentication
-Multifactor authenticator, permette di superare le debolezze delle passwords, in cui si usa almeno due fattori, una combinazione di who you are, who you know e what you have.
+Multifactor authenticator, permette di superare le debolezze delle passwords, in cui si usa **almeno due fattori, una combinazione di who you are, what you know e what you have**.
 
-Tipicamente di fa login con password e il server manda un otp al numero di cellulare.
+Tipicamente di fa login con password e il server manda un OTP al numero di cellulare.
 
 #### Single Sign-On - SSO
-In cui si utilizza un'unica password per più servizi. Esempio. Google permette di utilizzare una password per più servizi come gmail, youtube, google drive, ecc.
+In cui si utilizza **un'unica password per più servizi**. Esempio. Google permette di utilizzare una password per più servizi come gmail, youtube, google drive, ecc.
 
 ![SSO](assets/images/sso.png)
 
 ##### Federated Identity Management 
-Consente a organizzazioni diverse di stipulare accordi, per cui usando autenticazione di un organizzazione può accedere ad un'altra.
+Consente a organizzazioni diverse di stipulare accordi, per cui **usando autenticazione di un organizzazione può accedere ad un'altra**.
 
 Es. [_Eduroam_](https://eduroam.org/where/), permette di usare i credenziali di UNIMI per accedere rete wifi di qualsiasi università del "_mondo_".
 
 ![FIM](assets/images/fim.png)
 
 #### Open ID
-Open ID è un identity provider, è uno standard ben definito con dei protocolli. Praticamente, delle entità che sfrutta il servizio di autenticazione di un'altra entità.
+Open ID è un **identity provider**, è uno standard ben definito con dei protocolli. Praticamente, delle entità che sfrutta il servizio di autenticazione di un'altra entità.
 
 ![OPEN ID](assets/images/workflow_openid.png)
 

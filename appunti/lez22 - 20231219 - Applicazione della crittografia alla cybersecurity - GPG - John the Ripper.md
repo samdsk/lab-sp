@@ -19,6 +19,11 @@ keywords: ["IPSEC","Servizi offerti da IPSEC", "IPSEC Protocols", "Tunnel Mode",
     MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
 </script>
 
+## Materiale
+* Cap. 22 del libro di testo
+* [Dispensa del Prof. Avi Kak (Purdue University)](assets/docs/Lecture20%20notes%20Prof.%20Avi%20Kak.pdf)
+* [Articolo su MTPROTO e Signal](assets/docs/MTProto-Signal.pdf)
+
 # Applicazione della crittografia alla cybersecurity
 Le principali **applicazioni di crittografia sono legate ai protocolli di comunicazione**. Ci sono altre applicazioni come crypto file systems che consente di cifrare i dati sul hard. 
 

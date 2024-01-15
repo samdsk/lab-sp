@@ -15,6 +15,9 @@ keywords: ["Defensive Cybersecurity", "Cyber Security Framework", "NIST", "Firew
     }
 </style>
 
+## Materiale
+* Libro di testo: capitolo 6, paragrafo 10.3
+
 # Introduzione a Defensive Cybersecurity
 Per rilevare prima possibile un attacco informatico sono state introdotte varie tecnologie, alcune sono di tipo preventivo ma maggior parte sono detection response, quindi, rilevano un attacco in corso e quindi provano a rispondere.
 

@@ -20,6 +20,10 @@ keywords: [""]
     MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
 </script>
 
+## Materiale
+* [Introduzione alle PKI](https://www.ncsc.gov.uk/collection/in-house-public-key-infrastructure/introduction-to-public-key-infrastructure)
+* [https://gnupg.org/](https://gnupg.org/)
+
 # Crittografia - parte 2
 
 Il problema della integrità, come facciamo garantire l'integrità? **Encryption non ci garantire l'integrità**, cioè come facciamo sapere che quando riceviamo un messaggio cifrato quello è l'originale?

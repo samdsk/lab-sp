@@ -1,5 +1,40 @@
 # Pwn college Embryoio  
 
+## lvl 1
+```sh
+bash
+/challenge/...
+```
+## lvl 2
+```sh
+bash
+echo "pass" | /challenge/...
+```
+## lvl 3
+```sh
+bash
+/challenge/... password
+```
+## lvl 4
+```sh
+bash
+export key=value
+/cha...
+```
+## lvl 5
+```sh
+bash
+echo "password" > /tmp/...
+/cha... < /tmp/...
+```
+## lvl 6
+
+```sh
+bash
+/cha.. > /tmp/...
+cat /tmp/...
+```
+
 ## lvl 7
 
     env -i ./emb...
@@ -36,6 +71,13 @@ env -i /challenge/embryoio_level14
     import subprocess; \
     subprocess.run("/challenge/embryoio_level15")
 ~~~
+~~~py
+    # run bash script from ipython
+    # run ipython 
+    from pwn import *; \
+    p = process("/challenge/embryoio_level15")
+    p.interactive()
+~~~
 
 ## lvl 16
 same as lvl 15
@@ -56,6 +98,13 @@ same as lvl 15
     os.environ["var"]="str"; \
     subprocess.run(["/challenge/embryoio_level17","yixpnqntuu"])
 ~~~
+~~~py
+    # run bash script from ipython
+    # run ipython 
+    from pwn import *
+    p = process(["/challenge/embryoio_level18"],env={"key":"value"})
+    p.interactive()
+~~~
  
 
 ## lvl 19
@@ -64,6 +113,13 @@ same as lvl 15
 import subprocess; \
 file = open("/tmp/jkibzf","r"); \
 subprocess.run(["/challenge/embryoio_level19"],stdin=file);
+~~~
+~~~py
+    # run bash script from ipython
+    # run ipython 
+    from pwn import *;\
+    p = process(["/challenge/embryoio_level19"],stdin=open('/tmp/..','r'));\
+    p.interactive()
 ~~~
  
 
@@ -117,33 +173,70 @@ same as 20
 
 ## lvl 28
 same as 21
- 
+
+```python
+from pwn import *
+
+p = process('/challenge/embryoio_level28',env={})
+p.interactive()
+```
 
 ## lvl 29
 
 ~~~c
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-void pwncollege(){ 
-    int pid = fork();
-    if(pid<0)
-        printf("Error! \n");
-    
 
-    if(pid==0)
-        execve("/challenge/embryoio_level29");        
+void pwncollege(){
+        pid_t pid = fork();
 
-    else waitpid(pid);
+        if(pid == 0){
+                char *path = "/challenge/embryoio_level29";
+                char *args[] = {path,NULL};
+                char *evn[] = {NULL};
+                execve(path,args,evn);
+        }else wait(NULL);
 }
 
+
 int main(){
-    pwncollege();
-    return 0;
+        pwncollege();
+        exit(0);
 }
 ~~~
 
 ## lvl 30
 same as 29
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+
+void pwncollege(){
+        pid_t pid = fork();
+
+        if(pid == 0){
+                char *path = "/challenge/embryoio_level30";
+                char *args[] = {path,NULL};
+                char *evn[] = {NULL};
+                execve(path,args,evn);
+        }else wait(NULL);
+}
+
+
+int main(){
+        pwncollege();
+        exit(0);
+}
+```
 
 ## lvl 31
 ~~~c
@@ -158,7 +251,7 @@ void pwncollege(){
                                 
     if(pid==0){              
         char *prog = "/challenge/embryoio_level30";
-        char *args[] = {prog,"zxwzemwbyv"};                                                         
+        char *args[] = {prog,"zxwzemwbyv"};       
         execve("/challenge/embryoio_level31", args,NULL);
                             
     }else waitpid(pid);            
@@ -176,26 +269,24 @@ int main(){
 
 ~~~c
 #include <stdio.h>
-        
-void pwncollege(char** argv, char** envp){
-    int pid = fork();
-        
-    if(pid<0)
-        printf("Error! \n");
-         
-    if(pid==0){
-        char *prog = "/challenge/embryoio_level32";
-        char *args[] = {prog};
-        char *env[] = {"xwzwxd=rsaqanygyj"};
-                                                                                                    
-        execve("/challenge/embryoio_level32", NULL,envp);
-        
-    }else waitpid(pid);
-}       
-        
-int main(int argc, char** argv, char** envp){
-    pwncollege(argv, envp); 
-    return 0;
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+
+void pwncollege(){}
+
+int main(int argc, char** args, char** env){
+        pid_t pid = fork(); 
+
+        if(pid == 0){
+                char *path = "/challenge/embryoio_level32";
+                char *args[] = {path,NULL};
+                execve(path,args,env);
+        }else wait(NULL);
+
+        exit(0);
 }       
 ~~~ 
 
@@ -232,6 +323,32 @@ int main(int argc, char** argv, char** envp){
     ./file < /tmp/file
 
  
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+
+void pwncollege(){}
+
+int main(int argc, char** args, char** env){
+        pid_t pid = fork();
+
+        if(pid == 0){
+                char *path = "/challenge/embryoio_level33";
+                char *args[] = {path,NULL};
+                char *env[] = {NULL};
+                int fd = open("/tmp/brxhzr",O_RDONLY);
+                dup2(fd,0);
+                execve(path,args,env);
+        }else wait(NULL);
+
+        exit(0);
+}
+```
 
 ## lvl 34
 same as 33
@@ -274,7 +391,7 @@ env -i ./binaryfile
  
 
 ## lvl 42 -> 47
-    just put them inside a sh file
+    just put previous sols inside a .sh file
 
 ## lvl 48
 ~~~py
@@ -284,6 +401,14 @@ subprocess.run(["cat"],stdin=p1.stdout);
 
 # use subprecess.PIPE to pipe stdin and stdout between subprocs
 ~~~
+
+alternative with pwntools
+```python
+from pwn import * ;\
+cat = process(['cat']) ;\
+p = process(["/challenge/embryoio_level48"], stdout=cat.stdin) ;\
+cat.interactive()
+```
  
 
 ## lvl 51
@@ -348,6 +473,55 @@ int main(int argc, char** argv, char** envp){
     return 0;
 }
 ~~~
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+void pwncollege(){}
+
+int main(){
+    int fd[2];
+
+    if(pipe(fd) == -1){
+        perror("pipe error\n");
+        exit(EXIT_FAILURE);
+    }
+
+    pid_t p = fork();
+
+    if(p == 0){
+        dup2(fd[1],1);
+        close(fd[0]);
+        close(fd[1]);
+        char *prog = "/challenge/embryoio_level60";
+        execlp(prog,prog,NULL);
+    }
+    
+    pid_t c = fork();
+
+    if(c == 0){
+        dup2(fd[0],0);
+        close(fd[0]);
+        close(fd[1]);
+
+        execlp("cat","cat",NULL);
+    }
+    
+    close(fd[0]);
+    close(fd[1]);
+
+    waitpid(p,NULL,0);
+    waitpid(c,NULL,0);
+
+    exit(0);
+}
+```
 
 ## lvl 64
 ~~~c

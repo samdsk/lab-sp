@@ -555,7 +555,49 @@ int main(int argc, char** argv, char** envp){
 // gcc file.c -o file
 // cat | ./file
 ~~~
- 
+```c
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <fcntl.h>
+
+void pwncollege(){}
+
+int main(){
+    int fd[2];
+    pipe(fd);
+
+    pid_t cat = fork();
+
+    if(cat == 0){
+        dup2(fd[1],1);
+        close(fd[0]);
+        close(fd[1]);
+
+        execlp("cat","cat",NULL);
+    }
+    
+    pid_t p = fork();
+
+    if(p == 0){
+        dup2(fd[0],0);
+        close(fd[0]);
+        close(fd[1]);
+        char* prog = "/challenge/embryoio_level64";
+
+        execlp(prog,prog,NULL);
+    }
+    
+    close(fd[0]);
+    close(fd[1]);
+
+    waitpid(p,NULL,0);
+    waitpid(cat,NULL,0);
+
+    exit(0);
+}
+```
 
 ## lvl 66
     # parent process : find
@@ -574,7 +616,7 @@ int main(int argc, char** argv, char** envp){
 
 ~~~sh
 #!/bin/bash        
-                   
+# str concatenation                 
 str="a "           
 for index in {0..45}
 do                 
@@ -777,7 +819,7 @@ Task:
  12         chdir("/tmp/racuzo");                                 
  13         int f = open("ftssxb",O_RDWR);                        
  14         dup2(f,STDIN_FILENO);                                 
- 15         execlp("/challenge/embryoio_level84","embryoio_level84",NULL);                              
+ 15         execlp("/challenge/embryoio_level84","embryoio_level84",NULL); 
  16                                                               
  17     }else waitpid(pid);                                       
  18 }                                                             
@@ -814,7 +856,7 @@ Task:
  12         chdir("/tmp/kuxzlq");                                         
  13         execlp("/challenge/embryoio_level85","embryoio_level85",NULL);
  14         chdir("~"); 
- 15         sleep(1000);                                                                                
+ 15         sleep(1000);  
  16                     
  17     }else waitpid(pid);
  18 }                   
@@ -887,6 +929,24 @@ Task:
 - the challenge will make sure that stdout is a redirected from fifo
 - the challenge will check for a hardcoded password over stdin : jheroibv
 
+```
+shellscript -> /challenge/embryoio_level92 < in_p
+echo "tfsxnkub" > in_p | ./s.sh > out_p | cat out_p
+```
+
+## 93
+- the challenge checks for a specific parent process : shellscript
+- the challenge will make sure that stdin is redirected from a fifo
+- the challenge will make sure that stdout is a redirected from fifo
+- the challenge will force the parent process to solve a number of arithmetic problems : 1
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*
+- the complexity (in terms of nested expressions) of the arithmetic problems : 1
+
+```sh
+s.sh -> /challenge/embryoio_level93 < in_p
+cat > in_p | ./s.sh > out_p | cat out_p
+```
+
 ## 94
 ```sh
 1 #!/bin/bash
@@ -901,6 +961,15 @@ Task:
 - the challenge checks for a specific parent process : shellscript
 - the challenge will take input on a specific file descriptor : 303
 - the challenge will check for a hardcoded password over stdin : fjnvdylk
+
+## 95
+```sh
+/challenge/embryoio_level95 <&2
+```
+TasK:
+- the challenge checks for a specific parent process : shellscript
+- the challenge will take input on a specific file descriptor : 2
+- the challenge will check for a hardcoded password over stdin : praegoxs
 
 ## 99
 ```py
@@ -968,7 +1037,7 @@ Task:
   7     
   8 p2 = pwn.process(["/challenge/embryoio_level104"],stdout=pin)
   9 p1 = pwn.process(["cat","-"],stdin=pout)
- 10 p1.interactive()                                                                                    
+ 10 p1.interactive()               
  11  
  12 pin.close()
  13 pout.close()    
@@ -1076,6 +1145,10 @@ terminal 2
 terminal 3
 
     cat out_pipe
+
+```sh
+echo "cpkzuebb" > in_p | ./c.out < in_p > out_p | cat out_p
+```
 
 Task:
 - the challenge checks for a specific parent process : binary

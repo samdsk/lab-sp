@@ -1077,7 +1077,7 @@ Task:
 
 ## 109
 ```py
-1 import subprocess                                                                                   
+1 import subprocess
 2  
 3 p = subprocess.Popen(["/challenge/embryoio_level109"])
 4 p.wait()
@@ -1180,7 +1180,7 @@ void pwncollege(char** argv, char** envp){
         if(s_pid != 0){ // creating 2 processes challenge as parent and cat out_pipe as child
             dup2(f_in,0);
             dup2(f_out,1);
-            execlp("/challenge/embryoio_level119","/challenge/e    mbryoio_level119",NULL);
+            execlp("/challenge/embryoio_level119","/challenge/embryoio_level119",NULL);
              // exec challenge with stdin = in_pipe and stdout = out_pipe
         }else if(s_pid == 0){
             dup2(f_out,0);
@@ -1264,7 +1264,42 @@ Task:
 - the challenge will check for a hardcoded password over stdin : bctxddpj
 
 ## 123
-send
+same as 122
+
+Alternative way
+```c
+#include <fcntl.h>
+#include <stdio.h>  
+#include <unistd.h>    
+#include <signal.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+
+void pwncollege(char** argv, char** envp){
+    pid_t pid = fork();    
+    
+    if(pid == 0){
+        dup2(0,1);
+        char *proc = "/challenge/embryoio_level122";
+        execlp(proc,proc,NULL);
+    }else{
+        wait(NULL);         
+    }
+    
+}     
+    
+void main(int argc, char** argv, char** envp){
+    pwncollege(argv, envp);   
+}
+```
+```
+./s.out and enter the password
+```
+## 123
+```
+./s.out
+from another terminal exec -> kill -SIG... pid
+```
 
 ## 127
 run script from sh file

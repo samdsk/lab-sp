@@ -1585,3 +1585,94 @@ Task:
 - the challenge will force the parent process to solve a number of arithmetic problems : 5
 - the challenge will use the following arithmetic operations in its arithmetic problems : +*%
 - the complexity (in terms of nested expressions) of the arithmetic problems : 3
+
+```c
+#include <arpa/inet.h> // inet_addr()
+#include <netdb.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h> // bzero()
+#include <sys/socket.h>
+#include <fcntl.h>
+#include <sys/select.h>
+#include <unistd.h> // read(), write(), close()
+#define MAX 1024
+#define PORT 1866
+#define SA struct sockaddr
+
+
+
+void pwncollege(int connfd)
+{
+    char buff[MAX]; 
+    int n; 
+    // infinite loop for chat 
+    for (;;) { 
+        bzero(buff, MAX); 
+        int count = 1;
+
+        while( count > 0){
+            count = read(connfd, buff, sizeof(buff)); /* there was data to read */
+            printf("%s", buff);
+            bzero(buff, MAX); 
+            
+        }
+        bzero(buff, MAX); 
+        // printf("reading\n");
+        n = 0; 
+        // copy server message in the buffer 
+        while ((buff[n++] = getchar()) != '\n'); 
+
+        // printf("read: %s\n",buff);
+        
+        // and send that buffer to client 
+        write(connfd, buff, sizeof(buff)); 
+   
+        // if msg contains "Exit" then server exit and chat ended. 
+        if (strncmp("exit", buff, 4) == 0) { 
+            printf("Server Exit...\n"); 
+            break; 
+        } 
+    } 
+}
+ 
+int main()
+{
+    int sockfd, connfd;
+    struct sockaddr_in servaddr, cli;
+ 
+    // socket create and verification
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd == -1) {
+        printf("socket creation failed...\n");
+        exit(0);
+    }
+    else
+        printf("Socket successfully created..\n");
+
+    bzero(&servaddr, sizeof(servaddr));
+ 
+    // assign IP, PORT
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    servaddr.sin_port = htons(PORT);
+ 
+    // connect the client socket to server socket
+    if (connect(sockfd, (SA*)&servaddr, sizeof(servaddr))
+        != 0) {
+        printf("connection with the server failed...\n");
+        exit(0);
+    }
+    else
+        printf("connected to the server..\n");
+ 
+    // function for chat
+    pwncollege(sockfd);
+ 
+    // close the socket
+    close(sockfd);
+}
+```

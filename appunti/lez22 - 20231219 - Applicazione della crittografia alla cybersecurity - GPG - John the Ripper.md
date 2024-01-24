@@ -117,7 +117,7 @@ Idea: bisogna lavorare a livello di sistema modificando il codice di protocollo 
 In pratica: si parte con una richiesta **all'utente di definire un Security Policy Database**.
 
 #### Security policy database
-Dice cosa fare al traffico. Es. tutti il traffico dalla mia macchina ad un server particolare me lo deve cifrare.
+Dice cosa fare al traffico. Es. tutto il traffico inviato dalla mia macchina ad un server particolare me lo deve cifrare.
 
 Le SP specificano: che **tipo di trasformazioni fare sul pacchetto**, se andiamo in tunnel mode oppure in transport, se fare una trasformazione crittografica sul quel traffico, trasformazione che vogliamo effettuare sul pacchetto, ecc.
 
@@ -177,7 +177,7 @@ Il pacchetto ipsec contiene il parametro Security Parameter Index **SPI** che **
 * **messaggi broadcast non si possono fare** perché serve un SA con ogni dispositivo della rete.
 
 ## Transport Level Security - TLS / SSL
-IPsec nasce dopo TCP security, il primo protocollo ad affrontare il problema di sicurezza sulla rete è stato SSL poi diventato TLS. è un protocollo sviluppato da Netscape e standardizzato con RFC 2246. Ha come obiettivo quello di stabilire un canale sicuro tra due host a livello di trasporto.
+IPsec nasce dopo TCP security, il primo protocollo ad affrontare il problema di sicurezza sulla rete è stato SSL poi diventato TLS. è un protocollo sviluppato da Netscape e standardizzato con RFC 2246. Ha come **obiettivo quello di stabilire un canale sicuro tra due host a livello di trasporto**.
 
 Se IPsec è a livello IP, allora non dovrebbe leggere la porta che è all'interno del header TCP. In realtà, per non sovraccaricare IPsec è stato usato il concetto di porta anche in IPsec, es. posso cifrare solo il traffico HTTP. 
 
@@ -267,7 +267,7 @@ Il protocollo Handshake è tutto automatizzato, infatti, IPsec con IKE incorpora
 ![Final Handshake Diagram](assets/images/tls%20handshake.jpg)
 
 ### Record protocol
-Una volta definiti le chiavi sono state definite con protocollo handshake, **il record protocol prende il pacchetto TCP, lo frammenta, fa eventualmente una compressione, calcola Message Authentication Code MAC, fa la cifratura, aggiunge header TLS ed invia al layer successivo**.
+Una volta definiti le chiavi sono state definite con protocollo handshake, **il record protocol prende il pacchetto del application level, lo frammenta, fa eventualmente una compressione, calcola Message Authentication Code MAC, fa la cifratura, aggiunge header TLS ed invia al layer successivo**.
 
 ![TLS record protocol](assets/images/tsl%20record.png)
 
@@ -426,7 +426,7 @@ gpg --verify file.txt.sig file.txt
 gpg --export 
 ```
 ### Marginal Trust
-Una chiave può diventare marginal se ci sono altre 3 marginal (di cui io ho un trust marginal) che firma quella chiave.
+Una chiave può diventare validity full se ci sono altre 3 marginal (di cui io ho un trust minimo marginal) che firma quella chiave.
 
 ![GPG Marginal Trust](assets/images/gpg%20marginal%20trust.jpg)
 

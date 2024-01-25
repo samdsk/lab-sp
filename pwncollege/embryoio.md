@@ -1,5 +1,40 @@
 # Pwn college Embryoio  
 
+## lvl 1
+```sh
+bash
+/challenge/...
+```
+## lvl 2
+```sh
+bash
+echo "pass" | /challenge/...
+```
+## lvl 3
+```sh
+bash
+/challenge/... password
+```
+## lvl 4
+```sh
+bash
+export key=value
+/cha...
+```
+## lvl 5
+```sh
+bash
+echo "password" > /tmp/...
+/cha... < /tmp/...
+```
+## lvl 6
+
+```sh
+bash
+/cha.. > /tmp/...
+cat /tmp/...
+```
+
 ## lvl 7
 
     env -i ./emb...
@@ -36,6 +71,13 @@ env -i /challenge/embryoio_level14
     import subprocess; \
     subprocess.run("/challenge/embryoio_level15")
 ~~~
+~~~py
+    # run bash script from ipython
+    # run ipython 
+    from pwn import *; \
+    p = process("/challenge/embryoio_level15")
+    p.interactive()
+~~~
 
 ## lvl 16
 same as lvl 15
@@ -56,6 +98,13 @@ same as lvl 15
     os.environ["var"]="str"; \
     subprocess.run(["/challenge/embryoio_level17","yixpnqntuu"])
 ~~~
+~~~py
+    # run bash script from ipython
+    # run ipython 
+    from pwn import *
+    p = process(["/challenge/embryoio_level18"],env={"key":"value"})
+    p.interactive()
+~~~
  
 
 ## lvl 19
@@ -64,6 +113,13 @@ same as lvl 15
 import subprocess; \
 file = open("/tmp/jkibzf","r"); \
 subprocess.run(["/challenge/embryoio_level19"],stdin=file);
+~~~
+~~~py
+    # run bash script from ipython
+    # run ipython 
+    from pwn import *;\
+    p = process(["/challenge/embryoio_level19"],stdin=open('/tmp/..','r'));\
+    p.interactive()
 ~~~
  
 
@@ -117,33 +173,70 @@ same as 20
 
 ## lvl 28
 same as 21
- 
+
+```python
+from pwn import *
+
+p = process('/challenge/embryoio_level28',env={})
+p.interactive()
+```
 
 ## lvl 29
 
 ~~~c
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-void pwncollege(){ 
-    int pid = fork();
-    if(pid<0)
-        printf("Error! \n");
-    
 
-    if(pid==0)
-        execve("/challenge/embryoio_level29");        
+void pwncollege(){
+        pid_t pid = fork();
 
-    else waitpid(pid);
+        if(pid == 0){
+                char *path = "/challenge/embryoio_level29";
+                char *args[] = {path,NULL};
+                char *evn[] = {NULL};
+                execve(path,args,evn);
+        }else wait(NULL);
 }
 
+
 int main(){
-    pwncollege();
-    return 0;
+        pwncollege();
+        exit(0);
 }
 ~~~
 
 ## lvl 30
 same as 29
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+
+void pwncollege(){
+        pid_t pid = fork();
+
+        if(pid == 0){
+                char *path = "/challenge/embryoio_level30";
+                char *args[] = {path,NULL};
+                char *evn[] = {NULL};
+                execve(path,args,evn);
+        }else wait(NULL);
+}
+
+
+int main(){
+        pwncollege();
+        exit(0);
+}
+```
 
 ## lvl 31
 ~~~c
@@ -158,7 +251,7 @@ void pwncollege(){
                                 
     if(pid==0){              
         char *prog = "/challenge/embryoio_level30";
-        char *args[] = {prog,"zxwzemwbyv"};                                                         
+        char *args[] = {prog,"zxwzemwbyv"};       
         execve("/challenge/embryoio_level31", args,NULL);
                             
     }else waitpid(pid);            
@@ -176,26 +269,24 @@ int main(){
 
 ~~~c
 #include <stdio.h>
-        
-void pwncollege(char** argv, char** envp){
-    int pid = fork();
-        
-    if(pid<0)
-        printf("Error! \n");
-         
-    if(pid==0){
-        char *prog = "/challenge/embryoio_level32";
-        char *args[] = {prog};
-        char *env[] = {"xwzwxd=rsaqanygyj"};
-                                                                                                    
-        execve("/challenge/embryoio_level32", NULL,envp);
-        
-    }else waitpid(pid);
-}       
-        
-int main(int argc, char** argv, char** envp){
-    pwncollege(argv, envp); 
-    return 0;
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+
+void pwncollege(){}
+
+int main(int argc, char** args, char** env){
+        pid_t pid = fork(); 
+
+        if(pid == 0){
+                char *path = "/challenge/embryoio_level32";
+                char *args[] = {path,NULL};
+                execve(path,args,env);
+        }else wait(NULL);
+
+        exit(0);
 }       
 ~~~ 
 
@@ -232,6 +323,32 @@ int main(int argc, char** argv, char** envp){
     ./file < /tmp/file
 
  
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+
+void pwncollege(){}
+
+int main(int argc, char** args, char** env){
+        pid_t pid = fork();
+
+        if(pid == 0){
+                char *path = "/challenge/embryoio_level33";
+                char *args[] = {path,NULL};
+                char *env[] = {NULL};
+                int fd = open("/tmp/brxhzr",O_RDONLY);
+                dup2(fd,0);
+                execve(path,args,env);
+        }else wait(NULL);
+
+        exit(0);
+}
+```
 
 ## lvl 34
 same as 33
@@ -274,7 +391,7 @@ env -i ./binaryfile
  
 
 ## lvl 42 -> 47
-    just put them inside a sh file
+    just put previous sols inside a .sh file
 
 ## lvl 48
 ~~~py
@@ -284,6 +401,14 @@ subprocess.run(["cat"],stdin=p1.stdout);
 
 # use subprecess.PIPE to pipe stdin and stdout between subprocs
 ~~~
+
+alternative with pwntools
+```python
+from pwn import * ;\
+cat = process(['cat']) ;\
+p = process(["/challenge/embryoio_level48"], stdout=cat.stdin) ;\
+cat.interactive()
+```
  
 
 ## lvl 51
@@ -349,6 +474,55 @@ int main(int argc, char** argv, char** envp){
 }
 ~~~
 
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+void pwncollege(){}
+
+int main(){
+    int fd[2];
+
+    if(pipe(fd) == -1){
+        perror("pipe error\n");
+        exit(EXIT_FAILURE);
+    }
+
+    pid_t p = fork();
+
+    if(p == 0){
+        dup2(fd[1],1);
+        close(fd[0]);
+        close(fd[1]);
+        char *prog = "/challenge/embryoio_level60";
+        execlp(prog,prog,NULL);
+    }
+    
+    pid_t c = fork();
+
+    if(c == 0){
+        dup2(fd[0],0);
+        close(fd[0]);
+        close(fd[1]);
+
+        execlp("cat","cat",NULL);
+    }
+    
+    close(fd[0]);
+    close(fd[1]);
+
+    waitpid(p,NULL,0);
+    waitpid(c,NULL,0);
+
+    exit(0);
+}
+```
+
 ## lvl 64
 ~~~c
 // the challenge checks for a specific parent process : binary
@@ -381,7 +555,49 @@ int main(int argc, char** argv, char** envp){
 // gcc file.c -o file
 // cat | ./file
 ~~~
- 
+```c
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <fcntl.h>
+
+void pwncollege(){}
+
+int main(){
+    int fd[2];
+    pipe(fd);
+
+    pid_t cat = fork();
+
+    if(cat == 0){
+        dup2(fd[1],1);
+        close(fd[0]);
+        close(fd[1]);
+
+        execlp("cat","cat",NULL);
+    }
+    
+    pid_t p = fork();
+
+    if(p == 0){
+        dup2(fd[0],0);
+        close(fd[0]);
+        close(fd[1]);
+        char* prog = "/challenge/embryoio_level64";
+
+        execlp(prog,prog,NULL);
+    }
+    
+    close(fd[0]);
+    close(fd[1]);
+
+    waitpid(p,NULL,0);
+    waitpid(cat,NULL,0);
+
+    exit(0);
+}
+```
 
 ## lvl 66
     # parent process : find
@@ -400,7 +616,7 @@ int main(int argc, char** argv, char** envp){
 
 ~~~sh
 #!/bin/bash        
-                   
+# str concatenation                 
 str="a "           
 for index in {0..45}
 do                 
@@ -603,7 +819,7 @@ Task:
  12         chdir("/tmp/racuzo");                                 
  13         int f = open("ftssxb",O_RDWR);                        
  14         dup2(f,STDIN_FILENO);                                 
- 15         execlp("/challenge/embryoio_level84","embryoio_level84",NULL);                              
+ 15         execlp("/challenge/embryoio_level84","embryoio_level84",NULL); 
  16                                                               
  17     }else waitpid(pid);                                       
  18 }                                                             
@@ -640,7 +856,7 @@ Task:
  12         chdir("/tmp/kuxzlq");                                         
  13         execlp("/challenge/embryoio_level85","embryoio_level85",NULL);
  14         chdir("~"); 
- 15         sleep(1000);                                                                                
+ 15         sleep(1000);  
  16                     
  17     }else waitpid(pid);
  18 }                   
@@ -713,6 +929,24 @@ Task:
 - the challenge will make sure that stdout is a redirected from fifo
 - the challenge will check for a hardcoded password over stdin : jheroibv
 
+```
+shellscript -> /challenge/embryoio_level92 < in_p
+echo "tfsxnkub" > in_p | ./s.sh > out_p | cat out_p
+```
+
+## 93
+- the challenge checks for a specific parent process : shellscript
+- the challenge will make sure that stdin is redirected from a fifo
+- the challenge will make sure that stdout is a redirected from fifo
+- the challenge will force the parent process to solve a number of arithmetic problems : 1
+- the challenge will use the following arithmetic operations in its arithmetic problems : +*
+- the complexity (in terms of nested expressions) of the arithmetic problems : 1
+
+```sh
+s.sh -> /challenge/embryoio_level93 < in_p
+cat > in_p | ./s.sh > out_p | cat out_p
+```
+
 ## 94
 ```sh
 1 #!/bin/bash
@@ -727,6 +961,15 @@ Task:
 - the challenge checks for a specific parent process : shellscript
 - the challenge will take input on a specific file descriptor : 303
 - the challenge will check for a hardcoded password over stdin : fjnvdylk
+
+## 95
+```sh
+/challenge/embryoio_level95 <&2
+```
+TasK:
+- the challenge checks for a specific parent process : shellscript
+- the challenge will take input on a specific file descriptor : 2
+- the challenge will check for a hardcoded password over stdin : praegoxs
 
 ## 99
 ```py
@@ -794,7 +1037,7 @@ Task:
   7     
   8 p2 = pwn.process(["/challenge/embryoio_level104"],stdout=pin)
   9 p1 = pwn.process(["cat","-"],stdin=pout)
- 10 p1.interactive()                                                                                    
+ 10 p1.interactive()               
  11  
  12 pin.close()
  13 pout.close()    
@@ -834,7 +1077,7 @@ Task:
 
 ## 109
 ```py
-1 import subprocess                                                                                   
+1 import subprocess
 2  
 3 p = subprocess.Popen(["/challenge/embryoio_level109"])
 4 p.wait()
@@ -903,6 +1146,10 @@ terminal 3
 
     cat out_pipe
 
+```sh
+echo "cpkzuebb" > in_p | ./c.out < in_p > out_p | cat out_p
+```
+
 Task:
 - the challenge checks for a specific parent process : binary
 - the challenge will make sure that stdin is redirected from a fifo
@@ -933,7 +1180,7 @@ void pwncollege(char** argv, char** envp){
         if(s_pid != 0){ // creating 2 processes challenge as parent and cat out_pipe as child
             dup2(f_in,0);
             dup2(f_out,1);
-            execlp("/challenge/embryoio_level119","/challenge/e    mbryoio_level119",NULL);
+            execlp("/challenge/embryoio_level119","/challenge/embryoio_level119",NULL);
              // exec challenge with stdin = in_pipe and stdout = out_pipe
         }else if(s_pid == 0){
             dup2(f_out,0);
@@ -1017,7 +1264,42 @@ Task:
 - the challenge will check for a hardcoded password over stdin : bctxddpj
 
 ## 123
-send
+same as 122
+
+Alternative way
+```c
+#include <fcntl.h>
+#include <stdio.h>  
+#include <unistd.h>    
+#include <signal.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+
+void pwncollege(char** argv, char** envp){
+    pid_t pid = fork();    
+    
+    if(pid == 0){
+        dup2(0,1);
+        char *proc = "/challenge/embryoio_level122";
+        execlp(proc,proc,NULL);
+    }else{
+        wait(NULL);         
+    }
+    
+}     
+    
+void main(int argc, char** argv, char** envp){
+    pwncollege(argv, envp);   
+}
+```
+```
+./s.out and enter the password
+```
+## 123
+```
+./s.out
+from another terminal exec -> kill -SIG... pid
+```
 
 ## 127
 run script from sh file
@@ -1338,3 +1620,94 @@ Task:
 - the challenge will force the parent process to solve a number of arithmetic problems : 5
 - the challenge will use the following arithmetic operations in its arithmetic problems : +*%
 - the complexity (in terms of nested expressions) of the arithmetic problems : 3
+
+```c
+#include <arpa/inet.h> // inet_addr()
+#include <netdb.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h> // bzero()
+#include <sys/socket.h>
+#include <fcntl.h>
+#include <sys/select.h>
+#include <unistd.h> // read(), write(), close()
+#define MAX 1024
+#define PORT 1866
+#define SA struct sockaddr
+
+
+
+void pwncollege(int connfd)
+{
+    char buff[MAX]; 
+    int n; 
+    // infinite loop for chat 
+    for (;;) { 
+        bzero(buff, MAX); 
+        int count = 1;
+
+        while( count > 0){
+            count = read(connfd, buff, sizeof(buff)); /* there was data to read */
+            printf("%s", buff);
+            bzero(buff, MAX); 
+            
+        }
+        bzero(buff, MAX); 
+        // printf("reading\n");
+        n = 0; 
+        // copy server message in the buffer 
+        while ((buff[n++] = getchar()) != '\n'); 
+
+        // printf("read: %s\n",buff);
+        
+        // and send that buffer to client 
+        write(connfd, buff, sizeof(buff)); 
+   
+        // if msg contains "Exit" then server exit and chat ended. 
+        if (strncmp("exit", buff, 4) == 0) { 
+            printf("Server Exit...\n"); 
+            break; 
+        } 
+    } 
+}
+ 
+int main()
+{
+    int sockfd, connfd;
+    struct sockaddr_in servaddr, cli;
+ 
+    // socket create and verification
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd == -1) {
+        printf("socket creation failed...\n");
+        exit(0);
+    }
+    else
+        printf("Socket successfully created..\n");
+
+    bzero(&servaddr, sizeof(servaddr));
+ 
+    // assign IP, PORT
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    servaddr.sin_port = htons(PORT);
+ 
+    // connect the client socket to server socket
+    if (connect(sockfd, (SA*)&servaddr, sizeof(servaddr))
+        != 0) {
+        printf("connection with the server failed...\n");
+        exit(0);
+    }
+    else
+        printf("connected to the server..\n");
+ 
+    // function for chat
+    pwncollege(sockfd);
+ 
+    // close the socket
+    close(sockfd);
+}
+```

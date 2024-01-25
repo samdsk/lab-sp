@@ -31,6 +31,7 @@ assign address to register as immediate value
 
     gcc -nostdlib -static -o outfile file.s
     objcopy --dump-section .text=sol.txt binaryfile.asm
+    objcopy -O binary --only-section=.text <input> <output>
 
 ## lvl 3
 ~~~s

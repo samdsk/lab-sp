@@ -1,6 +1,6 @@
 # Pwn college Babyshell
 
-```py
+```sh
   1 #!/bin/bash                                                                             
   2 # script for generating solution
   3 # defining I/O files

@@ -28,7 +28,7 @@ Il sistema di protezione è costituito da 3 entità principali:
 
 B. Lampson **regole auree** perché tutte le regole iniziano con Au
 
-Autenticazione **Authenticate** -> Controllo degli accessi **Authorize access** -> **Auditing**
+Autenticazione **Authenticate** -> Controllo degli accessi **Authorized access** -> **Auditing**
 
 chi sei -> cosa fare -> registrare
 
@@ -94,6 +94,14 @@ se si vuole aggiungere una nuova persona al gruppo, basta dare la chiave. è com
 - **Runtime security check** più efficienti (perché il processo si presenta con il token (capability)),
 - si può delegare senza molta difficolta,
 - difficile trovare chi ha accesso ad un file, se voglio sapere gli utenti che possono accedere ad una risorsa devo controllare tutti gli utenti.
+
+### ACL vs capabilities
+
+Le ACL sono di facile implementazione ma non sono particolarmente performanti nell'effettuare il security checking (il sistema operativo deve conoscere l'identità del soggetto e per ogni operazione richiesta deve accedere all'ilist usando l'inumber, recuperare l'inode e quindi l'ACL, a questo punto deve scorrere l'ACL fino a trovare i permessi del soggetto e infine verificare che questo abbia i permessi necessari). Per sapere a quali oggetti può accedere un certo soggetto bisogna scorrere tutti gli inode del sistema.
+
+Le capabilities sono più complesse da realizzare perché non devono essere falsificabili ma sono più veloci nell'effettuare il security checking (un processo richiede una certa operazione presentando la capability, questa viene verificata direttamente). Per sapere quali permessi hanno i vari utenti su un certo oggetto bisogna scorrere tutte le capability degli utenti presenti nel sistema.
+
+Anche se le capacility sono più efficienti, storicamente si sono preferite le ACL, soprattutto per gestire gli accessi al file system.
 
 ## Reference Monitor
 
